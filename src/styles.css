@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 .container-propio{
     background-color: white;
+}
 
+.fondo-cuerpo{
+    background-color: #F98;
 }
