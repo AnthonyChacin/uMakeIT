@@ -1,10 +1,20 @@
 .inicio-sesion{
-    
     background-color: rgba(255, 21, 0, 0.25);
     padding: 2%;
+    border-radius: 5%;
 }
 
 .titulo-inicio-sesion{
     text-align: center;
-    
+    border-radius: 5%;
+}
+
+.boton-inicio-sesion{
+    background-color: #ff0000b8;
+    border-color: #df00002b;
+    align-self: center;
+}
+
+.redondeo-checkbox{
+    border-radius: 15%;
 }
