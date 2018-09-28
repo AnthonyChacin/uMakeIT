@@ -6,7 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { RegistroLoginComponent } from './registro-login/registro-login.component';
-
+import { AlertModule } from 'ngx-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +16,7 @@ import { RegistroLoginComponent } from './registro-login/registro-login.componen
     RegistroLoginComponent
   ],
   imports: [
+    AlertModule.forRoot(),
     BrowserModule
   ],
   providers: [],
