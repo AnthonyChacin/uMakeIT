@@ -17,7 +17,8 @@
           <input class="form-check-input redondeo-checkbox" type="checkbox" name="remember"> Recuérdame
         </label>
       </div>
-      <button type="button" class="btn btn-outline active boton-inicio-sesion">Iniciar Sesión</button>
+      <button type="button" class="btn btn-outline active boton-inicio-sesion" (click)="onShowHideIniciarSesion()">Iniciar Sesión</button>
     </form>
     </div>
 </div>
+<div *ngIf = "mostrarDashboard === true"><app-dashboard></app-dashboard></div> 
