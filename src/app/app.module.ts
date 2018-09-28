@@ -7,13 +7,15 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { RegistroLoginComponent } from './registro-login/registro-login.component';
 import { AlertModule } from 'ngx-bootstrap';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginComponent,
     RegistroComponent,
-    RegistroLoginComponent
+    RegistroLoginComponent,
+    FooterComponent
   ],
   imports: [
     AlertModule.forRoot(),
