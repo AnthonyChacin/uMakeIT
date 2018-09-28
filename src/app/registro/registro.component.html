@@ -24,8 +24,8 @@
         <label for="pwd">Contraseña:</label>
         <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="pswd" required>
       </div>
-      <button type="submit" class="btn btn-primary btn-propio-rl" (click)="onShowHideRegistrar()">Registrar</button>
+      <button type="button" class="btn btn-primary btn-propio-rl" (click)="onShowHideRegistrar()">Registrar</button>
     </form>
   </div>
 </div>
-<div *ngIf = "mostrarDashboard == true"><app-dashboard></app-dashboard></div>
+<div *ngIf = "mostrarDashboard === true"><app-dashboard></app-dashboard></div>

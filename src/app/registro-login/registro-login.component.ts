@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-registro-login',
   templateUrl: './registro-login.component.html',
@@ -23,6 +22,7 @@ export class RegistroLoginComponent implements OnInit {
     this.mostrarLogin = true;
     this.mostrarRegistrar = false;
   }
+  
 
   ngOnInit() {
   }
