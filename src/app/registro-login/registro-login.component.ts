@@ -10,7 +10,7 @@ export class RegistroLoginComponent implements OnInit {
   public mostrarRegistrar:boolean;
 
   constructor() { 
-    this.mostrarLogin = false;
+    this.mostrarLogin = true;
     this.mostrarRegistrar = false;
   }
 
