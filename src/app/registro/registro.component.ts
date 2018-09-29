@@ -6,14 +6,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistroComponent implements OnInit{
 
-  public mostrarDashboard:boolean;
-
   constructor() { 
-    this.mostrarDashboard=false;
-  }
-
-  onShowHideRegistrar(){
-    this.mostrarDashboard=true;
   }
 
   ngOnInit() {
