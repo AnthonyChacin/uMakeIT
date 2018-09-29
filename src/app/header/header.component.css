@@ -1,3 +1,6 @@
 .navbar-propio{
-
+    overflow-x:auto;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
 }

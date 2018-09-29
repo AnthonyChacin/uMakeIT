@@ -4,4 +4,8 @@
     align-self: left;
     color: white;
 }
+.registro-login-propio{
+    position: relative;
+    z-index: 0;
+}
 
