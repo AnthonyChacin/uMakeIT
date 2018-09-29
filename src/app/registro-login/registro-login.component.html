@@ -5,13 +5,80 @@
 <div class="separador"></div>
 <div class="separador"></div>
 
+
+<div *ngIf = "(mostrarRegistro === true)">
+
+  <div class="row">
+      <div class="col-12">
+        <div class="separador"></div>
+      </div>
+    </div>
+    <div *ngIf = "mostrarDashboard === false" class="row">
+      <div class="col-4 "></div>
+      <div class="col-4 inicio-registro">
+        <form>
+          <div class="form-group">
+            <h1 class="inicio-registro titulo-inicio-registro">Registro</h1>
+            <label for="text">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="text">Apellido:</label>
+            <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido" name="apellido" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Ingrese email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="pwd">Contraseña:</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="pswd" required>
+          </div>
+          <button type="button" class="btn btn-primary btn-propio-rl" (click)="onShowHideRegistrar()">Registrar</button>
+        </form>
+      </div>
+    </div>
+</div>
+
+<div *ngIf = "(mostrarLogin === true)">
+
+  <div class="row">
+      <div class="col-12">
+        <div class="separador"></div>
+      </div>
+    </div>
+    <div *ngIf = "mostrarDashboard === false" class="row">
+      <div class="col-4"></div>
+      <div class="col-4 inicio-sesion">
+        <form>
+          <div class="form-group">
+            <h1 class="inicio-sesion titulo-inicio-sesion">Inicio de Sesión</h1>
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Ingrese email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="pwd">Contraseña:</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="pswd" required>
+          </div>
+          <div class="form-group form-check redondeo-checkbox">
+            <label class="form-check-label">
+              <input class="form-check-input redondeo-checkbox" type="checkbox" name="remember"> Recuérdame
+            </label>
+          </div>
+          <button type="button" class="btn btn-outline active boton-inicio-sesion" (click)="onShowHideIniciarSesion()">Iniciar Sesión</button>
+        </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf = "mostrarDashboard === true"><app-dashboard></app-dashboard></div> 
+
+
 <div class="row registro-login-propio">
   <div class="col-4 p-1"></div>
   <div class="col-4 p-1 btn-group d-inline-flex justify-content-center p-3">
-    <button class="btn btn-outline active btn-propio-rl" (click)="onShowHideRegistrar()">Registro</button>
-    <button class="btn btn-outline active btn-propio-rl" (click)="onShowHideLogin()">Login</button>
+    <button *ngIf="mostrarDashboard === false" class="btn btn-outline active btn-propio-rl" (click)="onShowHideRegistro()">Registro</button>
+    <button *ngIf="mostrarDashboard === false" class="btn btn-outline active btn-propio-rl" (click)="onShowHideLogin()">Login</button>
   </div>
   <div class="col-4 p-1"></div>
 </div>
-<div *ngIf = "(mostrarRegistrar === true)"><app-registro></app-registro></div>
-<div *ngIf = "(mostrarLogin === true)"><app-login></app-login></div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-registro-login',
   templateUrl: './registro-login.component.html',
@@ -7,22 +8,32 @@ import { Component, OnInit } from '@angular/core';
 export class RegistroLoginComponent implements OnInit {
 
   public mostrarLogin:boolean;
-  public mostrarRegistrar:boolean;
+  public mostrarRegistro:boolean;
+  public mostrarDashboard: boolean;
 
   constructor() { 
     this.mostrarLogin = true;
-    this.mostrarRegistrar = false;
+    this.mostrarRegistro = false;
+    this.mostrarDashboard = false;
   }
-
-  onShowHideRegistrar(){
+  onShowHideRegistro(){
     this.mostrarLogin = false;
-    this.mostrarRegistrar = true;
+    this.mostrarRegistro = true;
   }
   onShowHideLogin(){
     this.mostrarLogin = true;
-    this.mostrarRegistrar = false;
+    this.mostrarRegistro = false;
   }
-  
+  onShowHideRegistrar(){
+    this.mostrarDashboard = true;
+    this.mostrarRegistro = false;
+    this.mostrarLogin = false;
+  }
+  onShowHideIniciarSesion(){
+    this.mostrarDashboard = true;
+    this.mostrarRegistro = false;
+    this.mostrarLogin = false;
+  }
 
   ngOnInit() {
   }
