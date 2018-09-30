@@ -1,7 +1,30 @@
-.btn-propio-dashboard{
-    background-color: #ff0000b8;
-    border-color: #df00002b;    
-    align-self: right;
-    color: white;
+.menuDesplegableZ {
     z-index: 1;
+}
+
+.menuDesplegable ul{
+    display: flex;
+	padding: 0;
+	margin: 0;
+    list-style: none;
+}
+
+.menuDesplegable a{
+    display: block;
+	padding: 2em;
+	background-color: #F9B53C;
+	text-decoration: none;
+    color: #191C26;
+}
+
+.menuDesplegable a:hover{
+    background-color: #CC673B;
+}
+
+.menuDesplegable ul li ul{
+    display: none;
+}
+
+.menuDesplegable ul li a:hover + ul, .menuDesplegable ul li ul:hover {
+    display: block;
 }
