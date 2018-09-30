@@ -1,5 +1,8 @@
 .menuDesplegableZ {
     z-index: 1;
+    font-style: italic;
+    text-align: left;
+    display: block;
 }
 
 .menuDesplegable ul{
@@ -11,7 +14,7 @@
 
 .menuDesplegable a{
     display: block;
-	padding: 2em;
+	padding: 10%;
 	background-color: #F9B53C;
 	text-decoration: none;
     color: #191C26;
