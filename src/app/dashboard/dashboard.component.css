@@ -31,3 +31,7 @@
 .menuDesplegable ul li a:hover + ul, .menuDesplegable ul li ul:hover {
     display: block;
 }
+
+.titulo {
+    text-align: left;
+}
