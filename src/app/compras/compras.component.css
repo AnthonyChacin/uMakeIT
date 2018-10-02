@@ -1,7 +1,7 @@
 .compras-propio{
     margin-top: 2%; 
     padding: 0;
-    max-height: 90%;
+    max-height: 95%;
     height: 50%;
     z-index: 1;
     position: fixed;
@@ -9,12 +9,18 @@
     width: 94%;
 }
 .contenido-fila-compras{
-    padding: 0; 
-    max-height: 90%;
+    padding-left: 2%; 
+    padding-right: 2%;
+    max-height: 95%;
+    overflow: auto;
 }
 .contenido-fila-compras h3{
-    padding-left: 1%;
     display: flex;
     max-width: 100%;
     display: block;
+}
+.btn-cerrar-compras{
+    z-index: 1;
+    float: right;
+    position: fixed;
 }

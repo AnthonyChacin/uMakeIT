@@ -1,8 +1,23 @@
-<div class="jumbotron compras-propio">
+<div *ngIf="mostrarCompras === true" class="jumbotron compras-propio">
 
   <div class="row contenido-fila-compras">
-    <div class="col-8"><h4>Compras anteriores</h4></div>
-    <div class="col-4"></div>
+    <div class="col-11">
+      <h4>Compras anteriores</h4>
+      <ul class="list-group">
+          <li class="list-group-item"> Compra 1</li>
+          <li class="list-group-item"> Compra 2</li>
+          <li class="list-group-item"> Compra 3</li>
+          <li class="list-group-item"> Compra 4</li>
+          <li class="list-group-item"> Compra 5</li>
+          <li class="list-group-item"> Compra 6</li>
+          <li class="list-group-item"> Compra 7</li>
+          <li class="list-group-item"> Compra 8</li>
+          <li class="list-group-item"> Compra 9</li>
+      </ul>
+    </div>
+    <div class="col-1">
+        <button type="button" class="btn btn-danger btn-cerrar-compras" (click)="onHideCompras()">X</button>
+    </div>
   </div>
 
 
