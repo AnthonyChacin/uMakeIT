@@ -16,7 +16,7 @@
               <li><a href="#">Nombre del Usuario</a>
                 <ul>
                   <li><a href="#">Cambio de Clave</a></li>
-                  <li><a href="#">Compras</a></li>
+                  <li><a (click)= "onShowHideCompras()" href="#">Compras</a></li>
                   <li><a href="#">Orden</a></li>
                   <li><a href="#">Salir</a></li>
                 </ul>
@@ -29,8 +29,9 @@
       <div class="col-12">
         <div class="separador"></div>
       </div>
-    </div>
-  <div class="row">
+  </div>
+  <app-compras *ngIf="mostrarCompras === true"></app-compras>
+  <div  class="row">
     <div class="col-4">
       <img src="assets/kebab-de-garbanzos.jpg" class="rounded img-fluid" alt="Kebab de Garbanzos">
     </div>
@@ -95,3 +96,4 @@
     </div>
   </div>
 </div>
+

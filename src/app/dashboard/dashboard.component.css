@@ -1,8 +1,9 @@
 .menuDesplegableZ {
-    z-index: 1;
+    z-index: 2;
     font-style: italic;
     text-align: left;
     display: block;
+    position: fixed;
 }
 
 .menuDesplegable ul{

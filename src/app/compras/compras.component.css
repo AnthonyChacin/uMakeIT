@@ -1,0 +1,9 @@
+.compras-propio{
+    margin-top: 2%; 
+    max-height: 90%;
+    height: 50%;
+    z-index: 1;
+    position: fixed;
+    float: center;
+    width: 94%;
+}
