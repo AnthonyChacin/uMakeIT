@@ -7,15 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   
-  public mostrarCompras: boolean;
+  public mostrar: boolean;
 
   constructor() {
-    this.mostrarCompras = false;
+    this.mostrar = false;
    }
 
    onShowHideCompras(){
-     this.mostrarCompras = true;
+     this.mostrar = true;
    }
+
 
   ngOnInit() {
   }
