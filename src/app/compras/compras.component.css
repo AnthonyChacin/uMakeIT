@@ -1,9 +1,20 @@
 .compras-propio{
     margin-top: 2%; 
+    padding: 0;
     max-height: 90%;
     height: 50%;
     z-index: 1;
     position: fixed;
     float: center;
     width: 94%;
+}
+.contenido-fila-compras{
+    padding: 0; 
+    max-height: 90%;
+}
+.contenido-fila-compras h3{
+    padding-left: 1%;
+    display: flex;
+    max-width: 100%;
+    display: block;
 }
