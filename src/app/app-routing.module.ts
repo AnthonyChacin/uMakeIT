@@ -7,6 +7,8 @@ import { LoginNavigationComponent } from './navigation/login-navigation/login-na
 import { HomeComponent } from './view/home/home.component';
 import { ViewDashboardComponent} from './view/view-dashboard/view-dashboard.component';
 import { ViewComprasComponent } from './view/view-compras/view-compras.component';
+import { ViewOrdenComponent } from './view/view-orden/view-orden.component';
+
 const routes: Routes = [
   { 
     path: '',
@@ -30,6 +32,13 @@ const routes: Routes = [
       {path: '', redirectTo:'/compras', pathMatch:'full'},
       {path: 'compras', component:ViewComprasComponent}
     ],component: ViewComprasComponent
+  },
+  { 
+    path: 'orden',
+    children:[
+      {path: '', redirectTo:'/orden', pathMatch:'full'},
+      {path: 'orden', component:ViewOrdenComponent}
+    ],component: ViewOrdenComponent
   }
 
 ]

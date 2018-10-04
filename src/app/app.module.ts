@@ -14,6 +14,8 @@ import { LoginNavigationComponent } from './navigation/login-navigation/login-na
 import { HomeNavigationComponent } from './navigation/home-navigation/home-navigation.component';
 import { ViewDashboardComponent } from './view/view-dashboard/view-dashboard.component';
 import { ViewComprasComponent } from './view/view-compras/view-compras.component';
+import { OrdenComponent } from './component/orden/orden.component';
+import { ViewOrdenComponent } from './view/view-orden/view-orden.component';
 
 
 
@@ -30,7 +32,9 @@ import { ViewComprasComponent } from './view/view-compras/view-compras.component
     HomeNavigationComponent,
     RegistroLoginComponent,
     ViewDashboardComponent,
-    ViewComprasComponent
+    ViewComprasComponent,
+    OrdenComponent,
+    ViewOrdenComponent
   ],
   imports: [
     AlertModule.forRoot(),
