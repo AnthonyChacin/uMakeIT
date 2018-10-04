@@ -26,14 +26,11 @@
 .modificar{
     margin-right:0;
     float: right; 
-    width: 100%;
-    height: 100%;
-}
-.modificar p{
-    display: flex;
-    max-width: 100%;
-    display: block;
-
+    padding: 0;
+    width: 20%;
+    height: 2%;
+    text-align: center;
+    text-anchor: middle;
 }
 .p-aviso{
     padding-top: 20%;
@@ -41,10 +38,12 @@
 .agregar-comida{
     padding: 5%;
     margin: 2%;
+    padding: 2%;
 }
 .eliminar{
     padding: 5%;
     margin: 2%;
+    padding: 2%;
 }
 .btn-cerrar-orden{
     z-index: 0;
