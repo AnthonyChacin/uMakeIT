@@ -17,7 +17,7 @@
     max-height: 95%;
     overflow: auto;
 }
-.contenido-fila-compras h3{
+.contenido-fila-compras h4{
     display: flex;
     max-width: 100%;
     display: block;
@@ -25,10 +25,17 @@
 .recomprar{
     margin-right:0;
     float: right; 
+    width: 100%;
+    height: 100%;
+}
+.recomprar p{
+    display: flex;
+    max-width: 100%;
+    display: block;
+
 }
 .btn-cerrar-compras{
     z-index: 0;
-    position: relative;
     margin-top: 20%;
     float: right;
 }

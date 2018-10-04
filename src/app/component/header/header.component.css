@@ -1,12 +1,14 @@
 .navbar-propio{
     width: 100%;
     height: 25vh;
-    position: fixed;
-    z-index: 1;
+    position: relative;
+    display: inline-flex;
+    max-width: 100%;
+    z-index: 0;
     max-height: 25vh;
 }
 .logo img{
-    z-index: 1;
+    z-index: 0;
     width:18vw;
     height:18vh;
 }
