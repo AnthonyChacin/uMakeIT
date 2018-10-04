@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './view/home/home.component';
 import { LoginNavigationComponent } from './navigation/login-navigation/login-navigation.component';
 import { HomeNavigationComponent } from './navigation/home-navigation/home-navigation.component';
+import { ViewDashboardComponent } from './view/view-dashboard/view-dashboard.component';
+import { ViewComprasComponent } from './view/view-compras/view-compras.component';
 
 
 
@@ -26,7 +28,9 @@ import { HomeNavigationComponent } from './navigation/home-navigation/home-navig
     HomeComponent,
     LoginNavigationComponent,
     HomeNavigationComponent,
-    RegistroLoginComponent
+    RegistroLoginComponent,
+    ViewDashboardComponent,
+    ViewComprasComponent
   ],
   imports: [
     AlertModule.forRoot(),

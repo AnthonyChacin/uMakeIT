@@ -5,20 +5,31 @@ import { RegistroLoginComponent } from './view/registro-login/registro-login.com
 import { HomeNavigationComponent } from './navigation/home-navigation/home-navigation.component';
 import { LoginNavigationComponent } from './navigation/login-navigation/login-navigation.component';
 import { HomeComponent } from './view/home/home.component';
-
+import { ViewDashboardComponent} from './view/view-dashboard/view-dashboard.component';
+import { ViewComprasComponent } from './view/view-compras/view-compras.component';
 const routes: Routes = [
   { 
-    path: "",
+    path: '',
     children:[
-      {path: '', redirectTo:'/home', pathMatch:'full'},
-      {path: 'home', component:HomeComponent}
+      {path: '', redirectTo:'/login', pathMatch:'full'},
+      {path: 'home', redirectTo:'/login', pathMatch:'full'},
+      {path: 'home', component:HomeComponent},
+      {path: 'login', component:RegistroLoginComponent}
     ],component: HomeNavigationComponent
   },
   { 
-    path: "login",
+    path: 'dashboard',
     children:[
-      {path: '', component:RegistroLoginComponent}
-    ],component: LoginNavigationComponent
+      {path: '', redirectTo:'/dashboard', pathMatch:'full'},
+      {path: 'dashboard', component:ViewDashboardComponent}
+    ],component: ViewDashboardComponent
+  },
+  { 
+    path: 'compras',
+    children:[
+      {path: '', redirectTo:'/compras', pathMatch:'full'},
+      {path: 'compras', component:ViewComprasComponent}
+    ],component: ViewComprasComponent
   }
 
 ]

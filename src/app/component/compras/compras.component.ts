@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./compras.component.css']
 })
 export class ComprasComponent implements OnInit {
-
+  
   public mostrarCompras: boolean;
 
   constructor() {
@@ -16,8 +16,6 @@ export class ComprasComponent implements OnInit {
    onHideCompras(){
      this.mostrarCompras = false;
    }
-   
-
   ngOnInit() {
   }
 

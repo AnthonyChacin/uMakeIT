@@ -9,12 +9,10 @@ export class RegistroLoginComponent implements OnInit {
 
   public mostrarLogin:boolean;
   public mostrarRegistro:boolean;
-  public mostrarDashboard: boolean;
 
   constructor() { 
     this.mostrarLogin = true;
     this.mostrarRegistro = false;
-    this.mostrarDashboard = false;
   }
   onShowHideRegistro(){
     this.mostrarLogin = false;
@@ -23,16 +21,6 @@ export class RegistroLoginComponent implements OnInit {
   onShowHideLogin(){
     this.mostrarLogin = true;
     this.mostrarRegistro = false;
-  }
-  onShowHideRegistrar(){
-    this.mostrarDashboard = true;
-    this.mostrarRegistro = false;
-    this.mostrarLogin = false;
-  }
-  onShowHideIniciarSesion(){
-    this.mostrarDashboard = true;
-    this.mostrarRegistro = false;
-    this.mostrarLogin = false;
   }
 
   ngOnInit() {

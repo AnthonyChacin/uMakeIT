@@ -1,10 +1,11 @@
 .compras-propio{
-    margin-top: 2%; 
+    margin-top: 2%;
+    margin-left: 4%; 
     padding: 0;
     max-height: 95%;
     height: 50%;
-    z-index: 1;
-    position: fixed;
+    z-index: 0;
+    position: relative;
     float: center;
     width: 94%;
 }
@@ -19,8 +20,12 @@
     max-width: 100%;
     display: block;
 }
+.recomprar{
+    margin-right:0;
+    float: right; 
+}
 .btn-cerrar-compras{
-    z-index: 1;
+    z-index: 0;
     float: right;
-    position: fixed;
+    position: relative;
 }

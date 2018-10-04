@@ -16,8 +16,6 @@ export class DashboardComponent implements OnInit {
    onShowHideCompras(){
      this.mostrar = true;
    }
-
-
   ngOnInit() {
   }
 

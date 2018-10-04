@@ -4,7 +4,8 @@
 <div class="separador"></div>
 <div class="separador"></div>
 <div class="separador"></div>
-
+<div class="separador"></div>
+<div class="separador"></div>
 
 <div *ngIf = "(mostrarRegistro === true)">
 
@@ -13,7 +14,7 @@
         <div class="separador"></div>
       </div>
     </div>
-    <div *ngIf = "mostrarDashboard === false" class="row">
+    <div class="row">
       <div class="col-4 "></div>
       <div class="col-4 inicio-registro">
         <form>
@@ -34,7 +35,7 @@
             <label for="pwd">Contraseña:</label>
             <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="pswd" required>
           </div>
-          <button type="button" class="btn btn-primary btn-propio-rl" (click)="onShowHideRegistrar()">Registrar</button>
+          <button type="button" class="btn btn-primary btn-propio-rl" routerLink="/dashboard">Registrar</button>
         </form>
       </div>
     </div>
@@ -47,7 +48,7 @@
         <div class="separador"></div>
       </div>
     </div>
-    <div *ngIf = "mostrarDashboard === false" class="row">
+    <div class="row">
       <div class="col-4"></div>
       <div class="col-4 inicio-sesion">
         <form>
@@ -65,20 +66,17 @@
               <input class="form-check-input redondeo-checkbox" type="checkbox" name="remember"> Recuérdame
             </label>
           </div>
-          <button type="button" class="btn btn-outline active boton-inicio-sesion" (click)="onShowHideIniciarSesion()">Iniciar Sesión</button>
+          <button type="button" class="btn btn-outline active boton-inicio-sesion" routerLink="/dashboard">Iniciar Sesión</button>
         </form>
         </div>
     </div>
-</div>
-
-<div *ngIf = "mostrarDashboard === true"><app-dashboard></app-dashboard></div> 
-
+</div> 
 
 <div class="row registro-login-propio">
   <div class="col-4 p-1"></div>
   <div class="col-4 p-1 btn-group d-inline-flex justify-content-center p-3">
-    <button *ngIf="mostrarDashboard === false" class="btn btn-outline active btn-propio-rl" (click)="onShowHideRegistro()">Registro</button>
-    <button *ngIf="mostrarDashboard === false" class="btn btn-outline active btn-propio-rl" (click)="onShowHideLogin()">Login</button>
+    <button class="btn btn-outline active btn-propio-rl" >Registro</button>
+    <button class="btn btn-outline active btn-propio-rl" >Login</button>
   </div>
   <div class="col-4 p-1"></div>
 </div>

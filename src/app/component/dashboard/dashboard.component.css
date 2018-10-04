@@ -3,7 +3,7 @@
     font-style: italic;
     text-align: left;
     display: block;
-    position: fixed;
+    position: relative;
 }
 
 .menuDesplegable ul{
