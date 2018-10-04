@@ -1,14 +1,12 @@
 .navbar-propio{
     width: 100%;
-    height: 30%;
+    height: 30vh;
     position: fixed;
     z-index: 1;
-    max-height: 30%;
+    max-height: 30vh;
 }
 .logo img{
     z-index: 1;
-    height: 100%;
-    position: inherit;
-    max-height: 100%;
-    float: left;
+    width:20vw;
+    height:23vh;
 }
