@@ -8,6 +8,7 @@
     position: relative;
     float: center;
     width: 94%;
+    background-color: whitesmoke;
 }
 .contenido-fila-compras{
     padding-left: 2%; 
@@ -27,6 +28,7 @@
 }
 .btn-cerrar-compras{
     z-index: 0;
-    float: right;
     position: relative;
+    margin-top: 20%;
+    float: right;
 }
