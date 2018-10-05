@@ -118,10 +118,15 @@
 }
 .agregar-plato{
     z-index: 1;
-    top: 0;
+    bottom: 0;
     right: 0;
     position: absolute;
     padding: 0;
+    background-image: url('src/assets/agregar-orden.jpg');
+    background-size: cover;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 5%;
 }
 .nombre-plato{
     width: 100%;
