@@ -1,0 +1,52 @@
+.orden-propio{
+
+    margin-top: 2%;
+    margin-left: 4%; 
+    padding: 0;
+    max-height: 95%;
+    height: 50%;
+    z-index: 0;
+    position: relative;
+    float: center;
+    width: 94%;
+    background-color: whitesmoke;
+}
+.contenido-fila-orden{
+    padding-left: 2%; 
+    padding-right: 2%;
+    padding-bottom: 2%;
+    max-height: 95%;
+    overflow: auto; 
+}
+.contenido-fila-orden h4{
+    display: flex;
+    max-width: 100%;
+    display: block;
+}
+.modificar{
+    margin-right:0;
+    float: right; 
+    padding: 0;
+    width: 20%;
+    height: 2%;
+    text-align: center;
+    text-anchor: middle;
+}
+.p-aviso{
+    padding-top: 20%;
+}
+.agregar-comida{
+    padding: 5%;
+    margin: 2%;
+    padding: 2%;
+}
+.eliminar{
+    padding: 5%;
+    margin: 2%;
+    padding: 2%;
+}
+.btn-cerrar-orden{
+    z-index: 0;
+    margin-top: 20%;
+    float: right;
+}

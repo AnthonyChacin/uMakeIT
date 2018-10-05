@@ -1,0 +1,38 @@
+.compras-propio{
+    margin-top: 2%;
+    margin-left: 4%; 
+    padding: 0;
+    max-height: 95%;
+    height: 50%;
+    z-index: 0;
+    position: relative;
+    float: center;
+    width: 94%;
+    background-color: whitesmoke;
+}
+.contenido-fila-compras{
+    padding-left: 2%; 
+    padding-right: 2%;
+    padding-bottom: 2%;
+    max-height: 95%;
+    overflow: auto;
+}
+.contenido-fila-compras h4{
+    display: flex;
+    max-width: 100%;
+    display: block;
+}
+.recomprar{
+    margin-right:0;
+    float: right; 
+    padding: 0;
+    width: 20%;
+    height: 3%;
+    text-align: center;
+}
+
+.btn-cerrar-compras{
+    z-index: 0;
+    margin-top: 20%;
+    float: right;
+}

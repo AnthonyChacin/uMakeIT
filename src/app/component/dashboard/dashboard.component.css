@@ -1,0 +1,38 @@
+.menuDesplegableZ {
+    z-index: 2;
+    font-style: italic;
+    text-align: left;
+    display: block;
+    position: relative;
+}
+
+.menuDesplegable ul{
+    display: flex;
+	padding: 0;
+	margin: 0;
+    list-style: none;
+}
+
+.menuDesplegable a{
+    display: block;
+	padding: 10%;
+	background-color: #F9B53C;
+	text-decoration: none;
+    color: #191C26;
+}
+
+.menuDesplegable a:hover{
+    background-color: #CC673B;
+}
+
+.menuDesplegable ul li ul{
+    display: none;
+}
+
+.menuDesplegable ul li a:hover + ul, .menuDesplegable ul li ul:hover {
+    display: block;
+}
+
+.titulo {
+    text-align: left;
+}

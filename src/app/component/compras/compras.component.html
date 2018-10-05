@@ -1,0 +1,43 @@
+
+<div *ngIf="mostrarCompras === true" class="jumbotron compras-propio">
+
+  <div class="row contenido-fila-compras">
+    <div class="col-11">
+      <h4>Compras anteriores</h4>
+      <ul class="list-group">
+        <li class="list-group-item"> Compra 1
+          <button type="button" class="btn btn-warning col-2 recomprar"> Recomprar</button>
+        </li>
+        <li class="list-group-item"> Compra 2
+            <button type="button" class="btn btn-warning col-2 recomprar">Recomprar</button>
+        </li>
+        <li class="list-group-item"> Compra 3
+            <button type="button" class="btn btn-warning col-2 recomprar">Recomprar</button>
+        </li>
+        <li class="list-group-item"> Compra 4
+            <button type="button" class="btn btn-warning col-2 recomprar">Recomprar</button>
+        </li>
+        <li class="list-group-item"> Compra 5
+            <button type="button" class="btn btn-warning col-2 recomprar">Recomprar</button>
+        </li>
+        <li class="list-group-item"> Compra 6
+            <button type="button" class="btn btn-warning col-2 recomprar">Recomprar</button>
+        </li>
+        <li class="list-group-item"> Compra 7
+            <button type="button" class="btn btn-warning col-2 recomprar">Recomprar</button>
+        </li>
+        <li class="list-group-item"> Compra 8
+            <button type="button" class="btn btn-warning col-2 recomprar">Recomprar</button>
+        </li>
+        <li class="list-group-item"> Compra 9
+            <button type="button" class="btn btn-warning col-2 recomprar">Recomprar</button>
+        </li>
+      </ul>
+    </div>
+    <div class="col-1">
+      <button type="button" class="btn btn-danger btn-cerrar-compras" (click)="onHideCompras()" routerLink="/home">Volver</button>
+    </div>
+  </div>
+
+
+</div>

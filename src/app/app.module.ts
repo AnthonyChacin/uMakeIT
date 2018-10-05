@@ -2,32 +2,48 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from './login/login.component';
-import { RegistroComponent } from './registro/registro.component';
-import { RegistroLoginComponent } from './registro-login/registro-login.component';
+import { HeaderComponent } from './component/header/header.component';
+import { RegistroLoginComponent } from './view/registro-login/registro-login.component';
 import { AlertModule } from 'ngx-bootstrap';
-<<<<<<< HEAD
-import { FooterComponent } from './footer/footer.component';
-=======
-import { DashboardComponent } from './dashboard/dashboard.component';
->>>>>>> 20e291efeec8ab8afdf32e56a0daa14c12fade2c
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { ComprasComponent } from './component/compras/compras.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './view/home/home.component';
+import { LoginNavigationComponent } from './navigation/login-navigation/login-navigation.component';
+import { HomeNavigationComponent } from './navigation/home-navigation/home-navigation.component';
+import { ViewDashboardComponent } from './view/view-dashboard/view-dashboard.component';
+import { ViewComprasComponent } from './view/view-compras/view-compras.component';
+import { OrdenComponent } from './component/orden/orden.component';
+import { ViewOrdenComponent } from './view/view-orden/view-orden.component';
+import { HeaderClienteComponent } from './component/header-cliente/header-cliente.component';
+import { CambioClaveComponent } from './component/cambio-clave/cambio-clave.component';
+import { ViewCambioClaveComponent } from './view/view-cambio-clave/view-cambio-clave.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginComponent,
-    RegistroComponent,
     RegistroLoginComponent,
-<<<<<<< HEAD
-    FooterComponent
-=======
-    DashboardComponent
->>>>>>> 20e291efeec8ab8afdf32e56a0daa14c12fade2c
+    DashboardComponent,
+    FooterComponent,
+    ComprasComponent,
+    HomeComponent,
+    LoginNavigationComponent,
+    HomeNavigationComponent,
+    RegistroLoginComponent,
+    ViewDashboardComponent,
+    ViewComprasComponent,
+    OrdenComponent,
+    ViewOrdenComponent,
+    HeaderClienteComponent,
+    CambioClaveComponent,
+    ViewCambioClaveComponent
   ],
   imports: [
     AlertModule.forRoot(),
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
