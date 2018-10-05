@@ -1,0 +1,34 @@
+.navbar-propio{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: inline-flex;
+    max-width: 100%;
+    max-height: 100%;
+}
+.menu{
+    display: inline-flex;
+    margin-right: 0;
+    max-width: 100%;
+    max-height: 100%;
+}
+.navbar-propio img{
+    height:5rem;
+}
+
+.navar-nav li>a{
+    display: flex;
+}
+.nav-link{
+    padding: 0;
+}
+.navbar-nav>li>ul{
+    display: none;
+}
+.navbar-nav>li:hover>ul{
+    display: block;
+}
+
+.dropdown-item:hover{
+    background-color: #F98;
+}

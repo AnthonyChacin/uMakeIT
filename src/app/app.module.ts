@@ -16,6 +16,7 @@ import { ViewDashboardComponent } from './view/view-dashboard/view-dashboard.com
 import { ViewComprasComponent } from './view/view-compras/view-compras.component';
 import { OrdenComponent } from './component/orden/orden.component';
 import { ViewOrdenComponent } from './view/view-orden/view-orden.component';
+import { HeaderClienteComponent } from './component/header-cliente/header-cliente.component';
 
 
 
@@ -34,7 +35,8 @@ import { ViewOrdenComponent } from './view/view-orden/view-orden.component';
     ViewDashboardComponent,
     ViewComprasComponent,
     OrdenComponent,
-    ViewOrdenComponent
+    ViewOrdenComponent,
+    HeaderClienteComponent
   ],
   imports: [
     AlertModule.forRoot(),
