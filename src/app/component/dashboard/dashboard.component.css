@@ -1,38 +1,43 @@
-.menuDesplegableZ {
-    z-index: 2;
-    font-style: italic;
-    text-align: left;
-    display: block;
-    position: relative;
-}
-
-.menuDesplegable ul{
-    display: flex;
-	padding: 0;
-	margin: 0;
-    list-style: none;
-}
-
-.menuDesplegable a{
-    display: block;
-	padding: 10%;
-	background-color: #F9B53C;
-	text-decoration: none;
-    color: #191C26;
-}
-
-.menuDesplegable a:hover{
-    background-color: #CC673B;
-}
-
-.menuDesplegable ul li ul{
-    display: none;
-}
-
-.menuDesplegable ul li a:hover + ul, .menuDesplegable ul li ul:hover {
-    display: block;
-}
-
 .titulo {
     text-align: left;
+}
+.container1{
+    height: 15rem;
+}
+.kebab-garbanzos{
+    background-image: url('src/assets/kebab-de-garbanzos.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    color: white;
+    font-size: 120%;
+    font-style: italic;
+}
+.filetes-coliflor-lentejas{
+    background-image: url('src/assets/filetes-coliflor-lentejas.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    color: white;
+    font-size: 120%;
+    font-style: italic;
+}
+.berenjenas-rellenas{
+    background-image: url('src/assets/berenjenas-rellenas.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    color: white;
+    font-size: 120%;
+    font-style: italic;
+}
+.agregar-plato{
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    font-style: oblique;
+}
+.nombre-plato{
+    width: 100%;
+    background-color: rgba(0,0,0,0.5)
 }

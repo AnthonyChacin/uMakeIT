@@ -27,10 +27,10 @@
           <div class="separador"></div>
         </div>
       </div>
-      <div class="form-group caja-mensaje" *ngIf="cambioClave === true">
-        <p>¡Operación realizada con éxito!</p>
+      <div class="form-group caja-mensaje alert alert-success" *ngIf="cambioClave === true">
+        <strong>¡Operación realizada con éxito!</strong>
         <a href="/home">
-          <button type="button" class="btn btn-dark">Finalizar</button>
+          <button type="button" class="btn btn-success">Finalizar</button>
         </a>
       </div>
     </form>
