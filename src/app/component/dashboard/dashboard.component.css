@@ -119,7 +119,6 @@
 .agregar-plato{
     z-index: 1;
     bottom: 0;
-    right: 0;
     position: absolute;
     padding: 0;
     background-image: url('src/assets/agregar-orden.jpg');
