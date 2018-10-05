@@ -30,5 +30,6 @@
 }
 
 .dropdown-item:hover{
-    background-color: #F98;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
 }

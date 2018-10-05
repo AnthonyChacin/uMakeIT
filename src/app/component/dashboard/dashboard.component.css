@@ -1,7 +1,11 @@
 .titulo {
-    text-align: left;
+    text-align: center;
+    font-style: italic;
+    font-size: 200%;
+    color: darkslategray;
+    width: 100%;
 }
-.container1{
+.container-imagenes{
     height: 15rem;
 }
 .kebab-garbanzos{
@@ -33,11 +37,14 @@
 }
 .agregar-plato{
     z-index: 1;
-    position: absolute;
+    top: 0;
     right: 0;
-    font-style: oblique;
+    position: absolute;
+    padding: 0;
 }
 .nombre-plato{
     width: 100%;
-    background-color: rgba(0,0,0,0.5)
+    background-color: rgba(0,0,0,0.5);
+    word-wrap: break-word;
+    word-break: break-all;
 }
