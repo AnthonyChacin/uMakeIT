@@ -19,6 +19,8 @@ import { ViewOrdenComponent } from './view/view-orden/view-orden.component';
 import { HeaderClienteComponent } from './component/header-cliente/header-cliente.component';
 import { CambioClaveComponent } from './component/cambio-clave/cambio-clave.component';
 import { ViewCambioClaveComponent } from './view/view-cambio-clave/view-cambio-clave.component';
+import { ProductCustomizationComponent } from './component/product-customization/product-customization.component';
+import { ViewProductCustomizationComponent } from './view/view-product-customization/view-product-customization.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ViewCambioClaveComponent } from './view/view-cambio-clave/view-cambio-c
     ViewOrdenComponent,
     HeaderClienteComponent,
     CambioClaveComponent,
-    ViewCambioClaveComponent
+    ViewCambioClaveComponent,
+    ProductCustomizationComponent,
+    ViewProductCustomizationComponent
   ],
   imports: [
     AlertModule.forRoot(),

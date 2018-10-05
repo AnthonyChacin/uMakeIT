@@ -1,0 +1,24 @@
+.cus-propio{
+    margin: 1rem;
+    margin-right: 0;
+    height: 20rem;
+}
+.imagen-plato{
+    background-image: url('src/assets/ejemplo1-customization.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.nombre-caja{
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 120%;
+    font-style: italic;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.box-customization{
+    height: 100%;
+    background-color: white;
+}

@@ -8,7 +8,7 @@ import { HomeComponent } from './view/home/home.component';
 import { ViewComprasComponent } from './view/view-compras/view-compras.component';
 import { ViewOrdenComponent } from './view/view-orden/view-orden.component';
 import { ViewCambioClaveComponent} from './view/view-cambio-clave/view-cambio-clave.component';
-
+import { ViewProductCustomizationComponent} from './view/view-product-customization/view-product-customization.component';
 const routes: Routes = [
   { 
     path: '',
@@ -33,7 +33,9 @@ const routes: Routes = [
       {path: 'home', redirectTo:'/home/orden', pathMatch:'full'},
       {path: 'orden', component:ViewOrdenComponent},
       {path: 'home', redirectTo:'/home/cambio-clave', pathMatch:'full'},
-      {path: 'cambio-clave', component:ViewCambioClaveComponent}
+      {path: 'cambio-clave', component:ViewCambioClaveComponent},
+      {path: 'home', redirectTo:'/home/product-customization', pathMatch:'full'},
+      {path: 'product-customization', component:ViewProductCustomizationComponent}
     ],component: HomeNavigationComponent
   }
 
