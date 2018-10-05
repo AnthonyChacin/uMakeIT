@@ -5,9 +5,9 @@ import { RegistroLoginComponent } from './view/registro-login/registro-login.com
 import { HomeNavigationComponent } from './navigation/home-navigation/home-navigation.component';
 import { LoginNavigationComponent } from './navigation/login-navigation/login-navigation.component';
 import { HomeComponent } from './view/home/home.component';
-import { ViewDashboardComponent} from './view/view-dashboard/view-dashboard.component';
 import { ViewComprasComponent } from './view/view-compras/view-compras.component';
 import { ViewOrdenComponent } from './view/view-orden/view-orden.component';
+import { ViewCambioClaveComponent} from './view/view-cambio-clave/view-cambio-clave.component';
 
 const routes: Routes = [
   { 
@@ -15,28 +15,26 @@ const routes: Routes = [
     children:[
       {path: '', redirectTo:'/login', pathMatch:'full'},
       {path: 'login', component:RegistroLoginComponent}
+    ],component: LoginNavigationComponent
+  },
+  { 
+    path: '',
+    children:[
+      {path: '', redirectTo:'/home', pathMatch:'full'},
+      {path: 'home', component:HomeComponent}
     ],component: HomeNavigationComponent
   },
+
   { 
-    path: 'dashboard',
+    path: 'home',
     children:[
-      {path: '', redirectTo:'/dashboard', pathMatch:'full'},
-      {path: 'dashboard', component:ViewDashboardComponent}
-    ],component: ViewDashboardComponent
-  },
-  { 
-    path: 'compras',
-    children:[
-      {path: '', redirectTo:'/compras', pathMatch:'full'},
-      {path: 'compras', component:ViewComprasComponent}
-    ],component: ViewComprasComponent
-  },
-  { 
-    path: 'orden',
-    children:[
-      {path: '', redirectTo:'/orden', pathMatch:'full'},
-      {path: 'orden', component:ViewOrdenComponent}
-    ],component: ViewOrdenComponent
+      {path: 'home', redirectTo:'/home/compras', pathMatch:'full'},
+      {path: 'compras', component:ViewComprasComponent},
+      {path: 'home', redirectTo:'/home/orden', pathMatch:'full'},
+      {path: 'orden', component:ViewOrdenComponent},
+      {path: 'home', redirectTo:'/home/cambio-clave', pathMatch:'full'},
+      {path: 'cambio-clave', component:ViewCambioClaveComponent}
+    ],component: HomeNavigationComponent
   }
 
 ]

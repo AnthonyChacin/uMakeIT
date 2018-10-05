@@ -17,6 +17,8 @@ import { ViewComprasComponent } from './view/view-compras/view-compras.component
 import { OrdenComponent } from './component/orden/orden.component';
 import { ViewOrdenComponent } from './view/view-orden/view-orden.component';
 import { HeaderClienteComponent } from './component/header-cliente/header-cliente.component';
+import { CambioClaveComponent } from './component/cambio-clave/cambio-clave.component';
+import { ViewCambioClaveComponent } from './view/view-cambio-clave/view-cambio-clave.component';
 
 
 
@@ -36,7 +38,9 @@ import { HeaderClienteComponent } from './component/header-cliente/header-client
     ViewComprasComponent,
     OrdenComponent,
     ViewOrdenComponent,
-    HeaderClienteComponent
+    HeaderClienteComponent,
+    CambioClaveComponent,
+    ViewCambioClaveComponent
   ],
   imports: [
     AlertModule.forRoot(),
