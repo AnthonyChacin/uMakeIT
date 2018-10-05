@@ -35,6 +35,24 @@
     font-size: 120%;
     font-style: italic;
 }
+.hamburguesa-lentejas{
+    background-image: url('src/assets/hamburguesa-de-lentejas.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    color: white;
+    font-size: 120%;
+    font-style: italic;
+}
+.pizza-vegana-gluten-free{
+    background-image: url('src/assets/pizza-vegana-gluten-free.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    color: white;
+    font-size: 120%;
+    font-style: italic;
+}
 .agregar-plato{
     z-index: 1;
     top: 0;
@@ -44,7 +62,7 @@
 }
 .nombre-plato{
     width: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.7);
     word-wrap: break-word;
     word-break: break-all;
 }
