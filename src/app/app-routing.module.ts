@@ -9,6 +9,7 @@ import { ViewComprasComponent } from './view/view-compras/view-compras.component
 import { ViewOrdenComponent } from './view/view-orden/view-orden.component';
 import { ViewCambioClaveComponent} from './view/view-cambio-clave/view-cambio-clave.component';
 import { ViewProductCustomizationComponent} from './view/view-product-customization/view-product-customization.component';
+
 const routes: Routes = [
   { 
     path: '',

@@ -1,24 +1,107 @@
-.cus-propio{
-    margin: 1rem;
-    margin-right: 0;
-    height: 20rem;
-}
-.imagen-plato{
-    background-image: url('src/assets/ejemplo1-customization.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100%;
-}
 
-.nombre-caja{
+.titulo{
+    width: 100%;
+    font-size: 120%;
+    font-style: italic; 
+    font-weight: bold;
+    color: white;
     background-color: rgba(0,0,0,0.7);
+    word-break: break-all;
+    text-align: center;
+}
+.plato-seleccionado{
+    background-image: url('src/assets/ejemplo1-customization.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
     color: white;
     font-size: 120%;
-    font-style: italic;
+    font-style: italic; 
+}
+.nombre-plato{
+    width: 100%;
+    background-color: rgba(0,0,0,0.7);
     word-wrap: break-word;
     word-break: break-all;
 }
-.box-customization{
-    height: 100%;
+.container-propio{
+    margin: 0;
     background-color: white;
+    height: 100%;
+    margin-left: 1rem;
+    z-index: 1;
+    display: flex;
+    position: flex;
+
 }
+.label{
+    padding-right: 1rem;
+    background-color: rgba(0,0,0,0.7);
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    color: white;
+    position: flex;
+    border-radius: 5%;
+    text-align: center;
+    word-break: break-all;
+}
+.agregar-al-plato{
+    width: 70%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.781);
+    word-break: break-all;
+    text-align: center;
+    border-radius: 5%;
+    border: none;
+    align-content: center;
+    cursor: pointer;
+    font-style: italic;
+    font-size: 90%;
+}
+.container-boton{
+    padding-left: 2.5rem;
+}
+select{
+    font-style: italic;
+    font-size: 90%;
+    background-color: rgba(50, 87, 87,0.8);
+    color: white;
+}
+
+.container1{
+    background-image: url('src/assets/papas.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: bold;
+    font-style: italic;
+    word-break: break-all;
+}
+.container2{
+    background-image: url('src/assets/aderezos.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: bold;
+    font-style: italic;
+    word-break: break-all;
+}
+.container3{
+    background-image: url('src/assets/jugos.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: bold;
+    font-style: italic;
+    word-break: break-all;
+}
+.container4{
+    background-image: url('src/assets/batidos.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: bold;
+    font-style: italic;
+    word-break: break-all;
+}
+.input-cantidad{
+    text-align: right;
+}
+
