@@ -1,0 +1,72 @@
+.table{
+    height: 30rem;
+    background-color: #343a40;
+    position: flex;
+    margin-left: 0.25rem;
+    margin-top: 1rem;
+    border-radius: 0.25rem; 
+    text-align: center;
+    align-content: center;
+}
+thead{
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+}
+tbody{
+    background-color: white;
+}
+.editar, .eliminar{
+    color:#343a40;
+}
+
+.img1{
+    background-image: url('/src/assets/kebab-de-garbanzos.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.img2{
+    background-image: url('/src/assets/hamburguesa-remolacha-garbanzos.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.img3{
+    background-image: url('/src/assets/berenjenas-rellenas.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.img4{
+    background-image: url('/src/assets/calabacines-rellenos.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.img5{
+    background-image: url('/src/assets/ensalada-garbanzos.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.img6{
+    background-image: url('/src/assets/coliflor-sesamo.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.img7{
+    background-image: url('/src/assets/filetes-coliflor-lentejas.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+

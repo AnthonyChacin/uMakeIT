@@ -23,6 +23,8 @@ import { ProductCustomizationComponent } from './component/product-customization
 import { ViewProductCustomizationComponent } from './view/view-product-customization/view-product-customization.component';
 import { AdministratorHomeNavigationComponent } from './navigation/administrator-home-navigation/administrator-home-navigation.component';
 import { ProductSearchViewComponent } from './view/product-search-view/product-search-view.component';
+import { TableComponent } from './component/table/table.component';
+import { NavbarSearcherComponent } from './component/navbar-searcher/navbar-searcher.component';
 import { ViewRegisterNewAdminComponent } from './view/view-register-new-admin/view-register-new-admin.component';
 import { NewUserRegistrationFormComponent } from './component/new-user-registration-form/new-user-registration-form.component';
 import { ViewPendingOrdersComponent } from './view/view-pending-orders/view-pending-orders.component';
@@ -51,6 +53,8 @@ import { PendingOrdersListComponent } from './component/pending-orders-list/pend
     ViewProductCustomizationComponent,
     AdministratorHomeNavigationComponent,
     ProductSearchViewComponent,
+    TableComponent,
+    NavbarSearcherComponent,
     ViewRegisterNewAdminComponent,
     NewUserRegistrationFormComponent,
     ViewPendingOrdersComponent,
