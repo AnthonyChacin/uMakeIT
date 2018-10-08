@@ -21,6 +21,8 @@ import { CambioClaveComponent } from './component/cambio-clave/cambio-clave.comp
 import { ViewCambioClaveComponent } from './view/view-cambio-clave/view-cambio-clave.component';
 import { ProductCustomizationComponent } from './component/product-customization/product-customization.component';
 import { ViewProductCustomizationComponent } from './view/view-product-customization/view-product-customization.component';
+import { AdministratorHomeNavigationComponent } from './navigation/administrator-home-navigation/administrator-home-navigation.component';
+import { ProductSearchViewComponent } from './view/product-search-view/product-search-view.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { ViewProductCustomizationComponent } from './view/view-product-customiza
     CambioClaveComponent,
     ViewCambioClaveComponent,
     ProductCustomizationComponent,
-    ViewProductCustomizationComponent
+    ViewProductCustomizationComponent,
+    AdministratorHomeNavigationComponent,
+    ProductSearchViewComponent
   ],
   imports: [
     AlertModule.forRoot(),
