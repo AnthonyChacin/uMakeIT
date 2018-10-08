@@ -25,6 +25,8 @@ import { AdministratorHomeNavigationComponent } from './navigation/administrator
 import { ProductSearchViewComponent } from './view/product-search-view/product-search-view.component';
 import { ViewRegisterNewAdminComponent } from './view/view-register-new-admin/view-register-new-admin.component';
 import { NewUserRegistrationFormComponent } from './component/new-user-registration-form/new-user-registration-form.component';
+import { ViewPendingOrdersComponent } from './view/view-pending-orders/view-pending-orders.component';
+import { PendingOrdersListComponent } from './component/pending-orders-list/pending-orders-list.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { NewUserRegistrationFormComponent } from './component/new-user-registrat
     AdministratorHomeNavigationComponent,
     ProductSearchViewComponent,
     ViewRegisterNewAdminComponent,
-    NewUserRegistrationFormComponent
+    NewUserRegistrationFormComponent,
+    ViewPendingOrdersComponent,
+    PendingOrdersListComponent
   ],
   imports: [
     AlertModule.forRoot(),

@@ -12,6 +12,7 @@ import { ViewProductCustomizationComponent } from './view/view-product-customiza
 import { AdministratorHomeNavigationComponent } from './navigation/administrator-home-navigation/administrator-home-navigation.component';
 import { ProductSearchViewComponent } from './view/product-search-view/product-search-view.component';
 import { ViewRegisterNewAdminComponent } from './view/view-register-new-admin/view-register-new-admin.component';
+import { ViewPendingOrdersComponent } from './view/view-pending-orders/view-pending-orders.component';
 
 const routes: Routes = [
     {
@@ -36,8 +37,6 @@ const routes: Routes = [
         ], component: AdministratorHomeNavigationComponent
     },
 
-
-
     {
         path: 'home',
         children: [
@@ -56,7 +55,9 @@ const routes: Routes = [
         path: 'home-admin',
         children: [
             { path: 'home-admin', redirectTo: '/home-admin/new-admin',pathMatch: 'full' },
-            {path: 'new-admin', component: ViewRegisterNewAdminComponent}
+            { path: 'new-admin', component: ViewRegisterNewAdminComponent},
+            { path: 'home-admin', redirectTo: '/home-admin/pending-orders', pathMatch: 'full'},
+            { path: 'pending-orders', component: ViewPendingOrdersComponent}
         ], component: AdministratorHomeNavigationComponent
     }
 
