@@ -11,6 +11,7 @@ import { ViewCambioClaveComponent } from './view/view-cambio-clave/view-cambio-c
 import { ViewProductCustomizationComponent } from './view/view-product-customization/view-product-customization.component';
 import { AdministratorHomeNavigationComponent } from './navigation/administrator-home-navigation/administrator-home-navigation.component';
 import { ProductSearchViewComponent } from './view/product-search-view/product-search-view.component';
+import { ViewRegisterNewAdminComponent } from './view/view-register-new-admin/view-register-new-admin.component';
 
 const routes: Routes = [
     {
@@ -49,6 +50,14 @@ const routes: Routes = [
             { path: 'home', redirectTo: '/home/product-customization', pathMatch: 'full' },
             { path: 'product-customization', component: ViewProductCustomizationComponent }
         ], component: HomeNavigationComponent
+    },
+
+    {
+        path: 'home-admin',
+        children: [
+            { path: 'home-admin', redirectTo: '/home-admin/new-admin',pathMatch: 'full' },
+            {path: 'new-admin', component: ViewRegisterNewAdminComponent}
+        ], component: AdministratorHomeNavigationComponent
     }
 
 ]

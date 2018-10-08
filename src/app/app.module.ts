@@ -23,6 +23,8 @@ import { ProductCustomizationComponent } from './component/product-customization
 import { ViewProductCustomizationComponent } from './view/view-product-customization/view-product-customization.component';
 import { AdministratorHomeNavigationComponent } from './navigation/administrator-home-navigation/administrator-home-navigation.component';
 import { ProductSearchViewComponent } from './view/product-search-view/product-search-view.component';
+import { ViewRegisterNewAdminComponent } from './view/view-register-new-admin/view-register-new-admin.component';
+import { NewUserRegistrationFormComponent } from './component/new-user-registration-form/new-user-registration-form.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { ProductSearchViewComponent } from './view/product-search-view/product-s
     ProductCustomizationComponent,
     ViewProductCustomizationComponent,
     AdministratorHomeNavigationComponent,
-    ProductSearchViewComponent
+    ProductSearchViewComponent,
+    ViewRegisterNewAdminComponent,
+    NewUserRegistrationFormComponent
   ],
   imports: [
     AlertModule.forRoot(),
