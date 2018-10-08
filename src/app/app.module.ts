@@ -25,6 +25,8 @@ import { AdministratorHomeNavigationComponent } from './navigation/administrator
 import { ProductSearchViewComponent } from './view/product-search-view/product-search-view.component';
 import { TableComponent } from './component/table/table.component';
 import { NavbarSearcherComponent } from './component/navbar-searcher/navbar-searcher.component';
+import { ViewRegisterNewAdminComponent } from './view/view-register-new-admin/view-register-new-admin.component';
+import { NewUserRegistrationFormComponent } from './component/new-user-registration-form/new-user-registration-form.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { NavbarSearcherComponent } from './component/navbar-searcher/navbar-sear
     AdministratorHomeNavigationComponent,
     ProductSearchViewComponent,
     TableComponent,
-    NavbarSearcherComponent
+    NavbarSearcherComponent,
+    ViewRegisterNewAdminComponent,
+    NewUserRegistrationFormComponent
   ],
   imports: [
     AlertModule.forRoot(),
