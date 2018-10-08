@@ -1,0 +1,16 @@
+.navbar-propio{
+    border-radius: 5rem;
+}
+.searcher{
+    border-radius: 5rem;
+}
+.submit-searcher{
+    border-radius: 5rem;
+}
+.mensaje{
+    color: white;
+    border-radius: 5rem;
+}
+.separador-espacio{
+    width: 1rem;
+}

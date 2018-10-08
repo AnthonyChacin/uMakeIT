@@ -23,6 +23,8 @@ import { ProductCustomizationComponent } from './component/product-customization
 import { ViewProductCustomizationComponent } from './view/view-product-customization/view-product-customization.component';
 import { AdministratorHomeNavigationComponent } from './navigation/administrator-home-navigation/administrator-home-navigation.component';
 import { ProductSearchViewComponent } from './view/product-search-view/product-search-view.component';
+import { TableComponent } from './component/table/table.component';
+import { NavbarSearcherComponent } from './component/navbar-searcher/navbar-searcher.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { ProductSearchViewComponent } from './view/product-search-view/product-s
     ProductCustomizationComponent,
     ViewProductCustomizationComponent,
     AdministratorHomeNavigationComponent,
-    ProductSearchViewComponent
+    ProductSearchViewComponent,
+    TableComponent,
+    NavbarSearcherComponent
   ],
   imports: [
     AlertModule.forRoot(),
