@@ -1,0 +1,12 @@
+thead{
+    background-color: darkslategray;
+    font-style: italic; 
+}
+tbody{
+    background-color: white;
+    font-style: italic;
+}
+h5{
+    font-style: italic;
+    color: darkslategray;
+}
