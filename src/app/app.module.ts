@@ -29,6 +29,8 @@ import { ViewRegisterNewAdminComponent } from './view/view-register-new-admin/vi
 import { NewUserRegistrationFormComponent } from './component/new-user-registration-form/new-user-registration-form.component';
 import { FormProductComponent } from './component/form-product/form-product.component';
 import { ProductEditViewComponent } from './view/product-edit-view/product-edit-view.component';
+import { ViewPendingOrdersComponent } from './view/view-pending-orders/view-pending-orders.component';
+import { PendingOrdersListComponent } from './component/pending-orders-list/pending-orders-list.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { ProductEditViewComponent } from './view/product-edit-view/product-edit-
     ViewRegisterNewAdminComponent,
     NewUserRegistrationFormComponent,
     FormProductComponent,
-    ProductEditViewComponent
+    ProductEditViewComponent,
+    ViewPendingOrdersComponent,
+    PendingOrdersListComponent
   ],
   imports: [
     AlertModule.forRoot(),
