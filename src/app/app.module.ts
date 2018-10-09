@@ -27,6 +27,8 @@ import { TableComponent } from './component/table/table.component';
 import { NavbarSearcherComponent } from './component/navbar-searcher/navbar-searcher.component';
 import { ViewRegisterNewAdminComponent } from './view/view-register-new-admin/view-register-new-admin.component';
 import { NewUserRegistrationFormComponent } from './component/new-user-registration-form/new-user-registration-form.component';
+import { FormProductComponent } from './component/form-product/form-product.component';
+import { ProductEditViewComponent } from './view/product-edit-view/product-edit-view.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { NewUserRegistrationFormComponent } from './component/new-user-registrat
     TableComponent,
     NavbarSearcherComponent,
     ViewRegisterNewAdminComponent,
-    NewUserRegistrationFormComponent
+    NewUserRegistrationFormComponent,
+    FormProductComponent,
+    ProductEditViewComponent
   ],
   imports: [
     AlertModule.forRoot(),
