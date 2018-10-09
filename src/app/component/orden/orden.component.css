@@ -1,52 +1,52 @@
-.orden-propio{
-
-    margin-top: 2%;
-    margin-left: 4%; 
-    padding: 0;
-    max-height: 95%;
-    height: 50%;
-    z-index: 0;
-    position: relative;
-    float: center;
-    width: 94%;
-    background-color: whitesmoke;
-}
-.contenido-fila-orden{
-    padding-left: 2%; 
-    padding-right: 2%;
-    padding-bottom: 2%;
-    max-height: 95%;
-    overflow: auto; 
-}
-.contenido-fila-orden h4{
-    display: flex;
-    max-width: 100%;
-    display: block;
-}
-.modificar{
-    margin-right:0;
-    float: right; 
-    padding: 0;
-    width: 20%;
-    height: 2%;
+.table{
+    height: 30rem;
+    background-color: #343a40;
+    position: flex;
+    margin-left: 0.25rem;
+    margin-top: 1rem;
+    border-radius: 0.25rem; 
     text-align: center;
-    text-anchor: middle;
+    align-content: center;
 }
-.p-aviso{
-    padding-top: 20%;
+.sub{
+    color: white;
 }
-.agregar-comida{
-    padding: 5%;
-    margin: 2%;
-    padding: 2%;
+h3{
+    color: #343a40;
+    text-align: left;
 }
-.eliminar{
-    padding: 5%;
-    margin: 2%;
-    padding: 2%;
+thead{
+    background-color: #343a40;
+    color: white;
+    text-align: center;
 }
-.btn-cerrar-orden{
-    z-index: 0;
-    margin-top: 20%;
-    float: right;
+
+tbody{
+    background-color: white;
+}
+
+.img1{
+    background-image: url('/src/assets/kebab-de-garbanzos.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.img2{
+    background-image: url('/src/assets/berenjenas-rellenas.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.img3{
+    background-image: url('/src/assets/hamburguesa-de-lentejas.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.img4{
+    background-image: url('/src/assets/nuggets-vegetarianos.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.img5{
+    background-image: url('/src/assets/ensalada-garbanzos.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
