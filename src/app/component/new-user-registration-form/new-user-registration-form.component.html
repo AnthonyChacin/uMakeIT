@@ -1,3 +1,4 @@
+<div class ="container">
 <div class="row">
   <div class="col-12">
     <div class="separador"></div>
@@ -25,17 +26,18 @@
         <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="pswd" required>
       </div>
       <button type="button" class="btn btn-primary btn-propio-rl" (click)="onRegisterNewAdmin()">Registrar</button>
-      <div class="row">
+     <div class="row">
         <div class="col-12">
           <div class="separador"></div>
         </div>
       </div>
-      <div class="form-group caja-mensaje alert alert-success" *ngIf="newAdmin === true">
-        <strong>¡Operación realizada con éxito!</strong>
-        <a href="/home-admin">
+      <div class="form-group caja-mensaje alert alert-success row" *ngIf="newAdmin === true">
+        <strong class = "col-8">¡Operación realizada con éxito!</strong>
+        <a class="col-4" href="/home-admin">
           <button type="button" class="btn btn-success">Finalizar</button>
         </a>
       </div>
     </form>
   </div>
+</div>
 </div>
