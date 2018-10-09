@@ -16,6 +16,7 @@ import { ProductEditViewComponent } from './view/product-edit-view/product-edit-
 import { ViewPendingOrdersComponent } from './view/view-pending-orders/view-pending-orders.component';
 import { ViewAddProductComponent } from './view/view-add-product/view-add-product.component';
 import { OrderCompletionViewComponent } from './view/order-completion-view/order-completion-view.component';
+import { Prepa5Component } from './prepa/prepa5/prepa5.component';
 
 const routes: Routes = [
     {
@@ -29,7 +30,8 @@ const routes: Routes = [
         path: '',
         children: [
             { path: '', redirectTo: '/home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent }
+            { path: 'home', component: HomeComponent },
+            { path: 'prepa', component: Prepa5Component}
         ], component: HomeNavigationComponent
     },
     {

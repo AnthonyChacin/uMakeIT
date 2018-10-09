@@ -36,6 +36,7 @@ import { ViewAddProductComponent } from './view/view-add-product/view-add-produc
 import { NewProductFormComponent } from './component/new-product-form/new-product-form.component';
 import { OrderCompletionViewComponent } from './view/order-completion-view/order-completion-view.component';
 import { OrderSummaryComponent } from './component/order-summary/order-summary.component';
+import { Prepa5Component } from './prepa/prepa5/prepa5.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { OrderSummaryComponent } from './component/order-summary/order-summary.c
     HeaderAdminComponent,
     ViewAddProductComponent,
     OrderCompletionViewComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    Prepa5Component
   ],
   imports: [
     AlertModule.forRoot(),

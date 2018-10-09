@@ -1,0 +1,7 @@
+<div class="container">
+  <ng-container *ngFor='let product of products'>
+    <div [ngClass]="!product.active? 'rojo':'verde'" [ngStyle]="{'background-image': 'url('+ product.route + ')'}">
+      <h1>{{product.price}}</h1>
+    </div>
+  </ng-container>
+</div>
