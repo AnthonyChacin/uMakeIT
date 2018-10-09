@@ -31,6 +31,7 @@ import { FormProductComponent } from './component/form-product/form-product.comp
 import { ProductEditViewComponent } from './view/product-edit-view/product-edit-view.component';
 import { ViewPendingOrdersComponent } from './view/view-pending-orders/view-pending-orders.component';
 import { PendingOrdersListComponent } from './component/pending-orders-list/pending-orders-list.component';
+import { HeaderAdminComponent } from './component/header-admin/header-admin.component';
 import { ViewAddProductComponent } from './view/view-add-product/view-add-product.component';
 import { NewProductFormComponent } from './component/new-product-form/new-product-form.component';
 
@@ -65,8 +66,13 @@ import { NewProductFormComponent } from './component/new-product-form/new-produc
     ProductEditViewComponent,
     ViewPendingOrdersComponent,
     PendingOrdersListComponent,
+<<<<<<< HEAD
     ViewAddProductComponent,
     NewProductFormComponent
+=======
+    HeaderAdminComponent,
+    ViewAddProductComponent
+>>>>>>> 07b71b2050cf112d32bdaab3e29cdf1af9502a61
   ],
   imports: [
     AlertModule.forRoot(),

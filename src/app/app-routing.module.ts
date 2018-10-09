@@ -62,6 +62,8 @@ const routes: Routes = [
             {path: 'product-edit', component: ProductEditViewComponent},
             { path: 'home-admin', redirectTo: '/home-admin/pending-orders', pathMatch: 'full'},
             { path: 'pending-orders', component: ViewPendingOrdersComponent},
+            { path: 'home-admin', redirectTo: '/home-admin/cambio-clave', pathMatch: 'full' },
+            { path: 'cambio-clave', component: ViewCambioClaveComponent },
             { path: 'home-admin', redirectTo: '/home-admin/add-product', pathMatch: 'full' },
             { path: 'add-product', component: ViewAddProductComponent}
         ], component: AdministratorHomeNavigationComponent
