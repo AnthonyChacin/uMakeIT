@@ -29,6 +29,7 @@ import { ViewRegisterNewAdminComponent } from './view/view-register-new-admin/vi
 import { NewUserRegistrationFormComponent } from './component/new-user-registration-form/new-user-registration-form.component';
 import { ViewPendingOrdersComponent } from './view/view-pending-orders/view-pending-orders.component';
 import { PendingOrdersListComponent } from './component/pending-orders-list/pending-orders-list.component';
+import { ViewAddProductComponent } from './view/view-add-product/view-add-product.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { PendingOrdersListComponent } from './component/pending-orders-list/pend
     ViewRegisterNewAdminComponent,
     NewUserRegistrationFormComponent,
     ViewPendingOrdersComponent,
-    PendingOrdersListComponent
+    PendingOrdersListComponent,
+    ViewAddProductComponent
   ],
   imports: [
     AlertModule.forRoot(),
