@@ -53,3 +53,11 @@
 .redondeo-checkbox{
     border-radius: 15%;
 }
+
+.principal-header {
+    text-align: center;
+    font-style: italic;
+    font-size: 200%;
+    color: darkslategray;
+    width: 100%;
+}
