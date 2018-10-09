@@ -32,6 +32,7 @@ import { ProductEditViewComponent } from './view/product-edit-view/product-edit-
 import { ViewPendingOrdersComponent } from './view/view-pending-orders/view-pending-orders.component';
 import { PendingOrdersListComponent } from './component/pending-orders-list/pending-orders-list.component';
 import { HeaderAdminComponent } from './component/header-admin/header-admin.component';
+import { ViewAddProductComponent } from './view/view-add-product/view-add-product.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { HeaderAdminComponent } from './component/header-admin/header-admin.comp
     ProductEditViewComponent,
     ViewPendingOrdersComponent,
     PendingOrdersListComponent,
-    HeaderAdminComponent
+    HeaderAdminComponent,
+    ViewAddProductComponent
   ],
   imports: [
     AlertModule.forRoot(),
