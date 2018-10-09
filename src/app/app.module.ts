@@ -27,6 +27,8 @@ import { TableComponent } from './component/table/table.component';
 import { NavbarSearcherComponent } from './component/navbar-searcher/navbar-searcher.component';
 import { ViewRegisterNewAdminComponent } from './view/view-register-new-admin/view-register-new-admin.component';
 import { NewUserRegistrationFormComponent } from './component/new-user-registration-form/new-user-registration-form.component';
+import { FormProductComponent } from './component/form-product/form-product.component';
+import { ProductEditViewComponent } from './view/product-edit-view/product-edit-view.component';
 import { ViewPendingOrdersComponent } from './view/view-pending-orders/view-pending-orders.component';
 import { PendingOrdersListComponent } from './component/pending-orders-list/pending-orders-list.component';
 import { ViewAddProductComponent } from './view/view-add-product/view-add-product.component';
@@ -58,6 +60,8 @@ import { ViewAddProductComponent } from './view/view-add-product/view-add-produc
     NavbarSearcherComponent,
     ViewRegisterNewAdminComponent,
     NewUserRegistrationFormComponent,
+    FormProductComponent,
+    ProductEditViewComponent,
     ViewPendingOrdersComponent,
     PendingOrdersListComponent,
     ViewAddProductComponent
