@@ -36,3 +36,15 @@
     margin-top: 20%;
     float: right;
 }
+
+.principal-header {
+    text-align: center;
+    font-style: italic;
+    font-size: 200%;
+    color: darkslategray;
+    width: 100%;
+}
+
+.special-card{
+    border: 5px solid var(--dark);
+}
