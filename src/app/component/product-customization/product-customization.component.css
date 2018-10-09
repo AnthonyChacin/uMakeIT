@@ -51,6 +51,23 @@
     position: flex;
 
 }
+.container-plato-principal{
+    text-align: center;
+}
+.label-plato-principal{
+    padding-right: 1rem;
+    background-color: rgba(0,0,0,0.7);
+    margin-left: 0;
+    width: 20%;
+    margin-right: 0;
+    color: white;
+    position: center;
+    border-radius: 5%;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    float: center;
+}
 .label{
     padding-right: 1rem;
     background-color: rgba(0,0,0,0.7);
