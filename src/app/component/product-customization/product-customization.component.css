@@ -1,5 +1,16 @@
-.titulo{
+.box-img-plato-select{
+    height: 15rem;
+    background-image: url('/src/assets/ejemplo1-customization.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: flex;
+    margin-left: 1rem;
+    margin-right: 0.3rem;
+}
+.nombre{
     width: 100%;
+    left: 0;
+    position: absolute;
     font-size: 120%;
     font-style: italic; 
     font-weight: bold;
@@ -7,6 +18,15 @@
     background-color: rgba(0,0,0,0.7);
     word-break: break-all;
     text-align: center;
+}
+
+.titulo{
+    width: 100%;
+    font-size: 120%;
+    font-style: italic; 
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0,0,0,0.7);
 }
 .plato-seleccionado{
     background-image: url('/src/assets/ejemplo1-customization.jpg');
@@ -20,8 +40,6 @@
 .nombre-plato{
     width: 100%;
     background-color: rgba(0,0,0,0.7);
-    word-wrap: break-word;
-    word-break: break-all;
 }
 .container-propio{
     margin: 0;
@@ -43,13 +61,11 @@
     position: flex;
     border-radius: 5%;
     text-align: center;
-    word-break: break-all;
 }
 .agregar-al-plato{
     width: 70%;
     color: white;
     background-color: rgba(0, 0, 0, 0.781);
-    word-break: break-all;
     text-align: center;
     border-radius: 5%;
     border: none;
@@ -74,7 +90,6 @@ select{
     background-repeat: no-repeat;
     font-weight: bold;
     font-style: italic;
-    word-break: break-all;
 }
 .container2{
     background-image: url('/src/assets/aderezos.jpg');
@@ -82,7 +97,6 @@ select{
     background-repeat: no-repeat;
     font-weight: bold;
     font-style: italic;
-    word-break: break-all;
 }
 .container3{
     background-image: url('/src/assets/jugos.jpg');
@@ -90,7 +104,6 @@ select{
     background-repeat: no-repeat;
     font-weight: bold;
     font-style: italic;
-    word-break: break-all;
 }
 .container4{
     background-image: url('/src/assets/batidos.jpg');
@@ -98,7 +111,6 @@ select{
     background-repeat: no-repeat;
     font-weight: bold;
     font-style: italic;
-    word-break: break-all;
 }
 .input-cantidad{
     text-align: right;
