@@ -31,6 +31,7 @@ import { FormProductComponent } from './component/form-product/form-product.comp
 import { ProductEditViewComponent } from './view/product-edit-view/product-edit-view.component';
 import { ViewPendingOrdersComponent } from './view/view-pending-orders/view-pending-orders.component';
 import { PendingOrdersListComponent } from './component/pending-orders-list/pending-orders-list.component';
+import { HeaderAdminComponent } from './component/header-admin/header-admin.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { PendingOrdersListComponent } from './component/pending-orders-list/pend
     FormProductComponent,
     ProductEditViewComponent,
     ViewPendingOrdersComponent,
-    PendingOrdersListComponent
+    PendingOrdersListComponent,
+    HeaderAdminComponent
   ],
   imports: [
     AlertModule.forRoot(),
