@@ -1,0 +1,48 @@
+.btn-propio-rl:hover{
+    background-color: #F9B53C;
+}
+
+.registro-login-propio{
+    position: relative;
+    z-index: 0;
+}
+
+.inicio-registro{
+    background-color: rgba(255, 21, 0, 0.25);
+    padding: 2%;
+    border-radius: 5%;
+    max-width: 100%;
+}
+
+.titulo-inicio-registro{
+    text-align: center;
+    border-radius: 5%;
+}
+
+.inicio-sesion{
+    background-color: rgba(255, 21, 0, 0.25);
+    padding: 2%;
+    border-radius: 5%;
+    max-width: 100%;
+    position: relative;
+}
+
+.titulo-inicio-sesion{
+    text-align: center;
+    border-radius: 5%;
+}
+
+.boton-inicio-sesion{
+    background-color: #ff0000b8;
+    border-color: #df00002b;
+    align-self: center;
+    color: white;
+}
+
+.boton-inicio-sesion:hover{
+    background-color: #F9B53C;
+}
+
+.input-imagen{
+    height: 100%;
+}
