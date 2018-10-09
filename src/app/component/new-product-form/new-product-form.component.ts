@@ -7,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewProductFormComponent implements OnInit {
 
-  constructor() { }
+  public agregado: boolean;
+
+  constructor() {
+    this.agregado = false;
+  }
+
+  onAgregar(){
+    this.agregado = true;
+  }
+
 
   ngOnInit() {
   }

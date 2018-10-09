@@ -66,13 +66,9 @@ import { NewProductFormComponent } from './component/new-product-form/new-produc
     ProductEditViewComponent,
     ViewPendingOrdersComponent,
     PendingOrdersListComponent,
-<<<<<<< HEAD
-    ViewAddProductComponent,
-    NewProductFormComponent
-=======
+    NewProductFormComponent,
     HeaderAdminComponent,
     ViewAddProductComponent
->>>>>>> 07b71b2050cf112d32bdaab3e29cdf1af9502a61
   ],
   imports: [
     AlertModule.forRoot(),
