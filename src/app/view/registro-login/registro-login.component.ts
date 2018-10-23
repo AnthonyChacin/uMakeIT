@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataBaseService } from 'src/app/service/data-base.service';
 
 @Component({
   selector: 'app-registro-login',
@@ -9,8 +10,20 @@ export class RegistroLoginComponent implements OnInit {
 
   public mostrarLogin:boolean;
   public mostrarRegistro:boolean;
+  public users = [];
 
-  constructor() { 
+  constructor(private userService: DataBaseService) { 
+
+    this.userService.getUsers().subscribe( (data) => {
+      this.users = data.map(snap =>{
+        let obj = {
+          id: snap.payload.doc.id,
+          ...snap.payload.doc.data()
+        }
+        return obj;
+      })
+    })
+
     this.mostrarLogin = true;
     this.mostrarRegistro = false;
   }

@@ -37,6 +37,9 @@ import { NewProductFormComponent } from './component/new-product-form/new-produc
 import { OrderCompletionViewComponent } from './view/order-completion-view/order-completion-view.component';
 import { OrderSummaryComponent } from './component/order-summary/order-summary.component';
 import { Prepa5Component } from './prepa/prepa5/prepa5.component';
+import { environment } from '../environments/environment';
+import { AngularFireModule} from '@angular/fire';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -79,9 +82,12 @@ import { Prepa5Component } from './prepa/prepa5/prepa5.component';
   imports: [
     AlertModule.forRoot(),
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initiallizeApp(environment.firebase),
   ],
-  providers: [],
+  providers: [
+    AngularFirestore
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
