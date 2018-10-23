@@ -17,12 +17,12 @@ export class DataBaseService {
 
   //Obtener usuarios
   public getUsers(){
-    return this.afs.collection(this.path).snapshotchanges();
+    return this.afs.collection(this.path).snapshotChanges();
   }
 
   //Obtener usuario
   public getUser(id: string){
-    return this.afs.collection(this.path).doc(id).snapshotchanges();
+    return this.afs.collection(this.path).doc(id).snapshotChanges();
   }
 
   //Crear un usuario

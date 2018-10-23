@@ -12,6 +12,14 @@ export class RegistroLoginComponent implements OnInit {
   public mostrarRegistro:boolean;
   public users = [];
 
+  form = {
+    nombre: "",
+    apellido: "",
+    email: "",
+    psw: "",
+    rol: 0
+  };
+
   constructor(private userService: DataBaseService) { 
 
     this.userService.getUsers().subscribe( (data) => {
@@ -24,6 +32,11 @@ export class RegistroLoginComponent implements OnInit {
       })
     })
 
+    this.form.nombre = "";
+    this.form.apellido = "";
+    this.form.email = "";
+    this.form.psw = "";
+
     this.mostrarLogin = true;
     this.mostrarRegistro = false;
   }
@@ -34,6 +47,10 @@ export class RegistroLoginComponent implements OnInit {
   onShowHideLogin(){
     this.mostrarLogin = true;
     this.mostrarRegistro = false;
+  }
+
+  onCreateUser(){
+    this.userService.createUser(this.form);
   }
 
   ngOnInit() {

@@ -83,7 +83,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
     AlertModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initiallizeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
     AngularFirestore
