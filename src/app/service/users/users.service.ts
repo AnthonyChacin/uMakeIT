@@ -21,7 +21,8 @@ export class UsersService {
 
   //Obtener usuarios
   public getUsers(){
-    return this.afs.collection(this.path).snapshotChanges();
+    return this.users;
+    //return this.afs.collection(this.path).snapshotChanges();
   }
 
   //Obtener usuario
