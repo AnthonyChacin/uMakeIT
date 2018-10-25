@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../service/users/users.service';
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { RegistroLoginComponent } from '../../view/registro-login/registro-login.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-cliente',
@@ -9,15 +12,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HeaderClienteComponent implements OnInit {
 
-  usersService: UsersService;
-  userName: string;
+  users: User[];
+  constructor(private usersService: UsersService, private route: ActivatedRoute) {
 
-  constructor(private service: UsersService, private route: ActivatedRoute) {
-    this.usersService = service;
    }
 
   ngOnInit() {
-    this.userName = this.route.snapshot.paramMap.get('name');
+    this.usersService.getUsers().subscribe(users =>{
+      console.log(users);
+      this.users = users;
+    })
+    this.usersService.name = this.route.snapshot.paramMap.get('name');
   }
 
 }

@@ -13,16 +13,20 @@ export class UsersService {
   usersCollection: AngularFirestoreCollection<User>;
   users: Observable<User[]>;
   userDoc: AngularFirestoreDocument<User>;
+  name: string;
 
   constructor( private afs: AngularFirestore ) { 
-    this.usersCollection = this.afs.collection('users');
+
+  this.users = this.afs.collection('users').valueChanges();
+
+  /* this.usersCollection = this.afs.collection('users');
     this.users = this.usersCollection.snapshotChanges().pipe(map( actions =>{
       return actions.map(a => {
         const data = a.payload.doc.data() as User;
         data.id = a.payload.doc.id;
         return data;
       })
-    }))
+    })) */
   }
 
   private path: string = '/users';
@@ -34,14 +38,14 @@ export class UsersService {
   }
 
   //Obtener usuario
-  public getUser(name: string){
-    return this.afs.doc(`users/${name}`);
+  public getUser(id: string){
+    return this.afs.collection(this.path).doc(id);
   }
 
   //Crear un usuario
   public createUser(user: User){
-    this.usersCollection.add(user);
-    //return this.afs.collection(this.path).add(data);
+    //this.usersCollection.add(user);
+    return this.afs.collection(this.path).add(user);
   }
 
   //Actualizar usuario

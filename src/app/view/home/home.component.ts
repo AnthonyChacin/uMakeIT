@@ -11,17 +11,12 @@ import { User } from 'src/app/models/user';
 })
 export class HomeComponent implements OnInit {
 
-  usersService:UsersService;
-  userDoc: AngularFirestoreDocument;
-  user = {} as User;
-  userName: string;
 
-  constructor(private service: UsersService, private route: ActivatedRoute) { 
-    this.usersService = service;
+  constructor() { 
+
   }
 
   ngOnInit() {
-    this.userName = this.route.snapshot.paramMap.get('name');
   }
 
 }

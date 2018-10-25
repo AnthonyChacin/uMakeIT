@@ -5,4 +5,5 @@ export interface User{
     lastName?: string;
     psw?: string;
     rol?: number;
+    mostrar?: boolean;
 }

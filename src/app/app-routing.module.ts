@@ -31,6 +31,11 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: '/home', pathMatch: 'full' },
             { path: 'home/:name', component: HomeComponent },
+            { path: 'compras', component: ViewComprasComponent },
+            { path: 'orden', component: ViewOrdenComponent },
+            { path: 'cambio-clave', component: ViewCambioClaveComponent },
+            { path: 'product-customization', component: ViewProductCustomizationComponent },
+            { path: 'finalize-order', component: OrderCompletionViewComponent },
             { path: 'prepa', component: Prepa5Component}
         ], component: HomeNavigationComponent
     },
@@ -38,9 +43,14 @@ const routes: Routes = [
         path: '',
         children: [
             { path: '', redirectTo: '/home-admin', pathMatch: 'full' },
-            { path: 'home-admin', component: ProductSearchViewComponent }
+            { path: 'home-admin', component: ProductSearchViewComponent },
+            { path: 'new-admin', component: ViewRegisterNewAdminComponent },
+            { path: 'product-edit', component: ProductEditViewComponent },
+            { path: 'pending-orders', component: ViewPendingOrdersComponent },
+            { path: 'cambio-clave', component: ViewCambioClaveComponent },
+            { path: 'add-product', component: ViewAddProductComponent }
         ], component: AdministratorHomeNavigationComponent
-    },
+    }/* ,
 
     {
         path: 'home',
@@ -71,7 +81,7 @@ const routes: Routes = [
             { path: 'home-admin', redirectTo: '/home-admin/add-product', pathMatch: 'full' },
             { path: 'add-product', component: ViewAddProductComponent }
         ], component: AdministratorHomeNavigationComponent
-    }
+    } */
 
 ]
 @NgModule({

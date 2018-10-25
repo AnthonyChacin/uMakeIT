@@ -6,14 +6,14 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class ProductsService{
 
   productsCollection;
   products: Observable<Product[]>;
   productDoc;
 
 
-  constructor(private afs: AngularFirestore) {
+  constructor(public afs: AngularFirestore) {
     this.products = this.afs.collection('products').valueChanges();
   }
 }
