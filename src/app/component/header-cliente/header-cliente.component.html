@@ -8,7 +8,7 @@
       <div class="col-8"></div>
       <div class="menu" *ngFor="let user of users">
         <nav class="navbar navbar-expand-sm bg-white navbar-light">
-          <ul class="navbar-nav" *ngIf="user.firstName === this.name">
+          <ul class="navbar-nav" *ngIf="user.firstName === name">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">{{user.firstName}}</a>
               <ul class="dropdown-menu">
