@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataBaseService } from 'src/app/service/data-base.service';
+import { UsersService } from '../../service/users/users.service';
 
 @Component({
   selector: 'app-registro-login',
@@ -12,9 +12,10 @@ export class RegistroLoginComponent implements OnInit {
   public mostrarRegistro:boolean;
   public users = [];
 
-  constructor(private userService: DataBaseService) { 
+  constructor(private userService: UsersService) { 
 
     this.userService.getUsers().subscribe( (data) => {
+      console.log(data);
       this.users = data.map(snap =>{
         let obj = {
           id: snap.payload.doc.id,
@@ -23,7 +24,6 @@ export class RegistroLoginComponent implements OnInit {
         return obj;
       })
     })
-
 
     this.mostrarLogin = true;
     this.mostrarRegistro = false;
@@ -37,7 +37,9 @@ export class RegistroLoginComponent implements OnInit {
     this.mostrarRegistro = false;
   }
 
-  
+ /*  onCreateUser(){
+
+  } */
 
   ngOnInit() {
   }

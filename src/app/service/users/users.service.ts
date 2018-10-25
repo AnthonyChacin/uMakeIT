@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
-
 import { AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import { User} from '../../models/user'; 
 
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataBaseService {
+export class UsersService {
 
-  constructor(
-    private afs: AngularFirestore,
-  ) { }
+  usersCollection;
+  users: Observable<User[]>;
+  userDoc;
+
+  constructor( private afs: AngularFirestore ) { 
+    this.users = this.afs.collection('users').valueChanges();
+  }
 
   private path: string = '/users';
 
@@ -39,6 +43,5 @@ export class DataBaseService {
   public deleteUser(id: string){
     return this.afs.collection(this.path).doc(id).delete();
   }
-
 
 }
