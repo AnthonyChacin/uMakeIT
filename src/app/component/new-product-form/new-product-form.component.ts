@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../service/products/products.service';
+import { Product } from 'src/app/models/product';
+import { Router } from '@angular/router';
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-new-product-form',
@@ -13,7 +17,7 @@ export class NewProductFormComponent implements OnInit {
     this.agregado = false;
   }
 
-  onAgregar(){
+  onAgregar() {
     this.agregado = true;
   }
 
