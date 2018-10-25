@@ -30,7 +30,7 @@ const routes: Routes = [
         path: '',
         children: [
             { path: '', redirectTo: '/home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent },
+            { path: 'home/:name', component: HomeComponent },
             { path: 'prepa', component: Prepa5Component}
         ], component: HomeNavigationComponent
     },

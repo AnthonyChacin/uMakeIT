@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument,  AngularFirestoreCollection} from '@angular/fire/firestore';
 import { User} from '../../models/user'; 
 
 import {Observable} from 'rxjs';
-
+import { map } from 'rxjs/operators';
+ 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  usersCollection;
+  usersCollection: AngularFirestoreCollection<User>;
   users: Observable<User[]>;
-  usersDoc;
+  userDoc: AngularFirestoreDocument<User>;
 
   constructor( private afs: AngularFirestore ) { 
-    this.users = this.afs.collection('users').valueChanges();
+    this.usersCollection = this.afs.collection('users');
+    this.users = this.usersCollection.snapshotChanges().pipe(map( actions =>{
+      return actions.map(a => {
+        const data = a.payload.doc.data() as User;
+        data.id = a.payload.doc.id;
+        return data;
+      })
+    }))
   }
 
   private path: string = '/users';
@@ -26,18 +34,19 @@ export class UsersService {
   }
 
   //Obtener usuario
-  public getUser(id: string){
-    return this.afs.collection(this.path).doc(id).snapshotChanges();
+  public getUser(name: string){
+    return this.afs.doc(`users/${name}`);
   }
 
   //Crear un usuario
-  public createUser(data: any){
-    return this.afs.collection(this.path).add(data);
+  public createUser(user: User){
+    this.usersCollection.add(user);
+    //return this.afs.collection(this.path).add(data);
   }
 
   //Actualizar usuario
   public updateUser(data: any, id: string){
-    return this.afs.collection(this.path).doc(id).set(data);
+    return this.usersCollection.doc(id).set(data);
   }
 
   //Eliminar usuario

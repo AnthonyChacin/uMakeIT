@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../../service/users/users.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header-cliente',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderClienteComponent implements OnInit {
 
-  constructor() { }
+  usersService: UsersService;
+  userName: string;
+
+  constructor(private service: UsersService, private route: ActivatedRoute) {
+    this.usersService = service;
+   }
 
   ngOnInit() {
+    this.userName = this.route.snapshot.paramMap.get('name');
   }
 
 }

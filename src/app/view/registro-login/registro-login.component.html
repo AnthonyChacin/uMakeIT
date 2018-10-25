@@ -8,25 +8,25 @@
   <div class="row">
     <div class="col-4 "></div>
     <div class="col-4 inicio-registro">
-      <form>
+      <form (ngSubmit)="onCreateUser()">
         <div class="form-group">
           <h1 class="inicio-registro titulo-inicio-registro">Registro</h1>
           <label for="text">Nombre:</label>
-          <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" name="nombre" required>
+          <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" name="firstName" [(ngModel)]="user.firstName" required>
         </div>
         <div class="form-group">
           <label for="text">Apellido:</label>
-          <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido" name="apellido" required>
+          <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido" name="lastName" [(ngModel)]="user.lastName" required>
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="email" class="form-control" id="email" placeholder="Ingrese email" name="email" required>
+          <input type="email" class="form-control" id="email" placeholder="Ingrese email" name="email" [(ngModel)]="user.email" required>
         </div>
         <div class="form-group">
           <label for="pwd">Contraseña:</label>
-          <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="pswd" required>
+          <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="pswd" [(ngModel)]="user.psw" required>
         </div>
-        <button type="button" class="btn btn-primary btn-propio-rl" routerLink="/home">Registrar</button>
+        <button type="submit" class="btn btn-primary btn-propio-rl">Registrar</button>
       </form>
     </div>
   </div>
