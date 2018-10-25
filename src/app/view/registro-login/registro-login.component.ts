@@ -42,7 +42,7 @@ export class RegistroLoginComponent implements OnInit {
         this.cuentaExistente = true;
       } else {
         this.userService.createUser(this.user);
-        this.router.navigate([`/home/${this.user[i].firstName}`]);
+        this.router.navigate([`/home/${this.users[i].firstName}`]);
       }
     }
 
@@ -75,7 +75,7 @@ export class RegistroLoginComponent implements OnInit {
         this.users[i].psw = this.e;
         this.users[i].rol = this.f;
         this.users[i].mostrar = this.a; */
-        this.router.navigate([`/home/${this.user.firstName}`]);
+        this.router.navigate([`/home/${this.users[i].firstName}`]);
       }
     }
   }
