@@ -14,8 +14,7 @@ export class RegistroLoginComponent implements OnInit {
 
   constructor(private userService: UsersService) { 
 
-    this.userService.getUsers().subscribe( (data) => {
-      console.log(data);
+    /* this.userService.getUsers().subscribe( (data) => {
       this.users = data.map(snap =>{
         let obj = {
           id: snap.payload.doc.id,
@@ -23,7 +22,7 @@ export class RegistroLoginComponent implements OnInit {
         }
         return obj;
       })
-    })
+    });  */
 
     this.mostrarLogin = true;
     this.mostrarRegistro = false;
@@ -42,6 +41,9 @@ export class RegistroLoginComponent implements OnInit {
   } */
 
   ngOnInit() {
+    this.userService.getUsers().subscribe( (data) => {
+      console.log(data);
+    });
   }
 
 }
