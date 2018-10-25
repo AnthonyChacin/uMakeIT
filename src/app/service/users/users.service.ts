@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument,  AngularFirestoreCollection} from '@angular/fire/firestore';
 import { User} from '../../models/user'; 
 
-import {Observable} from 'rxjs';
+import {Observable, ObservableLike} from 'rxjs';
 import { map } from 'rxjs/operators';
  
 @Injectable({
@@ -13,7 +13,6 @@ export class UsersService {
   usersCollection: AngularFirestoreCollection<User>;
   users: Observable<User[]>;
   userDoc: AngularFirestoreDocument<User>;
-  name: string;
 
   constructor( private afs: AngularFirestore ) { 
 

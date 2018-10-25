@@ -3,7 +3,7 @@ import { UsersService } from '../../service/users/users.service';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
-import { stringify } from '@angular/core/src/util';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-registro-login',
@@ -43,7 +43,6 @@ export class RegistroLoginComponent implements OnInit {
       } else {
         this.userService.createUser(this.user);
         this.router.navigate([`/home/${this.user[i].firstName}`]);
-        this.user.mostrar = true;
       }
     }
 
@@ -53,8 +52,12 @@ export class RegistroLoginComponent implements OnInit {
     
     for(let i = 0; i < this.users.length; i++){
       if(this.users[i].email === this.user.email){
-        
-        this.user.mostrar = true;
+
+
+
+
+
+        /* this.user.mostrar = true;
         this.user.firstName = this.users[i].firstName;
         this.user.id = this.users[i].id ;
         this.user.lastName = this.users[i].lastName;
@@ -71,7 +74,7 @@ export class RegistroLoginComponent implements OnInit {
         this.users[i].lastName = this.d;
         this.users[i].psw = this.e;
         this.users[i].rol = this.f;
-        this.users[i].mostrar = this.a;
+        this.users[i].mostrar = this.a; */
         this.router.navigate([`/home/${this.user.firstName}`]);
       }
     }

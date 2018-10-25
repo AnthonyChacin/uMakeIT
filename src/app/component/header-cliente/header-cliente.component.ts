@@ -13,16 +13,20 @@ import { Router } from '@angular/router';
 export class HeaderClienteComponent implements OnInit {
 
   users: User[];
-  constructor(private usersService: UsersService, private route: ActivatedRoute) {
+  public name: string;
 
-   }
+  constructor(private usersService: UsersService, private route: ActivatedRoute) {
+    this.name = this.route.snapshot.paramMap.get('name');
+  }
+
+
+  
 
   ngOnInit() {
     this.usersService.getUsers().subscribe(users =>{
       console.log(users);
       this.users = users;
     })
-    this.usersService.name = this.route.snapshot.paramMap.get('name');
   }
 
 }
