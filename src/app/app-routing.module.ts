@@ -43,11 +43,11 @@ const routes: Routes = [
         path: '',
         children: [
             { path: '', redirectTo: '/home-admin', pathMatch: 'full' },
-            { path: 'home-admin', component: ProductSearchViewComponent },
+            { path: 'home-admin/:name', component: ProductSearchViewComponent },
             { path: 'new-admin', component: ViewRegisterNewAdminComponent },
             { path: 'product-edit', component: ProductEditViewComponent },
             { path: 'pending-orders', component: ViewPendingOrdersComponent },
-            { path: 'cambio-clave', component: ViewCambioClaveComponent },
+            { path: 'cambio-clave-admin', component: ViewCambioClaveComponent },
             { path: 'add-product', component: ViewAddProductComponent }
         ], component: AdministratorHomeNavigationComponent
     }/* ,

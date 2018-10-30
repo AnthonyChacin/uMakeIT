@@ -14,9 +14,15 @@ export class HeaderClienteComponent implements OnInit {
 
   users: User[];
   public name: string;
+  public compare: boolean; 
 
   constructor(private usersService: UsersService, private route: ActivatedRoute) {
     this.name = this.route.snapshot.paramMap.get('name');
+    
+  }
+
+  getName(){
+    return this.name;
   }
 
 

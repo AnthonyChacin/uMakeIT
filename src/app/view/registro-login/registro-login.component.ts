@@ -36,7 +36,7 @@ export class RegistroLoginComponent implements OnInit {
 
   onCreateUser() {
     this.user.rol = 0;
-    this.user.mostrar = true;
+    //this.user.mostrar = true;
     for (let i = 0; i < this.users.length; i++) {
       if (this.users[i].email === this.user.email) {
         this.cuentaExistente = true;
@@ -52,10 +52,6 @@ export class RegistroLoginComponent implements OnInit {
     
     for(let i = 0; i < this.users.length; i++){
       if(this.users[i].email === this.user.email){
-
-
-
-
 
         /* this.user.mostrar = true;
         this.user.firstName = this.users[i].firstName;
@@ -75,7 +71,12 @@ export class RegistroLoginComponent implements OnInit {
         this.users[i].psw = this.e;
         this.users[i].rol = this.f;
         this.users[i].mostrar = this.a; */
-        this.router.navigate([`/home/${this.users[i].firstName}`]);
+        if(this.users[i].rol === 1){
+          this.router.navigate([`/home-admin/${this.users[i].firstName}`]);
+        }else{
+          this.router.navigate([`/home/${this.users[i].firstName}`]);
+        }
+        
       }
     }
   }
