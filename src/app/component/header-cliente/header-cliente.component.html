@@ -6,11 +6,11 @@
         <img alt="uMakeIT! Logo" src="assets/logo.bmp">
       </a>
       <div class="col-8"></div>
-      <div class="menu" *ngFor="let user of users">
+      <div class="menu">
         <nav class="navbar navbar-expand-sm bg-white navbar-light">
-          <ul class="navbar-nav" *ngIf="user.firstName === name">
+          <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">{{user.firstName}}</a>
+              <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">Nombre de usuario</a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" routerLink="/cambio-clave">Cambiar Clave</a></li>
                 <li><a class="dropdown-item" routerLink="/compras">Compras</a></li>
