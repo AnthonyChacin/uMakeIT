@@ -52,25 +52,6 @@ export class RegistroLoginComponent implements OnInit {
     
     for(let i = 0; i < this.users.length; i++){
       if(this.users[i].email === this.user.email){
-
-        /* this.user.mostrar = true;
-        this.user.firstName = this.users[i].firstName;
-        this.user.id = this.users[i].id ;
-        this.user.lastName = this.users[i].lastName;
-        this.user.psw = this.users[i].psw;
-        this.user.rol = this.users[i].rol;
-        this.a = this.user.mostrar;
-        this.b = this.user.firstName;
-        this.c = this.user.id;
-        this.d = this.user.lastName;
-        this.e = this.user.psw;
-        this.f = this.user.rol;
-        this.users[i].firstName = this.b;
-        this.users[i].id = this.c;
-        this.users[i].lastName = this.d;
-        this.users[i].psw = this.e;
-        this.users[i].rol = this.f;
-        this.users[i].mostrar = this.a; */
         if(this.users[i].rol === 1){
           this.router.navigate([`/home-admin/${this.users[i].firstName}`]);
         }else{
