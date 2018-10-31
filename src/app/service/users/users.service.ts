@@ -28,7 +28,7 @@ export class UsersService {
     })) */
   }
 
-  private path: string = '/users';
+  private path: string = '/users'; 
 
   //Obtener usuarios
   public getUsers(){
