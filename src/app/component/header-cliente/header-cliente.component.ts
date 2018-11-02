@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../service/users/users.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { RegistroLoginComponent } from '../../view/registro-login/registro-login.component';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-header-cliente',
@@ -12,27 +14,24 @@ import { Router } from '@angular/router';
 })
 export class HeaderClienteComponent implements OnInit {
 
-  users: User[];
   public name: string;
-  public compare: boolean; 
 
-  constructor(private usersService: UsersService, private route: ActivatedRoute) {
-    this.name = this.route.snapshot.paramMap.get('name');
-    
+  constructor(private userService: UsersService, private route: ActivatedRoute) {
   }
-
-  getName(){
-    return this.name;
-  }
-
-
-  
 
   ngOnInit() {
-    this.usersService.getUsers().subscribe(users =>{
-      console.log(users);
-      this.users = users;
-    })
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        this.name = user.displayName;
+      } else {
+        this.name = "Undifine";
+      }
+    });
+    console.log(this.name);
+  }
+
+  onClickLogout(){
+    this.userService.logout();
   }
 
 }

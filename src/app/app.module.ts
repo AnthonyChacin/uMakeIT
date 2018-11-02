@@ -41,6 +41,8 @@ import { Prepa5Component } from './prepa/prepa5/prepa5.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule} from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UsersService } from './service/users/users.service';
 
 @NgModule({
   declarations: [
@@ -88,7 +90,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
     FormsModule
   ],
   providers: [
-    AngularFirestore
+    AngularFirestore, AngularFireAuth, UsersService
   ],
   bootstrap: [AppComponent]
 })

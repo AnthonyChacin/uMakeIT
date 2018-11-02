@@ -2,7 +2,7 @@
   <div class="col-12 m-0 p-0">
     <nav class="navbar navbar-expand-sm bg-white navbar-light navbar-propio">
 
-      <a class="navbar-brand logo col-1" href="/home">
+      <a class="navbar-brand logo col-1" routerLink="/home">
         <img alt="uMakeIT! Logo" src="assets/logo.bmp">
       </a>
       <div class="col-8"></div>
@@ -10,13 +10,13 @@
         <nav class="navbar navbar-expand-sm bg-white navbar-light">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">Nombre de usuario</a>
+              <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><strong>{{name}}</strong></a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" routerLink="/cambio-clave">Cambiar Clave</a></li>
                 <li><a class="dropdown-item" routerLink="/compras">Compras</a></li>
                 <li><a class="dropdown-item" routerLink="/home">Menú de platos</a></li>
                 <li><a class="dropdown-item" routerLink="/orden">Orden</a></li>
-                <li><a class="dropdown-item" routerLink="/login">Salir</a></li>
+                <li><a class="dropdown-item" routerLink="/login" (click)="onClickLogout()">Salir</a></li>
               </ul>
             </li>
           </ul>

@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../service/users/users.service';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import * as firebase from 'firebase';
+import { Profile } from 'selenium-webdriver/firefox';
+
 
 @Component({
   selector: 'app-registro-login',
@@ -13,15 +16,12 @@ import { Observable } from 'rxjs';
 export class RegistroLoginComponent implements OnInit {
 
   public mostrarLogin: boolean;
+  private afAuth: AngularFireAuth;
   public mostrarRegistro: boolean;
   public users: User[];
-  public userDocument: AngularFirestoreDocument;
-  public cuentaExistente: boolean;
-  public a: boolean; b: string; c: string; d: string; e: string;  f: number;
   public user = {} as User;
 
   constructor(private userService: UsersService, private router: Router) {
-    this.cuentaExistente = false;
     this.mostrarLogin = true;
     this.mostrarRegistro = false;
   }
@@ -35,37 +35,55 @@ export class RegistroLoginComponent implements OnInit {
   }
 
   onCreateUser() {
-    this.user.rol = 0;
-    //this.user.mostrar = true;
-    for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i].email === this.user.email) {
-        this.cuentaExistente = true;
-      } else {
-        this.userService.createUser(this.user);
-        this.router.navigate([`/home/${this.users[i].firstName}`]);
-      }
-    }
+    const email = this.user.email;
+    const password = this.user.psw;
+    const rol = 'Cliente';
+    const firstName = this.user.firstName;
+    const lastName = this.user.lastName;
 
+    this.userService.registrerUser(email, password)
+      .then((res) => {
+        this.userService.loginUser(email, password);
+
+        const user = firebase.auth().currentUser;
+        if (user != null) {
+          user.providerData.forEach(function (profile) {
+            console.log("Sign-in provider: " + profile.providerId);
+            console.log("Provider-specific UID: " + user.uid);
+            console.log("Email: " + profile.email);
+          });
+          const data: User = {
+            email: user.email,
+            firstName: firstName,
+            lastName: lastName,
+            rol: rol
+          }
+          this.userService.createUser(data, user.uid);
+          user.updateProfile({ displayName: firstName + " " + lastName, photoURL: "..." }).then((res) => {
+            console.log(res);
+            console.log(user);
+          }).catch((err) => {
+            console.log(err);
+          })
+        }
+        this.onIniciarSesion();
+      }).catch((err) => {
+        console.log(err);
+      });
   }
 
   onIniciarSesion() {
-    
-    for(let i = 0; i < this.users.length; i++){
-      if(this.users[i].email === this.user.email){
-        if(this.users[i].rol === 1){
-          this.router.navigate([`/home-admin/${this.users[i].firstName}`]);
-        }else{
-          this.router.navigate([`/home/${this.users[i].firstName}`]);
-        }
-        
-      }
-    }
+    const email = this.user.email;
+    const password = this.user.psw;
+    this.userService.loginUser(email, password)
+      .then((res) => {
+        this.router.navigate(['/home']);
+      }).catch((err) => {
+        console.log(err);
+        this.router.navigate(['/login']);
+      });
   }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe((users) => {
-      console.log(users);
-      this.users = users;
-    });
   }
 }

@@ -30,7 +30,7 @@ const routes: Routes = [
         path: '',
         children: [
             { path: '', redirectTo: '/home', pathMatch: 'full' },
-            { path: 'home/:name', component: HomeComponent },
+            { path: 'home', component: HomeComponent },
             { path: 'compras', component: ViewComprasComponent },
             { path: 'orden', component: ViewOrdenComponent },
             { path: 'cambio-clave', component: ViewCambioClaveComponent },
