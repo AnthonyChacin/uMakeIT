@@ -77,7 +77,14 @@ export class RegistroLoginComponent implements OnInit {
     const password = this.user.psw;
     this.userService.loginUser(email, password)
       .then((res) => {
-        this.router.navigate(['/home']);
+        const userLoggedIn = firebase.auth().currentUser;
+        firebase.firestore().collection('/users/').doc(userLoggedIn.uid).onSnapshot((data) => {
+          if( data.get('rol') === "Administrador" ){
+            this.router.navigate(['/home-admin']);
+          }else if(data.get('rol') === "Cliente"){
+            this.router.navigate(['/home']);
+          }
+        })
       }).catch((err) => {
         console.log(err);
         this.router.navigate(['/login']);

@@ -3,10 +3,9 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { User } from '../../models/user';
-import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
-import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -15,10 +14,12 @@ import { Router } from '@angular/router';
 export class UsersService {
 
   user$: Observable<User>;
+  userDocument: AngularFirestoreDocument;
+  rol: string;
 
   constructor(
     private afs: AngularFirestore,
-    private afAuth: AngularFireAuth,
+    public afAuth: AngularFireAuth,
     private router: Router) { }
 
 
@@ -44,12 +45,47 @@ export class UsersService {
     });
   }
 
- /*  getAuth(){
-    return this.afAuth.authState.map(auth => auth);
-  } */
+  getAuth(){
+    return this.afAuth.authState.pipe(map(auth => auth));
+  }
 
   logout() {
     return this.afAuth.auth.signOut();
+  }
+
+  isLoggedIn(){
+    const userLoggedIn = firebase.auth().currentUser
+    if(!userLoggedIn){
+      this.router.navigate(['/login']);
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  isLoggedInAdmin(){
+    const userLoggedInAdmin = firebase.auth().currentUser
+    if(!userLoggedInAdmin){
+      this.router.navigate(['/login']);
+      return false;
+    }else{
+      return true;
+      /* if(this.rol === "Administrador"){
+        return true;
+      }else{
+        this.router.navigate(['/home']);
+        return false;
+      } */
+      /* firebase.firestore().collection('/users/').doc(userLoggedInAdmin.uid).onSnapshot((data) => {
+        if( data.get('rol') === "Administrador" ){
+          return true;
+        }else{
+          this.router.navigate(['/home']);
+          return false;
+        }
+      }) */
+    }
+
   }
 
 
@@ -57,12 +93,12 @@ export class UsersService {
   public getUsers(){
     return this.user$;
     //return this.afs.collection(this.path).snapshotChanges();
-  }
+  } */
   
   //Obtener usuario
   public getUser(id: string){
-    return this.afs.collection(this.path).doc(id);
-  } */
+    return this.afs.collection('/users/').doc(id);
+  }
 
   //Crear un usuario
   public createUser(user: User, id: string) {

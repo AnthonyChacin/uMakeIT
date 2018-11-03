@@ -10,14 +10,14 @@
           <nav class="navbar navbar-expand-sm bg-white navbar-light">
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">Nombre del Usuario</a>
+                <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><strong>{{name}}</strong></a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" routerLink="/add-product">Agregar Producto</a></li>
-                  <li><a class="dropdown-item" routerLink="/home-admin/:name">Buscar Producto</a></li>
+                  <li><a class="dropdown-item" routerLink="/home-admin/">Buscar Producto</a></li>
                   <li><a class="dropdown-item" routerLink="/cambio-clave-admin">Cambiar Clave</a></li>
                   <li><a class="dropdown-item" routerLink="/new-admin">Registrar Administrador</a></li>
                   <li><a class="dropdown-item" routerLink="/pending-orders">Visualizar Pedidos</a></li>
-                  <li><a class="dropdown-item" routerLink="/login">Salir</a></li>
+                  <li><a class="dropdown-item" routerLink="/login" (click)="onClickLogout()">Salir</a></li>
                 </ul>
               </li>
             </ul>

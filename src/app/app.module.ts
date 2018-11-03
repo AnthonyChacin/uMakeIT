@@ -43,6 +43,8 @@ import { AngularFireModule} from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UsersService } from './service/users/users.service';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthAdminGuard } from './guards/auth-admin.guard';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,7 @@ import { UsersService } from './service/users/users.service';
     FormsModule
   ],
   providers: [
-    AngularFirestore, AngularFireAuth, UsersService
+    AngularFirestore, AngularFireAuth, UsersService, AuthGuard, AuthAdminGuard
   ],
   bootstrap: [AppComponent]
 })

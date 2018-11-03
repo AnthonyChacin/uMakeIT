@@ -17,6 +17,8 @@ import { ViewPendingOrdersComponent } from './view/view-pending-orders/view-pend
 import { ViewAddProductComponent } from './view/view-add-product/view-add-product.component';
 import { OrderCompletionViewComponent } from './view/order-completion-view/order-completion-view.component';
 import { Prepa5Component } from './prepa/prepa5/prepa5.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthAdminGuard } from './guards/auth-admin.guard';
 
 const routes: Routes = [
     {
@@ -30,12 +32,12 @@ const routes: Routes = [
         path: '',
         children: [
             { path: '', redirectTo: '/home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent },
-            { path: 'compras', component: ViewComprasComponent },
-            { path: 'orden', component: ViewOrdenComponent },
-            { path: 'cambio-clave', component: ViewCambioClaveComponent },
-            { path: 'product-customization', component: ViewProductCustomizationComponent },
-            { path: 'finalize-order', component: OrderCompletionViewComponent },
+            { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+            { path: 'compras', component: ViewComprasComponent, canActivate: [AuthGuard]},
+            { path: 'orden', component: ViewOrdenComponent, canActivate: [AuthGuard]},
+            { path: 'cambio-clave', component: ViewCambioClaveComponent, canActivate: [AuthGuard]},
+            { path: 'product-customization', component: ViewProductCustomizationComponent, canActivate: [AuthGuard]},
+            { path: 'finalize-order', component: OrderCompletionViewComponent, canActivate: [AuthGuard]},
             { path: 'prepa', component: Prepa5Component}
         ], component: HomeNavigationComponent
     },
@@ -43,12 +45,12 @@ const routes: Routes = [
         path: '',
         children: [
             { path: '', redirectTo: '/home-admin', pathMatch: 'full' },
-            { path: 'home-admin/:name', component: ProductSearchViewComponent },
-            { path: 'new-admin', component: ViewRegisterNewAdminComponent },
-            { path: 'product-edit', component: ProductEditViewComponent },
-            { path: 'pending-orders', component: ViewPendingOrdersComponent },
-            { path: 'cambio-clave-admin', component: ViewCambioClaveComponent },
-            { path: 'add-product', component: ViewAddProductComponent }
+            { path: 'home-admin', component: ProductSearchViewComponent, canActivate: [AuthAdminGuard]},
+            { path: 'new-admin', component: ViewRegisterNewAdminComponent, canActivate: [AuthAdminGuard]},
+            { path: 'product-edit', component: ProductEditViewComponent, canActivate: [AuthAdminGuard]},
+            { path: 'pending-orders', component: ViewPendingOrdersComponent, canActivate: [AuthAdminGuard]},
+            { path: 'cambio-clave-admin', component: ViewCambioClaveComponent, canActivate: [AuthAdminGuard]},
+            { path: 'add-product', component: ViewAddProductComponent, canActivate: [AuthAdminGuard]}
         ], component: AdministratorHomeNavigationComponent
     }/* ,
 

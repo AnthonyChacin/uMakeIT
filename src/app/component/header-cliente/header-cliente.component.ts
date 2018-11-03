@@ -15,18 +15,18 @@ import * as firebase from 'firebase';
 export class HeaderClienteComponent implements OnInit {
 
   public name: string;
+  public user: any;
 
   constructor(private userService: UsersService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        this.name = user.displayName;
-      } else {
-        this.name = "Undifine";
-      }
-    });
+    //this.name = firebase.auth().currentUser.displayName;
+    this.name = firebase.auth().currentUser.displayName;
+    
+    /* firebase.firestore().collection('/users/').doc(this.user.uid).onSnapshot((data)=>{
+      this.name = data.get('rol');
+    }); */
     console.log(this.name);
   }
 
