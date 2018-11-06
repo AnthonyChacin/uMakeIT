@@ -56,6 +56,7 @@ export class RegistroLoginComponent implements OnInit {
             email: user.email,
             firstName: firstName,
             lastName: lastName,
+            psw: password,
             rol: rol
           }
           this.userService.createUser(data, user.uid);
