@@ -26,10 +26,14 @@ export class CambioClaveComponent implements OnInit {
       }).catch(function (error) {
         console.log(error);
       });
+      this.user.pswn = "";
+      this.user.pswnc = "";
       this.nonEqual = false;
       this.cambioClave = true;
 
     } else {
+      this.user.pswn = "";
+      this.user.pswnc = "";
       this.cambioClave = false;
       this.nonEqual = true;
     }
