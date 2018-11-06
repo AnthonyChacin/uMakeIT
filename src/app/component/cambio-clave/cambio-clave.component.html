@@ -28,14 +28,19 @@
       </div>
       <div class="form-group caja-mensaje alert alert-success" *ngIf="cambioClave === true">
         <div class="row">
-          <div class="col-8">
+          <div class="col-12 titulo">
             <strong>¡Operación realizada con éxito!</strong>
-          </div>
-          <div class="col-4">
-            <button type="button" class="btn btn-success">Finalizar</button>
           </div>
         </div>
       </div>
+      <div class="form-group caja-mensaje alert alert-success" *ngIf="nonEqual === true">
+        <div class="row">
+          <div class="col-12 titulo">
+            <strong>¡Las claves ingresadas no coinciden!</strong>
+          </div>
+        </div>
+      </div>
+
     </form>
   </div>
 </div>

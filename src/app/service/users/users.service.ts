@@ -65,17 +65,12 @@ export class UsersService {
 
   isLoggedInAdmin(){
     const userLoggedInAdmin = firebase.auth().currentUser
+
     if(!userLoggedInAdmin){
       this.router.navigate(['/login']);
       return false;
     }else{
       return true;
-      /* if(this.rol === "Administrador"){
-        return true;
-      }else{
-        this.router.navigate(['/home']);
-        return false;
-      } */
       /* firebase.firestore().collection('/users/').doc(userLoggedInAdmin.uid).onSnapshot((data) => {
         if( data.get('rol') === "Administrador" ){
           return true;

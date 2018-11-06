@@ -10,10 +10,12 @@ import { User } from 'src/app/models/user';
 export class CambioClaveComponent implements OnInit {
 
   public cambioClave: boolean;
+  public nonEqual: boolean;
   public user = {} as User;
 
   constructor() {
     this.cambioClave = false;
+    this.nonEqual = false;
   }
 
   onChangePassword() {
@@ -24,11 +26,12 @@ export class CambioClaveComponent implements OnInit {
       }).catch(function (error) {
         console.log(error);
       });
-
+      this.nonEqual = false;
       this.cambioClave = true;
 
     } else {
       this.cambioClave = false;
+      this.nonEqual = true;
     }
   }
 
