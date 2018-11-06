@@ -9,19 +9,18 @@
     <form>
       <div class="form-group">
         <h1 class="cambio-clave titulo">Cambio de Clave</h1>
-        <label for="pwd">Clave actual:</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Ingrese la clave actual" name="pswa" required>
       </div>
       <div class="form-group">
         <label for="pwd">Nueva clave:</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Ingrese la nueva clave" name="pswn" required>
+        <input type="password" class="form-control" id="pwdn" placeholder="Ingrese la nueva clave" name="pswn"
+          [(ngModel)]="user.pswn" required>
       </div>
       <div class="form-group">
         <label for="pwd">Confirmación de nueva clave:</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Reingrese la nueva clave" name="pswnc"
-          required>
+        <input type="password" class="form-control" id="pwdnc" placeholder="Reingrese la nueva clave" name="pswnc"
+          [(ngModel)]="user.pswnc" required>
       </div>
-      <button type="button" class="btn btn-primary btn-propio-rl" (click)="onCambiarClave()">Cambiar Clave</button>
+      <button type="button" class="btn btn-primary btn-propio-rl" (click)="onChangePassword()">Cambiar Clave</button>
       <div class="row">
         <div class="col-12">
           <div class="separador"></div>

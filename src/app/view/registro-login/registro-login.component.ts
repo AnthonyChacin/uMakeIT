@@ -47,16 +47,13 @@ export class RegistroLoginComponent implements OnInit {
 
         const user = firebase.auth().currentUser;
         if (user != null) {
-          user.providerData.forEach(function (profile) {
-            console.log("Sign-in provider: " + profile.providerId);
-            console.log("Provider-specific UID: " + user.uid);
-            console.log("Email: " + profile.email);
-          });
           const data: User = {
             email: user.email,
             firstName: firstName,
             lastName: lastName,
-            psw: password,
+            psw: null,
+            pswn: null,
+            pswnc: null,
             rol: rol
           }
           this.userService.createUser(data, user.uid);
@@ -80,9 +77,9 @@ export class RegistroLoginComponent implements OnInit {
       .then((res) => {
         const userLoggedIn = firebase.auth().currentUser;
         firebase.firestore().collection('/users/').doc(userLoggedIn.uid).onSnapshot((data) => {
-          if( data.get('rol') === "Administrador" ){
+          if (data.get('rol') === "Administrador") {
             this.router.navigate(['/home-admin']);
-          }else if(data.get('rol') === "Cliente"){
+          } else if (data.get('rol') === "Cliente") {
             this.router.navigate(['/home']);
           }
         })
