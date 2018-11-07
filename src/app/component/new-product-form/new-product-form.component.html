@@ -1,45 +1,47 @@
 <div class="row">
-    <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-4 "></div>
+  <div class="col-4 inicio-registro">
+    <form (ngSubmit)="onCreateProduct()">
+      <div class="form-group">
+        <h1 class="inicio-registro titulo-inicio-registro">Agregar Producto</h1>
+        <label for="text">Imagen:</label>
+        <input type="file"  (change)="uploadFile($event)" [(ngModel)]="product.name_img" name="img">
+        <div>{{uploadPercent | async }}</div>
+        <a [href]="downloadURL | async">{{downloadURL | async}}</a>
+      </div>
+      <div class="form-group">
+        <label for="text">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre del producto aqui" name="nombre"
+          [(ngModel)]="product.name">
+      </div>
+      <div class="form-group">
+        <label for="text">Precio en Bs.:</label>
+        <input type="number" value="" class="form-control" id="precio" placeholder="Indique el precio" name="precio"
+        [(ngModel)]="product.price">
+      </div>
+      <div class="form-group">
+        <label for="text">Disponibilidad:</label>
+        <select class="form-control" id="disponibilidad" [(ngModel)]="product.available" name="available">
+          <option selected>Disponible</option>
+          <option>No Disponible</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <input type="submit" value="Agregar" class="btn btn-secondary">
+        </div>
+      </div>
+      <br>
+      <div class="form-group caja-mensaje alert alert-success row" *ngIf="agregado === true">
+        <strong class="col-8">¡Operación realizada con éxito!</strong>
+        <a class="col-4" routerLink="/home-admin">
+          <button type="button" class="btn btn-success">Finalizar</button>
+        </a>
+      </div>
+    </form>
   </div>
-  <div class="row">
-    <div class="col-4 "></div>
-    <div class="col-4 inicio-registro">
-      <form>
-        <div class="form-group">
-          <h1 class="inicio-registro titulo-inicio-registro">Agregar Producto</h1>
-          <label for="text">Imagen:</label>
-          <input type="image" src="" class="form-control input-imagen" id="imagen"
-            placeholder="" name="imagen">
-          <button class="btn btn-secondary">Cargar imagen</button>
-        </div>
-        <div class="form-group">
-          <label for="text">Nombre:</label>
-          <input value="Ingrese nombre del producto aqui" type="text" class="form-control" id="nombre" placeholder="" name="nombre">
-        </div>
-        <div class="form-group">
-          <label for="text">Precio en Bs.:</label>
-          <input type="number" value="" class="form-control" id="precio" placeholder="" name="precio">
-        </div>
-        <div class="form-group">
-          <label for="text">Disponibilidad:</label>
-          <select class="form-control" id="disponibilidad">
-            <option selected>Disponible</option>
-            <option>No Disponible</option>
-          </select>
-        </div>
-        <div class="row">
-        <div class ="col-6">
-            <button type="button" class="btn btn-secondary" (click)="onAgregar()">Agregar</button>
-        </div>
-        </div>
-<br>
-        <div class="form-group caja-mensaje alert alert-success row" *ngIf="agregado === true">
-          <strong class="col-8">¡Operación realizada con éxito!</strong>
-          <a class = "col-4" routerLink="/home-admin/:name">
-            <button type="button" class="btn btn-success">Finalizar</button>
-          </a>
-        </div>
-      </form>
-    </div>
-    <div class="col-4"></div>
-  </div>
+  <div class="col-4"></div>
+</div>

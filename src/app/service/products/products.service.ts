@@ -8,12 +8,14 @@ import { Observable } from 'rxjs';
 })
 export class ProductsService{
 
-  productsCollection;
   products: Observable<Product[]>;
-  productDoc;
 
 
   constructor(public afs: AngularFirestore) {
     this.products = this.afs.collection('products').valueChanges();
+  }
+
+  createProduct(data: Product){
+  	this.afs.collection('/products/').add(data);
   }
 }
