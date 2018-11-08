@@ -22,7 +22,7 @@ export class NewProductFormComponent implements OnInit {
 
   uploadFile(event){
     const file = event.target.files[0];
-    const filePath = 'Img_Products/'+this.product.name_img;
+    const filePath = 'Img_Products/'+ this.product.name_img;
     const task = this.storage.upload(filePath, file);
 
     //Observar cambios de porcentaje
