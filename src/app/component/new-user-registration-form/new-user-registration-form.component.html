@@ -1,43 +1,47 @@
-<div class ="container">
-<div class="row">
-  <div class="col-12">
-    <div class="separador"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="separador"></div>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-4 "></div>
-  <div class="col-4 inicio-registro">
-    <form>
-      <div class="form-group">
-        <h1 class="inicio-registro titulo-inicio-registro">Registro</h1>
-        <label for="text">Nombre:</label>
-        <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" name="nombre" required>
-      </div>
-      <div class="form-group">
-        <label for="text">Apellido:</label>
-        <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido" name="apellido" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" placeholder="Ingrese email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="pwd">Contraseña:</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="pswd" required>
-      </div>
-      <button type="button" class="btn btn-primary btn-propio-rl" (click)="onRegisterNewAdmin()">Registrar</button>
-     <div class="row">
-        <div class="col-12">
-          <div class="separador"></div>
+  <div class="row">
+    <div class="col-4 "></div>
+    <div class="col-4 inicio-registro">
+      <form>
+        <div class="form-group">
+          <h1 class="inicio-registro titulo-inicio-registro">Registro</h1>
+          <label for="text">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" name="nombre" [(ngModel)]="user.firstName"
+            required>
         </div>
-      </div>
-      <div class="form-group caja-mensaje alert alert-success row" *ngIf="newAdmin === true">
-        <strong class = "col-8">¡Operación realizada con éxito!</strong>
-        <a class="col-4" routerLink="/home-admin/:name">
-          <button type="button" class="btn btn-success">Finalizar</button>
-        </a>
-      </div>
-    </form>
+        <div class="form-group">
+          <label for="text">Apellido:</label>
+          <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido" name="apellido"
+            [(ngModel)]="user.lastName" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" placeholder="Ingrese email" name="email" [(ngModel)]="user.email"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Contraseña:</label>
+          <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="pwd" [(ngModel)]="user.psw"
+            required>
+        </div>
+        <button type="button" class="btn btn-primary btn-propio-rl" (click)="onCreateUser()">Registrar</button>
+        <div class="row">
+          <div class="col-12">
+            <div class="separador"></div>
+          </div>
+        </div>
+        <div class="form-group caja-mensaje alert alert-success row" *ngIf="newAdmin === true">
+          <strong class="col-8">¡Operación realizada con éxito!</strong>
+          <a class="col-4" routerLink="/home-admin/:name">
+            <button type="button" class="btn btn-success">Finalizar</button>
+          </a>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 </div>

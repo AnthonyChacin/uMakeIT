@@ -41,10 +41,9 @@ export class RegistroLoginComponent implements OnInit {
     const firstName = this.user.firstName;
     const lastName = this.user.lastName;
 
-    this.userService.registrerUser(email, password)
+    this.userService.registerUser(email, password)
       .then((res) => {
-        this.userService.loginUser(email, password);
-
+        this.userService.loginUser(email, password, firstName, lastName, rol);
         const user = firebase.auth().currentUser;
         if (user != null) {
           const data: User = {
@@ -56,7 +55,7 @@ export class RegistroLoginComponent implements OnInit {
             pswnc: null,
             rol: rol
           }
-          this.userService.createUser(data, user.uid);
+          this.userService.createUser(data, user.email);
           user.updateProfile({ displayName: firstName + " " + lastName, photoURL: "..." }).then((res) => {
             console.log(res);
             console.log(user);
@@ -73,10 +72,14 @@ export class RegistroLoginComponent implements OnInit {
   onIniciarSesion() {
     const email = this.user.email;
     const password = this.user.psw;
-    this.userService.loginUser(email, password)
+    firebase.firestore().collection('/users/').doc(email).onSnapshot((data) => {
+      if (data.get('email') === email) {
+        const firstName = data.get('firstName');
+        const lastName = data.get('lastName');
+        const rol = data.get('rol');
+        this.userService.loginUser(email, password, firstName, lastName, rol)
       .then((res) => {
-        const userLoggedIn = firebase.auth().currentUser;
-        firebase.firestore().collection('/users/').doc(userLoggedIn.uid).onSnapshot((data) => {
+        firebase.firestore().collection('/users/').doc(email).onSnapshot((data) => {
           if (data.get('rol') === "Administrador") {
             this.router.navigate(['/home-admin']);
           } else if (data.get('rol') === "Cliente") {
@@ -87,6 +90,8 @@ export class RegistroLoginComponent implements OnInit {
         console.log(err);
         this.router.navigate(['/login']);
       });
+      }
+    });
   }
 
   ngOnInit() {

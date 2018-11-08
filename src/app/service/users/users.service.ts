@@ -23,7 +23,7 @@ export class UsersService {
     private router: Router) { }
 
 
-  registrerUser(email: string, password: string) {
+  registerUser(email: string, password: string) {
     return new Promise((resolve, reject) => {
       this.afAuth.auth.createUserWithEmailAndPassword(email, password)
         .then(userData => {
@@ -34,18 +34,32 @@ export class UsersService {
     });
   }
 
-  loginUser(email: string, password: string) {
+  loginUser(email: string, password: string, firstName: string, lastName: string, rol: string) {
     return new Promise((resolve, reject) => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(userData => {
+          const user = firebase.auth().currentUser;
+          if (user != null) {
+            user.updateProfile({ displayName: firstName + " " + lastName, photoURL: "..." }).then((res) => {
+              console.log(res);
+              console.log(user);
+            }).catch((err) => {
+              console.log(err);
+            })
+
+          }
           console.log(userData);
           resolve(userData),
             err => reject(err)
-        });
-    });
+
+        }).catch((err) => {
+          console.log(err);
+          this.router.navigate(['/login']);
+        })
+    })
   }
 
-  getAuth(){
+  getAuth() {
     return this.afAuth.authState.pipe(map(auth => auth));
   }
 
@@ -53,23 +67,23 @@ export class UsersService {
     return this.afAuth.auth.signOut();
   }
 
-  isLoggedIn(){
+  isLoggedIn() {
     const userLoggedIn = firebase.auth().currentUser
-    if(!userLoggedIn){
+    if (!userLoggedIn) {
       this.router.navigate(['/login']);
       return false;
-    }else{
+    } else {
       return true;
     }
   }
 
-  isLoggedInAdmin(){
+  isLoggedInAdmin() {
     const userLoggedInAdmin = firebase.auth().currentUser
 
-    if(!userLoggedInAdmin){
+    if (!userLoggedInAdmin) {
       this.router.navigate(['/login']);
       return false;
-    }else{
+    } else {
       return true;
       /* firebase.firestore().collection('/users/').doc(userLoggedInAdmin.uid).onSnapshot((data) => {
         if( data.get('rol') === "Administrador" ){
@@ -89,9 +103,9 @@ export class UsersService {
     return this.user$;
     //return this.afs.collection(this.path).snapshotChanges();
   } */
-  
+
   //Obtener usuario
-  public getUser(id: string){
+  public getUser(id: string) {
     return this.afs.collection('/users/').doc(id);
   }
 
