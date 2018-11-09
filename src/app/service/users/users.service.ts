@@ -118,7 +118,6 @@ export class UsersService {
   public updateUser(data: any, id: string){
     return this.usersCollection.doc(id).set(data);
   }
-
   //Eliminar usuario
   public deleteUser(id: string){
     return this.afs.collection(this.path).doc(id).delete();
