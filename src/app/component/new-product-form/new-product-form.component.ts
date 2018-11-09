@@ -12,14 +12,17 @@ import { AngularFireStorage } from 'angularfire2/storage';
 export class NewProductFormComponent implements OnInit {
 
   public agregado: boolean;
+  public faltanDatos: boolean;
   public product = {} as Product;
   public uploadPercent: Observable<number>;
   public downloadURL: Observable<string>;
   public file: any;
   public filePath: any;
+  public task: any;
 
   constructor(private productsService: ProductsService, private storage: AngularFireStorage) {
     this.agregado = false;
+    this.faltanDatos = false;
   }
 
   uploadFile(event) {
@@ -31,18 +34,27 @@ export class NewProductFormComponent implements OnInit {
   }
 
   onCreateProduct() {
-    const task = this.storage.upload(this.filePath, this.file);
+    if ( this.product.name != '' && this.product.name_img != '') {
 
-    //Observar cambios de porcentaje
-    this.uploadPercent = task.percentageChanges();
+      this.task = this.storage.upload(this.filePath, this.file);
 
-    const data: Product = {
-      name: this.product.name,
-      price: this.product.price,
-      available: this.product.available,
-      name_img: this.file.name
+      //Observar cambios de porcentaje
+      this.uploadPercent = this.task.percentageChanges();
+
+      const data: Product = {
+        name: this.product.name,
+        plato: this.product.plato,
+        price: this.product.price,
+        available: this.product.available,
+        name_img: this.file.name
+      }
+      this.productsService.createProduct(data);
+      this.agregado = true;
+      this.faltanDatos = false;
+    }else{
+      this.faltanDatos = true;
     }
-    this.productsService.createProduct(data);
+
   }
 
   ngOnInit() {
