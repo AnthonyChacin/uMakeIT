@@ -16,7 +16,6 @@ export class NewUserRegistrationFormComponent implements OnInit {
   public user = {} as User;
 
   constructor(private userService: UsersService, private router: Router) {
-    this.newAdmin = false;
   }
 
   onRegisterNewAdmin() {
@@ -43,8 +42,14 @@ export class NewUserRegistrationFormComponent implements OnInit {
         }
         this.userService.createUser(data, email);
       }).catch((err) => {
+        var errorMessage = err.message;
+        this.newAdmin = false;
         console.log(err);
       });
+    this.user.firstName = "";
+    this.user.lastName = "";
+    this.user.email = "";
+    this.user.psw = "";
   }
 
   ngOnInit() {

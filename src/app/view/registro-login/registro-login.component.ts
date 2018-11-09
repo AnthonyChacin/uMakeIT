@@ -20,10 +20,12 @@ export class RegistroLoginComponent implements OnInit {
   public mostrarRegistro: boolean;
   public users: User[];
   public user = {} as User;
+  public cuentaExistente: boolean;
 
   constructor(private userService: UsersService, private router: Router) {
     this.mostrarLogin = true;
     this.mostrarRegistro = false;
+    this.cuentaExistente = false;
   }
   onShowHideRegistro() {
     this.mostrarLogin = false;
@@ -66,6 +68,7 @@ export class RegistroLoginComponent implements OnInit {
         this.onIniciarSesion();
       }).catch((err) => {
         console.log(err);
+        
       });
   }
 
