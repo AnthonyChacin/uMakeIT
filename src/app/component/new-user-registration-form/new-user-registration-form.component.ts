@@ -13,13 +13,10 @@ import * as firebase from 'firebase';
 export class NewUserRegistrationFormComponent implements OnInit {
 
   public newAdmin: boolean;
+  public newAdmin1: boolean;
   public user = {} as User;
 
   constructor(private userService: UsersService, private router: Router) {
-  }
-
-  onRegisterNewAdmin() {
-    this.newAdmin = true;
   }
 
   onCreateUser() {
@@ -28,7 +25,19 @@ export class NewUserRegistrationFormComponent implements OnInit {
     const rol = 'Administrador';
     const firstName = this.user.firstName;
     const lastName = this.user.lastName;
+    firebase.firestore().collection('/users/').doc(this.user.email).onSnapshot((data) => {
+      if (data.get('email') === email) {
+        this.newAdmin1 = true;
 
+      } else {
+        this.newAdmin1 = false;
+        this.newAdmin = true;
+      }
+    });
+    this.user.firstName = "";
+    this.user.lastName = "";
+    this.user.email = "";
+    this.user.psw = "";
     this.userService.registerUser(email, password)
       .then((res) => {
         const data: User = {
@@ -42,17 +51,14 @@ export class NewUserRegistrationFormComponent implements OnInit {
         }
         this.userService.createUser(data, email);
       }).catch((err) => {
-        var errorMessage = err.message;
-        this.newAdmin = false;
         console.log(err);
       });
-    this.user.firstName = "";
-    this.user.lastName = "";
-    this.user.email = "";
-    this.user.psw = "";
+
   }
 
   ngOnInit() {
+    this.newAdmin = false;
+    this.newAdmin1 = false;
   }
 
 }
