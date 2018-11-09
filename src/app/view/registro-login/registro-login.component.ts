@@ -73,24 +73,24 @@ export class RegistroLoginComponent implements OnInit {
     const email = this.user.email;
     const password = this.user.psw;
     firebase.firestore().collection('/users/').doc(email).onSnapshot((data) => {
-      if (data.get('email') === email) {
-        const firstName = data.get('firstName');
-        const lastName = data.get('lastName');
-        const rol = data.get('rol');
-        this.userService.loginUser(email, password, firstName, lastName, rol)
-      .then((res) => {
-        firebase.firestore().collection('/users/').doc(email).onSnapshot((data) => {
-          if (data.get('rol') === "Administrador") {
-            this.router.navigate(['/home-admin']);
-          } else if (data.get('rol') === "Cliente") {
-            this.router.navigate(['/home']);
-          }
-        })
-      }).catch((err) => {
-        console.log(err);
-        this.router.navigate(['/login']);
-      });
-      }
+
+      const firstName = data.get('firstName');
+      const lastName = data.get('lastName');
+      const rol = data.get('rol');
+      this.userService.loginUser(email, password, firstName, lastName, rol)
+        .then((res) => {
+          firebase.firestore().collection('/users/').doc(email).onSnapshot((data) => {
+            if (data.get('rol') === "Administrador") {
+              this.router.navigate(['/home-admin']);
+            } else if (data.get('rol') === "Cliente") {
+              this.router.navigate(['/home']);
+            }
+          })
+        }).catch((err) => {
+          console.log(err);
+          this.router.navigate(['/login']);
+        });
+
     });
   }
 

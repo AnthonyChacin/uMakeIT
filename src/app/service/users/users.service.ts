@@ -43,12 +43,14 @@ export class UsersService {
             user.updateProfile({ displayName: firstName + " " + lastName, photoURL: "..." }).then((res) => {
               console.log(res);
               console.log(user);
+
             }).catch((err) => {
               console.log(err);
             })
 
           }
           console.log(userData);
+          console.log(user);
           resolve(userData),
             err => reject(err)
 
