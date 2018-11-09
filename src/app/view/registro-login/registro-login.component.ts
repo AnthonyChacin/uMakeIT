@@ -94,6 +94,7 @@ export class RegistroLoginComponent implements OnInit {
     });
   }
 
+
   ngOnInit() {
   }
 }
