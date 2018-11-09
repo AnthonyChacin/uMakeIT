@@ -15,29 +15,32 @@ export class NewProductFormComponent implements OnInit {
   public product = {} as Product;
   public uploadPercent: Observable<number>;
   public downloadURL: Observable<string>;
+  public file: any;
+  public filePath: any;
 
   constructor(private productsService: ProductsService, private storage: AngularFireStorage) {
     this.agregado = false;
   }
 
-  uploadFile(event){
-    const file = event.target.files[0];
-    const filePath = 'Img_Products/'+ this.product.name_img;
-    const task = this.storage.upload(filePath, file);
-
-    //Observar cambios de porcentaje
-    this.uploadPercent = task.percentageChanges();
+  uploadFile(event) {
+    this.file = event.target.files[0];
+    this.filePath = 'platos_principales/' + this.file.name;
   }
   onAgregar() {
     this.agregado = true;
   }
 
-  onCreateProduct(){
+  onCreateProduct() {
+    const task = this.storage.upload(this.filePath, this.file);
+
+    //Observar cambios de porcentaje
+    this.uploadPercent = task.percentageChanges();
+
     const data: Product = {
       name: this.product.name,
       price: this.product.price,
       available: this.product.available,
-      name_img: this.product.name_img
+      name_img: this.file.name
     }
     this.productsService.createProduct(data);
   }
