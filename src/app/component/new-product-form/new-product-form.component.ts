@@ -23,6 +23,8 @@ export class NewProductFormComponent implements OnInit {
   constructor(private productsService: ProductsService, private storage: AngularFireStorage) {
     this.agregado = false;
     this.faltanDatos = false;
+    this.product.name = "";
+    this.product.name_img = "";
   }
 
   uploadFile(event) {
@@ -34,7 +36,7 @@ export class NewProductFormComponent implements OnInit {
   }
 
   onCreateProduct() {
-    if ( this.product.name != '' && this.product.name_img != '') {
+    if ( this.product.name != "" && this.product.name_img != "") {
 
       this.task = this.storage.upload(this.filePath, this.file);
 
