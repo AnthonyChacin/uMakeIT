@@ -9,8 +9,13 @@
         <h1 class="inicio-registro titulo-inicio-registro">Agregar Producto</h1>
         <label for="text">Imagen:</label>
         <input type="file" (change)="uploadFile($event)" [(ngModel)]="product.name_img" name="img">
-        <div>{{uploadPercent | async }}</div>
-        <a [href]="downloadURL | async">{{downloadURL | async}}</a>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadPercent | async) + '%'" [attr.aria-valuenow]="(uploadPercent | async)" aria-valuemin="0" aria-valuemax="100">
+          </div>
+        </div>
+        <div class="alert alert-success" role="alert">
+          File uploaded: <a type="img" id="myimg"></a>
+        </div>
       </div>
       <div class="form-group">
         <label for="text">Nombre:</label>
