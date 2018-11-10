@@ -40,9 +40,11 @@ import { OrderSummaryComponent } from './component/order-summary/order-summary.c
 import { Prepa5Component } from './prepa/prepa5/prepa5.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule} from '@angular/fire';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UsersService } from './service/users/users.service';
+import { StorageService } from './service/storage/storage.service';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthAdminGuard } from './guards/auth-admin.guard';
 
@@ -89,10 +91,16 @@ import { AuthAdminGuard } from './guards/auth-admin.guard';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    FormsModule
+    FormsModule,
+    AngularFireStorageModule
   ],
   providers: [
-    AngularFirestore, AngularFireAuth, UsersService, AuthGuard, AuthAdminGuard
+    AngularFirestore, 
+    AngularFireAuth, 
+    UsersService, 
+    AuthGuard, 
+    AuthAdminGuard, 
+    StorageService
   ],
   bootstrap: [AppComponent]
 })
