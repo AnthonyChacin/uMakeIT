@@ -41,8 +41,11 @@
             <button type="button" class="btn btn-success">Finalizar</button>
           </a>
         </div>
-        <div class="form-group caja-mensaje alert alert-success row" *ngIf="newAdmin1 === true && newAdmin === false">
-          <strong class="col-8">¡Ya existe un usuario registrado con el email indicado!</strong>
+        <div class="form-group caja-mensaje alert alert-danger row" *ngIf="newAdmin1 === true && newAdmin === false">
+            <strong class="col-8">¡Ya existe un usuario registrado con el email indicado!</strong>
+          </div>
+        <div class="form-group caja-mensaje alert alert-warning row" *ngIf="newAdmin2 === true">
+          <strong class="col-8">¡Faltan campos por rellenar, recuerde que no debe haber ningún campo vacío!</strong>
         </div>
       </form>
     </div>
