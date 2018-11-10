@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService{
+export class ProductsService {
 
   products: Observable<Product[]>;
 
@@ -15,7 +15,7 @@ export class ProductsService{
     this.products = this.afs.collection('products').valueChanges();
   }
 
-  getProducts(){
+  getProducts() {
     return this.afs.collection('/products/').snapshotChanges();
   }
 
@@ -23,7 +23,11 @@ export class ProductsService{
     return this.afs.collection('/products/').doc(id);
   }
 
-  createProduct(data: Product){
-  	this.afs.collection('/products/').add(data);
+  createProduct(data: Product) {
+    this.afs.collection('/products/').add(data);
+  }
+
+  public updateProduct(data: any, id: string) {
+    return this.afs.collection('/products/').doc(id).set(data);
   }
 }

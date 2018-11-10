@@ -19,7 +19,7 @@
                 <td>{{product.data.name}}</td>
                 <td>{{product.data.price}} Bs.</td>
                 <td>{{product.data.available}}</td>
-                <td><button class="btn btn-warning" routerLink="/product-edit">Editar</button></td>
+                <td><button class="btn btn-warning" (click) = 'onShowFormProduct(product.data.name)'>Editar</button></td>
                 <td><button class="btn btn-danger" routerLink="/home-admin">Eliminar</button></td>
             </tr>
 
