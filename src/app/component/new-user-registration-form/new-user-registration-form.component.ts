@@ -17,6 +17,8 @@ export class NewUserRegistrationFormComponent implements OnInit {
   public user = {} as User;
 
   constructor(private userService: UsersService, private router: Router) {
+    this.newAdmin = false;
+    this.newAdmin1 = false;
   }
 
   onCreateUser() {
