@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../service/products/products.service';
 import { Product } from '../../models/product';
 import { Observable } from 'rxjs';
-import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-new-product-form',
@@ -14,11 +15,12 @@ export class NewProductFormComponent implements OnInit {
   public agregado: boolean;
   public faltanDatos: boolean;
   public product = {} as Product;
+  public ref: AngularFireStorageReference;
   public uploadPercent: Observable<number>;
-  public downloadURL: Observable<string>;
+  public downloadURL: Promise<string>;
   public file: any;
   public filePath: any;
-  public task: any;
+  public task: AngularFireUploadTask;
 
   constructor(private productsService: ProductsService, private storage: AngularFireStorage) {
     this.agregado = false;
@@ -42,6 +44,8 @@ export class NewProductFormComponent implements OnInit {
 
       //Observar cambios de porcentaje
       this.uploadPercent = this.task.percentageChanges();
+      
+      
 
       const data: Product = {
         name: this.product.name,
