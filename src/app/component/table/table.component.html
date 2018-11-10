@@ -11,17 +11,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+
+            <tr *ngFor="let product of products">
                 <td>
-                    <div class="img1"></div>
+                    <div class="img1" [ngStyle]="{'background-image': 'url(' + product.downloadURL + ')'}"></div>
                 </td>
-                <td>Kebad de Garbanzos</td>
-                <td>1000 Bs.</td>
-                <td>Disponible</td>
+                <td>{{product.data.name}}</td>
+                <td>{{product.data.price}} Bs.</td>
+                <td>{{product.data.available}}</td>
                 <td><button class="btn btn-warning" routerLink="/product-edit">Editar</button></td>
                 <td><button class="btn btn-danger" routerLink="/home-admin">Eliminar</button></td>
             </tr>
-            
+
         </tbody>
     </table>
 </div>

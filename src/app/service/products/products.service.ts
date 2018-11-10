@@ -16,7 +16,11 @@ export class ProductsService{
   }
 
   getProducts(){
-    return this.afs.collection('/products/').get();
+    return this.afs.collection('/products/').snapshotChanges();
+  }
+
+  public getProduct(id: string) {
+    return this.afs.collection('/products/').doc(id);
   }
 
   createProduct(data: Product){
