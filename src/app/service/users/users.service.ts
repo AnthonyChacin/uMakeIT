@@ -16,11 +16,14 @@ export class UsersService {
   user$: Observable<User>;
   userDocument: AngularFirestoreDocument;
   rol: string;
+  claveInvalida: boolean;
 
   constructor(
     private afs: AngularFirestore,
     public afAuth: AngularFireAuth,
-    private router: Router) { }
+    private router: Router) {
+    this.claveInvalida = false;
+  }
 
 
   registerUser(email: string, password: string) {
@@ -43,18 +46,16 @@ export class UsersService {
             user.updateProfile({ displayName: firstName + " " + lastName, photoURL: "..." }).then((res) => {
               console.log(res);
               console.log(user);
-
             }).catch((err) => {
               console.log(err);
             })
-
           }
           console.log(userData);
           console.log(user);
           resolve(userData),
             err => reject(err)
-
         }).catch((err) => {
+          this.claveInvalida = true;
           console.log(err);
           this.router.navigate(['/login']);
         })

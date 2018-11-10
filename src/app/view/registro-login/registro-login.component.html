@@ -12,8 +12,8 @@
         <div class="form-group">
           <h1 class="inicio-registro titulo-inicio-registro">Registro</h1>
           <label for="text">Nombre:</label>
-          <input type="text" class="form-control required" id="nombre" placeholder="Ingrese nombre" name="firstName" [(ngModel)]="user.firstName"
-            required>
+          <input type="text" class="form-control required" id="nombre" placeholder="Ingrese nombre" name="firstName"
+            [(ngModel)]="user.firstName" required>
         </div>
         <div class="form-group">
           <label for="text">Apellido:</label>
@@ -53,18 +53,26 @@
         <div class="form-group">
           <h1 class="i nicio-sesion titulo-inicio-sesion">Inicio de Sesión</h1>
           <label for="email">Email:</label>
-          <input type="email" class="form-control" id="email" placeholder="Ingrese email" name="email" [(ngModel)]="user.email" required>
+          <input type="email" class="form-control" id="email" placeholder="Ingrese email" name="email" [(ngModel)]="user.email"
+            required>
         </div>
         <div class="form-group">
           <label for="pwd">Contraseña:</label>
-          <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="psw" [(ngModel)]="user.psw" required>
+          <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="psw" [(ngModel)]="user.psw"
+            required>
         </div>
         <div class="form-group form-check redondeo-checkbox">
           <label class="form-check-label">
-            <input class="form-check-input redondeo-checkbox" type="checkbox"  name="remember"> Recuérdame
+            <input class="form-check-input redondeo-checkbox" type="checkbox" name="remember"> Recuérdame
           </label>
         </div>
         <button type="submit" class="btn btn-outline active boton-inicio-sesion">Iniciar Sesión</button>
+        <div class="form-group" *ngIf="cuentaInexistente === true">
+          El correo que usted ha ingresado no se encuentra registrado.
+        </div>
+        <div class="form-group" *ngIf="claveIncorrecta === true">
+          Contraseña incorrecta.
+        </div>
       </form>
     </div>
   </div>

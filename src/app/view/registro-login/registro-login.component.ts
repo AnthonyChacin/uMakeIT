@@ -21,11 +21,15 @@ export class RegistroLoginComponent implements OnInit {
   public users: User[];
   public user = {} as User;
   public cuentaExistente: boolean;
+  public cuentaInexistente: boolean;
+  public claveIncorrecta: boolean;
 
   constructor(private userService: UsersService, private router: Router) {
     this.mostrarLogin = true;
     this.mostrarRegistro = false;
     this.cuentaExistente = false;
+    this.cuentaInexistente = false;
+    this.claveIncorrecta = false;
   }
   onShowHideRegistro() {
     this.mostrarLogin = false;
@@ -68,7 +72,7 @@ export class RegistroLoginComponent implements OnInit {
         this.onIniciarSesion();
       }).catch((err) => {
         console.log(err);
-        
+
       });
   }
 
@@ -76,10 +80,14 @@ export class RegistroLoginComponent implements OnInit {
     const email = this.user.email;
     const password = this.user.psw;
     firebase.firestore().collection('/users/').doc(email).onSnapshot((data) => {
-
       const firstName = data.get('firstName');
       const lastName = data.get('lastName');
       const rol = data.get('rol');
+      if (data.get('email') !== email) {
+        this.user.email = "";
+        this.user.psw = "";
+        this.cuentaInexistente = true;
+      }
       this.userService.loginUser(email, password, firstName, lastName, rol)
         .then((res) => {
           firebase.firestore().collection('/users/').doc(email).onSnapshot((data) => {
@@ -93,8 +101,10 @@ export class RegistroLoginComponent implements OnInit {
           console.log(err);
           this.router.navigate(['/login']);
         });
-
     });
+    if (this.userService.claveInvalida === true) {
+      this.claveIncorrecta = true;
+    }
   }
 
 
