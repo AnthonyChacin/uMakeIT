@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-edit-view',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-edit-view.component.css']
 })
 export class ProductEditViewComponent implements OnInit {
-
-  constructor() { }
+  name: String;
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.name = this.route.snapshot.paramMap.get('name');
   }
 
 }

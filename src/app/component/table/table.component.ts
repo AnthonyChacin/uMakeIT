@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../../models/product';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -16,15 +17,20 @@ export class TableComponent implements OnInit {
   public products = [];
   public downloadURL: string;
 
-  constructor(private productsService: ProductsService) {
+  constructor(private productsService: ProductsService, private router: Router) {
 
   }
+
+  onShowFormProduct(name: String) {
+    this.router.navigate([`/product-edit/${name}`]);
+  }
+
   ngOnInit() {
     this.productsService.getProducts().subscribe((productSnapshot) => {
       this.products = [];
       productSnapshot.forEach((productData: any) => {
 
-        firebase.firestore().collection('/productos/').doc(productData.payload.doc.id).onSnapshot((data) => {
+        firebase.firestore().collection('/products/').doc(productData.payload.doc.id).onSnapshot((data) => {
           const storage = firebase.storage();
           const storageRef = storage.ref();
           const imageRef = storageRef.child('platos_principales/' + data.get('name_img'));
