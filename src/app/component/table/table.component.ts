@@ -25,6 +25,23 @@ export class TableComponent implements OnInit {
     this.router.navigate([`/product-edit/${name}`]);
   }
 
+  onShowAlert(name: String) {
+    var mensaje = confirm("¿Estás seguro de que deseas eliminar el producto?");
+    //Detectamos si el usuario acepto el mensaje
+    if (mensaje) {
+      this.productsService.getProducts().subscribe((productSnapshot) => {
+        productSnapshot.forEach((productData: any) => {
+          firebase.firestore().collection('/products/').doc(productData.payload.doc.id).onSnapshot((data) => {
+            if (data.get('name') === name) {
+              this.productsService.deleteProduct(productData.payload.doc.id);
+              alert("¡El producto ha sido eliminado con éxito!");
+            }
+          })
+        })
+      })
+    }
+  }
+
   ngOnInit() {
     this.productsService.getProducts().subscribe((productSnapshot) => {
       this.products = [];
