@@ -55,9 +55,10 @@ export class UsersService {
           resolve(userData),
             err => reject(err)
         }).catch((err) => {
-          this.claveInvalida = true;
+          //this.claveInvalida = true;
+          alert("¡Contraseña inválida!");
           console.log(err);
-          this.router.navigate(['/login']);
+          //this.router.navigate(['/login']);
         })
     })
   }

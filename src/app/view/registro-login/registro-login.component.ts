@@ -79,13 +79,13 @@ export class RegistroLoginComponent implements OnInit {
   onIniciarSesion() {
     const email = this.user.email;
     const password = this.user.psw;
+    this.user.email = "";
+    this.user.psw = "";
     firebase.firestore().collection('/users/').doc(email).onSnapshot((data) => {
       const firstName = data.get('firstName');
       const lastName = data.get('lastName');
       const rol = data.get('rol');
       if (data.get('email') !== email) {
-        this.user.email = "";
-        this.user.psw = "";
         this.cuentaInexistente = true;
       }
       this.userService.loginUser(email, password, firstName, lastName, rol)
@@ -99,12 +99,8 @@ export class RegistroLoginComponent implements OnInit {
           })
         }).catch((err) => {
           console.log(err);
-          this.router.navigate(['/login']);
         });
     });
-    if (this.userService.claveInvalida === true) {
-      this.claveIncorrecta = true;
-    }
   }
 
 
