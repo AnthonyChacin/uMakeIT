@@ -47,11 +47,12 @@
     background-color: #F9B53C;
 }
 .separador{
-    margin-top: 0.1rem;
+    margin-top: 0.08rem;
 }
+
 .boxImage{
     background-repeat: no-repeat;
     background-size: 100%;
-    width: 20rem;
-    height: 10rem;
+    width: 100%;
+    height: 15rem;
 }

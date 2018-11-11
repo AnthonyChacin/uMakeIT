@@ -19,11 +19,11 @@ export class FormProductComponent implements OnInit {
   public faltanDatos: boolean;
   public uploadPercent: Observable<number>;
   public subiendoImagen: boolean;
+  public subirImagen: boolean;
   public imagenSubida: boolean;
-  public downloadURL: any;
+  public downloadURL: string;
   public file: any;
   public filePath: any;
-  public task: AngularFireUploadTask;
 
 
   constructor(private productsService: ProductsService, private storage: AngularFireStorage) {
@@ -31,9 +31,11 @@ export class FormProductComponent implements OnInit {
     this.faltanDatos = false;
     this.subiendoImagen = false;
     this.imagenSubida = false;
+    this.subirImagen = false;
   }
 
   uploadFile(event) {
+    this.subirImagen = true;
     this.file = event.target.files[0];
     this.filePath = 'platos_principales/' + this.file.name;
   }
@@ -41,38 +43,61 @@ export class FormProductComponent implements OnInit {
   onEditProduct() {
     if (this.product.name != "" && this.product.available != "" && this.product.name_img != "" && this.product.plato != "" && this.product.price != null) {
       
+    if(this.subirImagen === true){
 
       const storageRef = firebase.storage().ref();
       const uploadTask = storageRef.child(this.filePath).put(this.file);
       this.subiendoImagen = true;
-      uploadTask.on('state_changed', (snapshot) => {
 
-        const barraProgreso = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes)*100
-        document.getElementById('barra-progreso').style.width = barraProgreso + "%";
-      },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            this.downloadURL = downloadURL;
-            const data: Product = {
-              name: this.product.name,
-              plato: this.product.plato,
-              price: this.product.price,
-              available: this.product.available,
-              name_img: this.file.name,
-              url_img: this.downloadURL
-            }
-            this.subiendoImagen = false;
-            document.getElementById('barra-progreso').style.width = "0%";
-            this.productsService.updateProduct(data, this.docID);
-            this.editado = true;
-            this.faltanDatos = false;
-            console.log(this.downloadURL);
-            this.imagenSubida = true;
-          });    
+      uploadTask.on('state_changed', (snapshot) =>{
+
+        const barraProgreso = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes)*100;
+        document.getElementById('barra-progreso-edit').style.width = barraProgreso + "%";
+        
+        if(uploadTask.snapshot.bytesTransferred === uploadTask.snapshot.totalBytes){
+          this.subiendoImagen = false;
+          this.imagenSubida = true;
+        }
+          
+      }, (error) =>{
+            console.log(error);
+      }, ()=>{
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) =>{
+          this.downloadURL = downloadURL;
+          this.product.url_img = this.downloadURL;
+          const data: Product = {
+            name: this.product.name,
+            plato: this.product.plato,
+            price: this.product.price,
+            available: this.product.available,
+            name_img: this.file.name,
+            url_img: this.downloadURL
+          }
+          this.subiendoImagen = false;
+          this.productsService.updateProduct(data, this.docID);
+          this.editado = true;
+          this.faltanDatos = false;
+          console.log(this.downloadURL);
+          this.imagenSubida = true;
+          document.getElementById('barra-progreso-edit').style.width = "0%";
         })
+        
+      })
+    }else{
+      const data: Product = {
+        name: this.product.name,
+        plato: this.product.plato,
+        price: this.product.price,
+        available: this.product.available,
+        name_img: this.product.name_img,
+        url_img: this.product.url_img
+      }
+      this.productsService.updateProduct(data, this.docID);
+      this.editado = true;
+      this.faltanDatos = false;
+      console.log(this.product.url_img);
+    }  
+        
     } else {
       this.editado = false;
       this.faltanDatos = true;

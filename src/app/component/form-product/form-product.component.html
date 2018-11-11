@@ -9,10 +9,11 @@
         <h1 class="inicio-registro titulo-inicio-registro">Editar Producto</h1>
         <label for="text">Imagen:</label>
         <div class="boxImage" [ngStyle]="{'background-image': 'url(' + product.url_img + ')'}"></div>
-        <input type="file" (change)="uploadFile($event)" [(ngModel)]="product.name_img" name="img">
         <div class="separador"></div>
-          <div class="progress" id="progreso" *ngIf="subiendoImagen === true">
-            <div class="progress-bar progress-bar-striped bg-success" id="barra-progreso" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+        <input type="file" (change)="uploadFile($event)" [(ngModel)]="product.name_img" name="img" accept="jpg, jpeg">
+        <div class="separador"></div>
+          <div class="progress" id="progreso-edit" *ngIf="subiendoImagen === true">
+            <div class="progress-bar progress-bar-striped bg-success" id="barra-progreso-edit" role="progressbar" aria-valuemin="0" aria-valuemax="100">
             </div>
           </div>
         <div class="alert alert-success" role="alert" *ngIf="imagenSubida === true">
