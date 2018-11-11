@@ -46,7 +46,12 @@
 .boton-inicio-sesion:hover{
     background-color: #F9B53C;
 }
-
-.input-imagen{
-    height: 100%;
+.separador{
+    margin-top: 0.1rem;
+}
+.boxImage{
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 20rem;
+    height: 10rem;
 }

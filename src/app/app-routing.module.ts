@@ -45,12 +45,12 @@ const routes: Routes = [
         path: '',
         children: [
             { path: '', redirectTo: '/home-admin', pathMatch: 'full' },
-            { path: 'home-admin', component: ProductSearchViewComponent, canActivate: [AuthAdminGuard] },
-            { path: 'new-admin', component: ViewRegisterNewAdminComponent, canActivate: [AuthAdminGuard] },
-            { path: 'product-edit/:name', component: ProductEditViewComponent, canActivate: [AuthAdminGuard] },
-            { path: 'pending-orders', component: ViewPendingOrdersComponent, canActivate: [AuthAdminGuard] },
-            { path: 'cambio-clave-admin', component: ViewCambioClaveComponent, canActivate: [AuthAdminGuard] },
-            { path: 'add-product', component: ViewAddProductComponent, canActivate: [AuthAdminGuard] }
+            { path: 'home-admin', component: ProductSearchViewComponent/*, canActivate: [AuthAdminGuard] */},
+            { path: 'new-admin', component: ViewRegisterNewAdminComponent/*, canActivate: [AuthAdminGuard] */},
+            { path: 'product-edit/:name', component: ProductEditViewComponent/*, canActivate: [AuthAdminGuard] */},
+            { path: 'pending-orders', component: ViewPendingOrdersComponent/*, canActivate: [AuthAdminGuard] */},
+            { path: 'cambio-clave-admin', component: ViewCambioClaveComponent/*, canActivate: [AuthAdminGuard] */},
+            { path: 'add-product', component: ViewAddProductComponent/*, canActivate: [AuthAdminGuard] */}
         ], component: AdministratorHomeNavigationComponent
     }/* ,
 
