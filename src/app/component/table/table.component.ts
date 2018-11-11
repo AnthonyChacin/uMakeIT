@@ -26,7 +26,7 @@ export class TableComponent implements OnInit {
   }
 
   onShowAlert(name: String) {
-    var mensaje = confirm("¿Estás seguro de que deseas eliminar el producto? Si haces click en aceptar, el mismo no podrá ser recuperado");
+    var mensaje = confirm("¿Estás seguro de que deseas eliminar el producto? Si haces click en 'Aceptar', el mismo no podrá ser recuperado.");
     //Detectamos si el usuario acepto el mensaje
     if (mensaje) {
       this.productsService.getProducts().subscribe((productSnapshot) => {
