@@ -13,9 +13,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  @Input() filtro: String;
+
+  public filtro: String;
   public products = [];
   public downloadURL: string;
+  public product = {} as Product;
 
   constructor(private productsService: ProductsService, private router: Router) {
 
@@ -42,25 +44,26 @@ export class TableComponent implements OnInit {
     }
   }
 
-  getProductsFiltro() {
-    this.productsService.getProducts().subscribe((productSnapshot) => {
-      this.products = [];
-      productSnapshot.forEach((productData: any) => {
-        firebase.firestore().collection('/products/').doc(productData.payload.doc.id).onSnapshot((data) => {
-          if (data.get('name') === this.filtro || data.get('available') === this.filtro || data.get('price').toString() === this.filtro) {
-            this.products.push({
-              id: productData.payload.doc.id,
-              data: productData.payload.doc.data()
-            })
-          }
-        })
-      })
-    })
+  onShowTableFiltered() {
+    this.filtro = this.product.name;
+    this.getProductsFiltro();
   }
 
-  ngOnInit() {
+  getProductsFiltro() {
     if (this.filtro != "") {
-      this.getProductsFiltro();
+      this.productsService.getProducts().subscribe((productSnapshot) => {
+        this.products = [];
+        productSnapshot.forEach((productData: any) => {
+          firebase.firestore().collection('/products/').doc(productData.payload.doc.id).onSnapshot((data) => {
+            if (data.get('name') === this.filtro || data.get('available') === this.filtro || data.get('price').toString() === this.filtro) {
+              this.products.push({
+                id: productData.payload.doc.id,
+                data: productData.payload.doc.data()
+              })
+            }
+          })
+        })
+      })
     } else {
       this.productsService.getProducts().subscribe((productSnapshot) => {
         this.products = [];
@@ -72,6 +75,18 @@ export class TableComponent implements OnInit {
         })
       })
     }
+  }
+
+  ngOnInit() {
+    this.productsService.getProducts().subscribe((productSnapshot) => {
+      this.products = [];
+      productSnapshot.forEach((productData: any) => {
+        this.products.push({
+          id: productData.payload.doc.id,
+          data: productData.payload.doc.data()
+        })
+      })
+    })
   }
 
 }
