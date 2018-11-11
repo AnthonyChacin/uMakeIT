@@ -33,19 +33,16 @@ export class NewProductFormComponent implements OnInit {
     this.file = event.target.files[0];
     this.filePath = 'platos_principales/' + this.file.name;
   }
-  onAgregar() {
-    this.agregado = true;
-  }
 
   onCreateProduct() {
-    if ( this.product.name != "" && this.product.name_img != "") {
+    if (this.product.name != "" && this.product.name_img != "") {
 
       this.task = this.storage.upload(this.filePath, this.file);
 
       //Observar cambios de porcentaje
       this.uploadPercent = this.task.percentageChanges();
-      
-      
+
+
 
       const data: Product = {
         name: this.product.name,
@@ -57,7 +54,7 @@ export class NewProductFormComponent implements OnInit {
       this.productsService.createProduct(data);
       this.agregado = true;
       this.faltanDatos = false;
-    }else{
+    } else {
       this.faltanDatos = true;
     }
 

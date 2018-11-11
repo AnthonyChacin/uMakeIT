@@ -3,6 +3,7 @@ import { ProductsService } from '../../service/products/products.service';
 import { Observable } from 'rxjs';
 import { Product } from '../../models/product';
 import * as firebase from 'firebase';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 
 @Component({
   selector: 'app-form-product',
@@ -16,14 +17,29 @@ export class FormProductComponent implements OnInit {
   public product = {} as Product;
   public editado: boolean;
   public faltanDatos: boolean;
+  public uploadPercent: Observable<number>;
+  public downloadURL: any;
+  public file: any;
+  public filePath: any;
+  public task: AngularFireUploadTask;
 
-  constructor(private productsService: ProductsService) {
+
+  constructor(private productsService: ProductsService, private storage: AngularFireStorage) {
     this.editado = false;
     this.faltanDatos = false;
   }
 
+  uploadFile(event) {
+    this.file = event.target.files[0];
+    this.filePath = 'platos_principales/' + this.file.name;
+  }
+
   onEditProduct() {
     if (this.product.name != "" && this.product.available != "" && this.product.name_img != "" && this.product.plato != "" && this.product.price != null) {
+      this.task = this.storage.upload(this.filePath, this.file);
+      //Observar cambios de porcentaje
+      this.uploadPercent = this.task.percentageChanges();
+      //this.downloadURL = this.task.snapshotChanges
       const data: Product = {
         name: this.product.name,
         plato: this.product.plato,
@@ -43,7 +59,6 @@ export class FormProductComponent implements OnInit {
   ngOnInit() {
     this.productsService.getProducts().subscribe((productSnapshot) => {
       productSnapshot.forEach((productData: any) => {
-
         firebase.firestore().collection('/products/').doc(productData.payload.doc.id).onSnapshot((data) => {
           if (data.get('name') === this.name) {
             this.product.name_img = data.get('name_img');
