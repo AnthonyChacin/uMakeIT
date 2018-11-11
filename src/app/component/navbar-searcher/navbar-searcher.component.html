@@ -2,7 +2,10 @@
   <form class="form-inline" action="/action_page.php">
     <div class="mensaje">Ingrese la palabra clave del producto que desea buscar (Nombre, Precio o Disponibilidad)</div>
     <div class="separador-espacio"></div>
-    <input class="form-control mr-sm-2 searcher" type="text" placeholder="Palabra Clave">
-    <button class="btn btn-success submit-searcher" type="submit">Buscar</button>
+    <input class="form-control mr-sm-2 searcher" type="text" placeholder="Palabra Clave" [(ngModel)]="product.name">
+    <button class="btn btn-success submit-searcher" type="submit" (click)="onShowTableFiltered()">Buscar</button>
   </form>
 </nav>
+<div *ngIf="filteredTable === true">
+  <app-table [filtro]="product.name"></app-table>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProductsService } from '../../service/products/products.service';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-
+  @Input() filtro: String;
   public products = [];
   public downloadURL: string;
 
@@ -42,17 +42,36 @@ export class TableComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  getProductsFiltro() {
     this.productsService.getProducts().subscribe((productSnapshot) => {
       this.products = [];
       productSnapshot.forEach((productData: any) => {
-        this.products.push({
-          id: productData.payload.doc.id,
-          data: productData.payload.doc.data()
+        firebase.firestore().collection('/products/').doc(productData.payload.doc.id).onSnapshot((data) => {
+          if (data.get('name') === this.filtro || data.get('available') === this.filtro || data.get('price').toString() === this.filtro) {
+            this.products.push({
+              id: productData.payload.doc.id,
+              data: productData.payload.doc.data()
+            })
+          }
         })
-
       })
     })
+  }
+
+  ngOnInit() {
+    if (this.filtro != "") {
+      this.getProductsFiltro();
+    } else {
+      this.productsService.getProducts().subscribe((productSnapshot) => {
+        this.products = [];
+        productSnapshot.forEach((productData: any) => {
+          this.products.push({
+            id: productData.payload.doc.id,
+            data: productData.payload.doc.data()
+          })
+        })
+      })
+    }
   }
 
 }

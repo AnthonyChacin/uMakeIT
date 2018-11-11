@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Product } from '../../models/product';
 import { Observable } from 'rxjs';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { Observable } from 'rxjs';
 export class ProductsService {
 
   products: Observable<Product[]>;
+  public productos = [];
 
 
   constructor(public afs: AngularFirestore) {
@@ -34,4 +36,5 @@ export class ProductsService {
   public deleteProduct(id: string) {
     return this.afs.collection('/products/').doc(id).delete();
   }
+
 }
