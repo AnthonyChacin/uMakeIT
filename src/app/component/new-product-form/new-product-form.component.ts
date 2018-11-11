@@ -18,7 +18,7 @@ export class NewProductFormComponent implements OnInit {
   public imagenSubida: boolean;
   public product = {} as Product;
   public uploadPercent: number;
-  public downloadURL: Promise<string>;
+  public downloadURL: string;
   public file: any;
   public filePath: any;
   public task: AngularFireUploadTask;
@@ -26,7 +26,7 @@ export class NewProductFormComponent implements OnInit {
   constructor(private productsService: ProductsService, private storage: AngularFireStorage) {
     this.agregado = false;
     this.faltanDatos = false;
-    //this.subiendoImagen = false;
+    this.subiendoImagen = false;
     this.imagenSubida = false;
     this.product.name = "";
     this.product.name_img = "";
@@ -42,12 +42,14 @@ export class NewProductFormComponent implements OnInit {
 
   onCreateProduct() {
     if (this.product.name != "" && this.product.name_img != "" && this.product.price != null && this.product.plato != "" && this.product.available != "") {
-     
+
       const storageRef = firebase.storage().ref();
       const uploadTask = storageRef.child(this.filePath).put(this.file);
-
+      this.subiendoImagen = true;
       uploadTask.on('state_changed', (snapshot) => {
-        
+
+        const barraProgreso = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes)*100
+        document.getElementById('barra-progreso').style.width = barraProgreso + "%";
       },
         (error) => {
           console.log(error);
@@ -55,22 +57,22 @@ export class NewProductFormComponent implements OnInit {
         () => {
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
             this.downloadURL = downloadURL;
+            const data: Product = {
+              name: this.product.name,
+              plato: this.product.plato,
+              price: this.product.price,
+              available: this.product.available,
+              name_img: this.file.name,
+              url_img: this.downloadURL
+            }
+            this.subiendoImagen = false;
+            document.getElementById('barra-progreso').style.width = "0%";
+            this.productsService.createProduct(data);
+            this.agregado = true;
+            this.faltanDatos = false;
             console.log(this.downloadURL);
-          });
-
-          const data: Product = {
-            name: this.product.name,
-            plato: this.product.plato,
-            price: this.product.price,
-            available: this.product.available,
-            name_img: this.file.name,
-            url_img: this.downloadURL
-          }
-          this.productsService.createProduct(data);
-          this.agregado = true;
-          this.faltanDatos = false;
-
-          this.imagenSubida = true;
+            this.imagenSubida = true;
+          });    
         })
 
     } else {

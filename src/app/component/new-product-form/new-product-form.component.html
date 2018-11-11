@@ -9,16 +9,14 @@
         <h1 class="inicio-registro titulo-inicio-registro">Agregar Producto</h1>
         <label for="text">Imagen:</label>
         <input type="file" (change)="uploadFile($event)" [(ngModel)]="product.name_img" name="img" accept="jpg, jpeg">
-
-        <!-- <div class="progress">
-          <div class="progress-bar progress-bar-striped bg-success" id="barra-progreso" role="progressbar"
-            [style.width]="(uploadPercent | async) + '%'" [attr.aria-valuenow]="(uploadPercent | async)" aria-valuemin="0"
-            aria-valuemax="100">
+        <div class="separador"></div>
+        <div class="progress" id="progreso" *ngIf="subiendoImagen === true">
+          <div class="progress-bar progress-bar-striped bg-success" id="barra-progreso" role="progressbar" aria-valuemin="0" aria-valuemax="100">
           </div>
-        </div> -->
+        </div>
       </div>
       <div class="alert alert-success" role="alert" *ngIf="imagenSubida === true">
-        Imagen disponible en: <a [href]="product.url_img" id="myimg">{{product.url_img}}</a>
+        Imagen disponible en: <a [href]="downloadURL" id="myimg">{{downloadURL}}</a>
       </div>
       <div class="form-group">
         <label for="text">Nombre:</label>

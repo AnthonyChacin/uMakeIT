@@ -5,6 +5,6 @@ export interface Product {
     name?: string;
     plato?: string;
     price?: number;
-    url_img?: Promise<string>;
+    url_img?: string;
     name_img?: string;
 }
