@@ -17,6 +17,7 @@ export class UsersService {
   userDocument: AngularFirestoreDocument;
   rol: string;
   claveInvalida: boolean;
+  private loggedInStatus = JSON.parse(localStorage.getItem('loggedIn') || 'false')
 
   constructor(
     private afs: AngularFirestore,
@@ -25,6 +26,10 @@ export class UsersService {
     this.claveInvalida = false;
   }
 
+  setLoggedIn(value: boolean) {
+    this.loggedInStatus = value
+    localStorage.setItem('loggedIn', 'true')
+  }
 
   registerUser(email: string, password: string) {
     return new Promise((resolve, reject) => {
@@ -41,9 +46,13 @@ export class UsersService {
     return new Promise((resolve, reject) => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(userData => {
+          if (this.loggedInStatus === true) {
+            this.afAuth.auth.signInWithEmailAndPassword(email, password)
+          }
           const user = firebase.auth().currentUser;
           if (user != null) {
             user.updateProfile({ displayName: firstName + " " + lastName, photoURL: "..." }).then((res) => {
+              this.setLoggedIn(true);
               console.log(res);
               console.log(user);
             }).catch((err) => {
@@ -75,8 +84,10 @@ export class UsersService {
     const userLoggedIn = firebase.auth().currentUser
     if (!userLoggedIn) {
       this.router.navigate(['/login']);
+      this.setLoggedIn(false);
       return false;
     } else {
+      this.setLoggedIn(true);
       return true;
     }
   }
