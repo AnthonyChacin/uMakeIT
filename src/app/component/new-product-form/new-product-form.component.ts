@@ -17,7 +17,7 @@ export class NewProductFormComponent implements OnInit {
   public product = {} as Product;
   public ref: AngularFireStorageReference;
   public uploadPercent: Observable<number>;
-  public downloadURL: Promise<string>;
+  public downloadURL: Observable<string>;
   public file: any;
   public filePath: any;
   public task: AngularFireUploadTask;
@@ -40,12 +40,18 @@ export class NewProductFormComponent implements OnInit {
   onCreateProduct() {
     if ( this.product.name != "" && this.product.name_img != "") {
 
-      this.task = this.storage.upload(this.filePath, this.file);
-
-      //Observar cambios de porcentaje
+      this.task = this.storage.ref('/platos_principales/'+this.file.name).put(this.file);
+      this.task.then(res => {
+        this.downloadURL = this.storage.ref('/platos_principales/'+this.file.name).getDownloadURL();
+      })
       this.uploadPercent = this.task.percentageChanges();
-      
-      
+
+      /* let storageRef = firebase.storage().ref();
+      let uploadTask = storageRef.child(`${this.filePath}`).put(this.file).then(res => {
+        console.log(res);
+      }); */
+      //Observar cambios de porcentaje
+      //this.uploadPercent = this.task.percentageChanges();
 
       const data: Product = {
         name: this.product.name,
