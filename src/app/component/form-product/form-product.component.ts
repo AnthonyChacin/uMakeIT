@@ -45,7 +45,7 @@ export class FormProductComponent implements OnInit {
         plato: this.product.plato,
         price: this.product.price,
         available: this.product.available,
-        name_img: this.product.name_img
+        name_img: this.file.name
       }
       this.productsService.updateProduct(data, this.docID);
       this.editado = true;
