@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-propio">
-  <form class="form-inline" action="/action_page.php">
+  <form class="form-inline" (ngSubmit)="onShowTableFiltered()">
     <div class="mensaje">Ingrese la palabra clave del producto que desea buscar (Nombre, Precio o Disponibilidad)</div>
     <div class="separador-espacio"></div>
-    <input class="form-control mr-sm-2 searcher" type="text" placeholder="Palabra Clave" [(ngModel)]="product.name">
-    <button class="btn btn-success submit-searcher" type="submit" (click)="onShowTableFiltered()">Buscar</button>
+    <input class="form-control mr-sm-2 searcher" type="text" placeholder="Palabra Clave" [(ngModel)]="product.name" name="name">
+    <input class="btn btn-success submit-searcher" type="submit" value="Buscar">
   </form>
 </nav>
 <div *ngIf="filteredTable === true">
