@@ -14,7 +14,8 @@
 
             <tr *ngFor="let product of products">
                 <td>
-                    <div class="img1" [ngStyle]="{'background-image': 'url(' + product.downloadURL + ')'}"></div>
+                    <div class="img1"><img  src={{product.data.url_img}} alt={{product.data.name}}></div>
+                    <!-- <div class="img1" [ngStyle]="{'background-image': 'url(' + product.data.url_img + ')'}"></div> -->
                 </td>
                 <td>{{product.data.name}}</td>
                 <td>{{product.data.price}} Bs.</td>

@@ -46,17 +46,9 @@ export class TableComponent implements OnInit {
     this.productsService.getProducts().subscribe((productSnapshot) => {
       this.products = [];
       productSnapshot.forEach((productData: any) => {
-
-        firebase.firestore().collection('/products/').doc(productData.payload.doc.id).onSnapshot((data) => {
-          const storage = firebase.storage();
-          const storageRef = storage.ref();
-          const imageRef = storageRef.child('platos_principales/' + data.get('name_img'));
-          this.downloadURL = imageRef.getDownloadURL().toString();
-        })
         this.products.push({
           id: productData.payload.doc.id,
-          data: productData.payload.doc.data(),
-          downloadURL: this.downloadURL
+          data: productData.payload.doc.data()
         })
 
       })

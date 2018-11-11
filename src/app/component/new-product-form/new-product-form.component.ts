@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../service/products/products.service';
 import { Product } from '../../models/product';
 import { Observable } from 'rxjs';
-import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import * as firebase from 'firebase';
 
 @Component({
@@ -14,10 +14,11 @@ export class NewProductFormComponent implements OnInit {
 
   public agregado: boolean;
   public faltanDatos: boolean;
+  public subiendoImagen: boolean;
+  public imagenSubida: boolean;
   public product = {} as Product;
-  public ref: AngularFireStorageReference;
-  public uploadPercent: Observable<number>;
-  public downloadURL: Observable<string>;
+  public uploadPercent: number;
+  public downloadURL: Promise<string>;
   public file: any;
   public filePath: any;
   public task: AngularFireUploadTask;
@@ -25,6 +26,8 @@ export class NewProductFormComponent implements OnInit {
   constructor(private productsService: ProductsService, private storage: AngularFireStorage) {
     this.agregado = false;
     this.faltanDatos = false;
+    //this.subiendoImagen = false;
+    this.imagenSubida = false;
     this.product.name = "";
     this.product.name_img = "";
   }
@@ -38,32 +41,39 @@ export class NewProductFormComponent implements OnInit {
   }
 
   onCreateProduct() {
-    if ( this.product.name != "" && this.product.name_img != "") {
+    if (this.product.name != "" && this.product.name_img != "" && this.product.price != null && this.product.plato != "" && this.product.available != "") {
+     
+      const storageRef = firebase.storage().ref();
+      const uploadTask = storageRef.child(this.filePath).put(this.file);
 
-      this.task = this.storage.ref('/platos_principales/'+this.file.name).put(this.file);
-      this.task.then(res => {
-        this.downloadURL = this.storage.ref('/platos_principales/'+this.file.name).getDownloadURL();
-      })
-      this.uploadPercent = this.task.percentageChanges();
+      uploadTask.on('state_changed', (snapshot) => {
+        
+      },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+            this.downloadURL = downloadURL;
+            console.log(this.downloadURL);
+          });
 
-      /* let storageRef = firebase.storage().ref();
-      let uploadTask = storageRef.child(`${this.filePath}`).put(this.file).then(res => {
-        console.log(res);
-      }); */
-      //Observar cambios de porcentaje
-      //this.uploadPercent = this.task.percentageChanges();
+          const data: Product = {
+            name: this.product.name,
+            plato: this.product.plato,
+            price: this.product.price,
+            available: this.product.available,
+            name_img: this.file.name,
+            url_img: this.downloadURL
+          }
+          this.productsService.createProduct(data);
+          this.agregado = true;
+          this.faltanDatos = false;
 
-      const data: Product = {
-        name: this.product.name,
-        plato: this.product.plato,
-        price: this.product.price,
-        available: this.product.available,
-        name_img: this.file.name
-      }
-      this.productsService.createProduct(data);
-      this.agregado = true;
-      this.faltanDatos = false;
-    }else{
+          this.imagenSubida = true;
+        })
+
+    } else {
       this.faltanDatos = true;
     }
 
