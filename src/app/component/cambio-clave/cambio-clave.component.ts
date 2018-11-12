@@ -20,7 +20,7 @@ export class CambioClaveComponent implements OnInit {
 
   onChangePassword() {
     var user = firebase.auth().currentUser;
-    if (this.user.pswn == this.user.pswnc) {
+    if (this.user.pswn === this.user.pswnc) {
       var newPassword = this.user.pswnc;
       user.updatePassword(newPassword).then(function () {
       }).catch(function (error) {
