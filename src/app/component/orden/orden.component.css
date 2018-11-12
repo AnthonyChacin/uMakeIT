@@ -1,12 +1,15 @@
 .table{
-    height: 30rem;
+    height: 100%;
+    width: 100%;
     background-color: #343a40;
     position: flex;
     margin-left: 0.25rem;
     margin-top: 1rem;
+    margin-right: 0.25rem;
     border-radius: 0.25rem; 
     text-align: center;
     align-content: center;
+    overflow-x: hidden;
 }
 .sub{
     color: white;
