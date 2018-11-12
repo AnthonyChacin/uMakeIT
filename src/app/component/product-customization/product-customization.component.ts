@@ -11,6 +11,14 @@ import { Product } from '../../models/product';
 export class ProductCustomizationComponent implements OnInit {
   @Input() name: String;
   public product = {} as Product;
+  public racion = {} as Product;
+  public aderezo = {} as Product;
+  public jugo = {} as Product;
+  public postre = {} as Product;
+  public raciones = [];
+  public aderezos = [];
+  public jugos = [];
+  public postres = [];
   public productID: any;
 
   constructor(private productsService: ProductsService) { }
@@ -29,6 +37,33 @@ export class ProductCustomizationComponent implements OnInit {
             this.productID = productData.payload.doc.id;
           }
         })
+      })
+    })
+
+    this.productsService.getProducts().subscribe((productSnapshot) => {
+      productSnapshot.forEach((productData: any) => {
+        if (productData.payload.doc.data().plato === "Ración") {
+          this.raciones.push({
+            id: productData.payload.doc.id,
+            data: productData.payload.doc.data()
+          })
+        } else if (productData.payload.doc.data().plato === "Aderezo") {
+          this.aderezos.push({
+            id: productData.payload.doc.id,
+            data: productData.payload.doc.data()
+          })
+        } else if (productData.payload.doc.data().plato === "Jugo") {
+          this.jugos.push({
+            id: productData.payload.doc.id,
+            data: productData.payload.doc.data()
+          })
+        } else if (productData.payload.doc.data().plato === "Postre") {
+          this.postres.push({
+            id: productData.payload.doc.id,
+            data: productData.payload.doc.data()
+          })
+        }
+
       })
     })
   }
