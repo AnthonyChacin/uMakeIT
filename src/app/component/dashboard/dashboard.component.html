@@ -13,14 +13,14 @@
       <div class="thumbnail" [ngStyle]="{'background-image': 'url(' + product.data.url_img + ')'}">
         <div class="container-imagen1">
           <div class="row">
-            <a class="agregar-plato" routerLink="/product-customization/`${product.data.name}`"></a>
+            <button class="agregar-plato" (click)='onShowProductCustomization(product.data.name)'></button>
             <div class="nombre-plato">{{product.data.name}}</div>
           </div>
         </div>
-      </div>  
+      </div>
     </div>
   </div>
-    <!-- <div class="col-4">
+  <!-- <div class="col-4">
       <div class="filetes-coliflor-lentejas">
         <a class="agregar-plato" routerLink="/product-customization"></a>
         <div class="nombre-plato">Filetes de Coliflor con Lentejas</div>
