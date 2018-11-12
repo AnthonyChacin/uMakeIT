@@ -13,9 +13,12 @@
 .container-imagen{
     height: 18rem;
     margin: 0;
+    margin-bottom: 2rem;
 }
 .container-imagen1{
     margin: 0;
+    padding-right: 0.9rem;
+    padding-left: 0.9rem;
 }
 .thumbnail{
     background-repeat: no-repeat;
