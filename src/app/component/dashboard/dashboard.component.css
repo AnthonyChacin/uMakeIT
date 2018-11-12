@@ -6,115 +6,24 @@
     width: 100%;
 }
 .container-imagenes{
-    height: 15rem;
+    height: 100%;
+    width: 100%;
+    margin-left: 0.18rem;
 }
-.kebab-garbanzos{
-    background-image: url('/src/assets/kebab-de-garbanzos.jpg');
+.container-imagen{
+    height: 18rem;
+    margin: 0;
+}
+.container-imagen1{
+    margin: 0;
+}
+.thumbnail{
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
     color: white;
     font-size: 120%;
     font-style: italic;
-}
-.filetes-coliflor-lentejas{
-    background-image: url('/src/assets/filetes-coliflor-lentejas.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    color: white;
-    font-size: 120%;
-    font-style: italic;
-}
-.berenjenas-rellenas{
-    background-image: url('/src/assets/berenjenas-rellenas.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    color: white;
-    font-size: 120%;
-    font-style: italic;
-}
-.hamburguesa-lentejas{
-    background-image: url('/src/assets/hamburguesa-de-lentejas.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    color: white;
-    font-size: 120%;
-    font-style: italic;
-}
-.pizza-vegana-gluten-free{
-    background-image: url('/src/assets/pizza-vegana-gluten-free.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    color: white;
-    font-size: 120%;
-    font-style: italic;
-}
-.lasana-de-quinoa-vegana{
-    background-image: url('/src/assets/lasana-de-quinoa-vegana.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    color: white;
-    font-size: 120%;
-    font-style: italic;
-}
-.ratatouille{
-    background-image: url('/src/assets/ratatouille.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    color: white;
-    font-size: 120%;
-    font-style: italic;
-}
-.nuggets-vegetarianos{
-    background-image: url('/src/assets/nuggets-vegetarianos.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    color: white;
-    font-size: 120%;
-    font-style: italic;
-}
-.ensalada-garbanzos{
-    background-image: url('/src/assets/ensalada-garbanzos.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    color: white;
-    font-size: 120%;
-    font-style: italic;
-}
-.pudding-chocolate{
-    background-image: url('/src/assets/pudding-chocolate.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    color: white;
-    font-size: 120%;
-    font-style: italic;
-}
-.garbanzos-espinacas{
-    background-image: url('/src/assets/garbanzos-espinacas.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    color: white;
-    font-size: 120%;
-    font-style: italic;
-}
-.coliflor-sesamo{
-    background-image: url('/src/assets/coliflor-sesamo.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    color: white;
-    font-size: 120%;
-    font-style: italic;  
 }
 .agregar-plato{
     z-index: 1;

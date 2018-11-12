@@ -32,12 +32,12 @@ const routes: Routes = [
         path: '',
         children: [
             { path: '', redirectTo: '/home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-            { path: 'compras', component: ViewComprasComponent, canActivate: [AuthGuard] },
-            { path: 'orden', component: ViewOrdenComponent, canActivate: [AuthGuard] },
-            { path: 'cambio-clave', component: ViewCambioClaveComponent, canActivate: [AuthGuard] },
-            { path: 'product-customization', component: ViewProductCustomizationComponent, canActivate: [AuthGuard] },
-            { path: 'finalize-order', component: OrderCompletionViewComponent, canActivate: [AuthGuard] },
+            { path: 'home', component: HomeComponent/*, canActivate: [AuthGuard] */},
+            { path: 'compras', component: ViewComprasComponent/*, canActivate: [AuthGuard] */},
+            { path: 'orden', component: ViewOrdenComponent/*, canActivate: [AuthGuard] */},
+            { path: 'cambio-clave', component: ViewCambioClaveComponent/*, canActivate: [AuthGuard] */},
+            { path: 'product-customization/:name', component: ViewProductCustomizationComponent/*, canActivate: [AuthGuard] */},
+            { path: 'finalize-order', component: OrderCompletionViewComponent/*, canActivate: [AuthGuard] */},
             { path: 'prepa', component: Prepa5Component }
         ], component: HomeNavigationComponent
     },

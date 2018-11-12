@@ -9,14 +9,18 @@
   <div class="separador"></div>
 
   <div class="row container-imagenes">
-    <div class="col-4">
-      <div class="kebab-garbanzos">
-        <a class="agregar-plato" routerLink="/product-customization"></a>
-        <div class="nombre-plato">Kebab de Garbanzos</div>
-      </div>
+    <div class="col-4 container-imagen" *ngFor="let product of products">
+      <div class="thumbnail" [ngStyle]="{'background-image': 'url(' + product.data.url_img + ')'}">
+        <div class="container-imagen1">
+          <div class="row">
+            <a class="agregar-plato" routerLink="/product-customization/`${product.data.name}`"></a>
+            <div class="nombre-plato">{{product.data.name}}</div>
+          </div>
+        </div>
+      </div>  
     </div>
-
-    <div class="col-4">
+  </div>
+    <!-- <div class="col-4">
       <div class="filetes-coliflor-lentejas">
         <a class="agregar-plato" routerLink="/product-customization"></a>
         <div class="nombre-plato">Filetes de Coliflor con Lentejas</div>
@@ -28,11 +32,10 @@
         <a class="agregar-plato" routerLink="/product-customization"></a>
         <div class="nombre-plato">Berenjenas Rellenas</div>
       </div>
-    </div>
+    </div> -->
 
-  </div>
 
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-12">
       <div class="separador"></div>
     </div>
@@ -130,5 +133,5 @@
     <div class="col-12">
       <div class="separador"></div>
     </div>
-  </div>
+  </div> -->
 </div>
