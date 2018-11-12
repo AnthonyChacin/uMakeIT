@@ -25,6 +25,7 @@ export class CambioClaveComponent implements OnInit {
       user.updatePassword(newPassword).then(function () {
       }).catch(function (error) {
         console.log(error);
+        alert("La operacion de cambiar clave es delicada y requiere de una autenticacion reciente. Inicie sesion nuevamente e intente cambiar su clave.");
       });
       this.user.pswn = "";
       this.user.pswnc = "";
