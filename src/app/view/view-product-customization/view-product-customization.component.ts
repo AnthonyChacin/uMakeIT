@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-product-customization',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-product-customization.component.css']
 })
 export class ViewProductCustomizationComponent implements OnInit {
-
-  constructor() { }
+  name: String;
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.name = this.route.snapshot.paramMap.get('name');
   }
 
 }
