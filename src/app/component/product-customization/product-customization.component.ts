@@ -4,6 +4,8 @@ import * as firebase from 'firebase';
 import { Product } from '../../models/product';
 import { Plate } from '../../models/plate';
 import { Order } from '../../models/order';
+import { OrdersService } from 'src/app/service/orders/orders.service';
+import { PlatesService } from 'src/app/service/plates/plates.service';
 
 @Component({
   selector: 'app-product-customization',
@@ -27,7 +29,7 @@ export class ProductCustomizationComponent implements OnInit {
   public plato = [];
   public orden = [];
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService, private ordersService: OrdersService, private platesService: PlatesService) { }
 
   agregarPlato() {
 
@@ -42,6 +44,19 @@ export class ProductCustomizationComponent implements OnInit {
               products_plate: this.plato
             }
             firebase.firestore().collection('/plates/').add(plato);
+            this.ordersService.getOrders().subscribe((orderSnapshot) => {
+              orderSnapshot.forEach((orderData: any) => {
+                if (orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual === true) {
+                  //Aqui hay que hacerle push del id del plato que acabo de agregar a la coleccion plates en la linea 46 al arreglo de plates_references de la orden pero necesito el id del plato que acabo de agregar a la coleccion plates en la linea 46 y no se como obtener este id
+                }
+              })
+            })
+            const orden: any = {
+              reference_user: firebase.auth().currentUser.email,
+              actual: true,
+              plates_references: []
+            }
+            firebase.firestore().collection('/orders/').add(orden);
           }
         })
       })
@@ -57,6 +72,7 @@ export class ProductCustomizationComponent implements OnInit {
               id: productData.payload.doc.id,
               cant: this.racion.cant
             })
+            this.racion.cant = null;
             console.log(this.plato);
           }
         })
@@ -73,6 +89,7 @@ export class ProductCustomizationComponent implements OnInit {
               id: productData.payload.doc.id,
               cant: this.aderezo.cant
             })
+            this.aderezo.cant = null;
             console.log(this.plato);
           }
         })
@@ -89,6 +106,7 @@ export class ProductCustomizationComponent implements OnInit {
               id: productData.payload.doc.id,
               cant: this.jugo.cant
             })
+            this.jugo.cant = null;
             console.log(this.plato);
           }
         })
@@ -105,6 +123,7 @@ export class ProductCustomizationComponent implements OnInit {
               id: productData.payload.doc.id,
               cant: this.postre.cant
             })
+            this.postre.cant = null;
             console.log(this.plato);
           }
         })
@@ -131,22 +150,22 @@ export class ProductCustomizationComponent implements OnInit {
 
     this.productsService.getProducts().subscribe((productSnapshot) => {
       productSnapshot.forEach((productData: any) => {
-        if (productData.payload.doc.data().plato === "Ración") {
+        if (productData.payload.doc.data().plato === "Ración" && productData.payload.doc.data().available === "Disponible") {
           this.raciones.push({
             id: productData.payload.doc.id,
             data: productData.payload.doc.data()
           })
-        } else if (productData.payload.doc.data().plato === "Aderezo") {
+        } else if (productData.payload.doc.data().plato === "Aderezo" && productData.payload.doc.data().available === "Disponible") {
           this.aderezos.push({
             id: productData.payload.doc.id,
             data: productData.payload.doc.data()
           })
-        } else if (productData.payload.doc.data().plato === "Jugo") {
+        } else if (productData.payload.doc.data().plato === "Jugo" && productData.payload.doc.data().available === "Disponible") {
           this.jugos.push({
             id: productData.payload.doc.id,
             data: productData.payload.doc.data()
           })
-        } else if (productData.payload.doc.data().plato === "Postre") {
+        } else if (productData.payload.doc.data().plato === "Postre" && productData.payload.doc.data().available === "Disponible") {
           this.postres.push({
             id: productData.payload.doc.id,
             data: productData.payload.doc.data()
