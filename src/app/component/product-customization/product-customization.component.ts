@@ -37,10 +37,9 @@ export class ProductCustomizationComponent implements OnInit {
           if (productData.payload.doc.data().name === this.name) {
             const reference = productData.payload.doc.id;
             const plato: any = {
-              name_plato: this.name,
-              cant_plato: this.plate.cant,
-              reference_plato: reference,
-              productos_plato: this.plato
+              reference_plate: reference,
+              cant_plate: this.plate.cant,
+              products_plate: this.plato
             }
             firebase.firestore().collection('/plates/').add(plato);
           }
