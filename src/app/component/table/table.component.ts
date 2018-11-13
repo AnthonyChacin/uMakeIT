@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
   public product = {} as Product;
 
   constructor(private productsService: ProductsService, private router: Router) {
-
+    this.product.name = "";
   }
 
   onShowFormProduct(name: String) {
@@ -72,6 +72,7 @@ export class TableComponent implements OnInit {
             id: productData.payload.doc.id,
             data: productData.payload.doc.data()
           })
+          console.log(this.products);
         })
       })
     }

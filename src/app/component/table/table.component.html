@@ -21,15 +21,15 @@
         </thead>
         <tbody>
 
-            <tr *ngFor="let product of products">
+            <tr *ngFor="let product1 of products">
                 <td>
-                    <div class="img1" [ngStyle]="{'background-image': 'url(' + product.data.url_img + ')'}"></div>
+                    <div class="img1" [ngStyle]="{'background-image': 'url(' + product1.data.url_img + ')'}"></div>
                 </td>
-                <td>{{product.data.name}}</td>
-                <td>{{product.data.price}} Bs.</td>
-                <td>{{product.data.available}}</td>
-                <td><button class="btn btn-warning" (click)='onShowFormProduct(product.data.name)'>Editar</button></td>
-                <td><button class="btn btn-danger" (click)='onShowAlert(product.data.name)'>Eliminar</button></td>
+                <td>{{product1.data.name}}</td>
+                <td>{{product1.data.price}} Bs.</td>
+                <td>{{product1.data.available}}</td>
+                <td><button class="btn btn-warning" (click)='onShowFormProduct(product1.data.name)'>Editar</button></td>
+                <td><button class="btn btn-danger" (click)='onShowAlert(product1.data.name)'>Eliminar</button></td>
             </tr>
 
         </tbody>
