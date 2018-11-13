@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { OrdersService } from '../orders/orders.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,8 @@ export class UsersService {
   constructor(
     private afs: AngularFirestore,
     public afAuth: AngularFireAuth,
-    private router: Router) {
+    private router: Router,
+    public ordersService: OrdersService) {
     this.claveInvalida = false;
   }
 
@@ -77,6 +79,13 @@ export class UsersService {
   }
 
   logout() {
+    this.ordersService.getOrders().subscribe((orderSnapshot) => {
+      orderSnapshot.forEach((orderData: any) => {
+        if (orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual === true) {
+          orderData.payload.doc.data().actual = false;
+        }
+      })
+    })
     return this.afAuth.auth.signOut();
   }
 

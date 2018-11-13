@@ -94,6 +94,12 @@ export class RegistroLoginComponent implements OnInit {
             if (data.get('rol') === "Administrador") {
               this.router.navigate(['/home-admin']);
             } else if (data.get('rol') === "Cliente") {
+              const orden: any = {
+                reference_user: firebase.auth().currentUser.email,
+                actual: true,
+                plates_references: []
+              }
+              firebase.firestore().collection('/orders/').add(orden);
               this.router.navigate(['/home']);
             }
           })

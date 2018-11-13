@@ -51,12 +51,6 @@ export class ProductCustomizationComponent implements OnInit {
                 }
               })
             })
-            const orden: any = {
-              reference_user: firebase.auth().currentUser.email,
-              actual: true,
-              plates_references: []
-            }
-            firebase.firestore().collection('/orders/').add(orden);
           }
         })
       })
