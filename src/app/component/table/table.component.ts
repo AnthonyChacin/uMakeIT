@@ -20,6 +20,7 @@ export class TableComponent implements OnInit {
   public product = {} as Product;
 
   constructor(private productsService: ProductsService, private router: Router) {
+    this.product.name = "";
 
   }
 

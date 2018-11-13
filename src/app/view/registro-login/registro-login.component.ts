@@ -6,6 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import { Profile } from 'selenium-webdriver/firefox';
+import { OrdersService } from '../../service/orders/orders.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class RegistroLoginComponent implements OnInit {
   public cuentaInexistente: boolean;
   public claveIncorrecta: boolean;
 
-  constructor(private userService: UsersService, private router: Router) {
+  constructor(private userService: UsersService, private ordersService: OrdersService, private router: Router) {
     this.mostrarLogin = true;
     this.mostrarRegistro = false;
     this.cuentaExistente = false;
@@ -94,12 +95,37 @@ export class RegistroLoginComponent implements OnInit {
             if (data.get('rol') === "Administrador") {
               this.router.navigate(['/home-admin']);
             } else if (data.get('rol') === "Cliente") {
-              const orden: any = {
-                reference_user: firebase.auth().currentUser.email,
-                actual: true,
-                plates_references: []
-              }
-              firebase.firestore().collection('/orders/').add(orden);
+
+              this.ordersService.getOrders().subscribe((orderSnapshot) => {
+                var cont = 0;
+                var id: string;
+                var plates_r = [];
+                orderSnapshot.forEach((orderData: any) => {          
+                  if(orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email){
+                    if(orderData.payload.doc.data().actual){
+                      cont++;
+                      id = orderData.payload.doc.id;
+                      plates_r = orderData.payload.doc.data().plates_references;
+                    }
+                  }
+                })
+                if(cont === 0){
+                  const orden: any = {
+                    reference_user: firebase.auth().currentUser.email,
+                    actual: true,
+                    plates_references: []
+                  }
+                  this.ordersService.createOrder(orden);
+                }else{
+                  const orden: any = {
+                    reference_user: firebase.auth().currentUser.email,
+                    actual: true,
+                    plates_references: plates_r
+                  }
+                  this.ordersService.updateOrder(orden, id);
+                }
+              })
+              
               this.router.navigate(['/home']);
             }
           })
