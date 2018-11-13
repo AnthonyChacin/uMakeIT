@@ -35,33 +35,18 @@ export class ProductCustomizationComponent implements OnInit {
       this.productsService.getProducts().subscribe((productSnapshot) => {
         productSnapshot.forEach((productData: any) => {
           if (productData.payload.doc.data().name === this.name) {
-            this.plato.push({
-              id: productData.payload.doc.id,
-              data: productData.payload.doc.data(),
-              cant: this.plate.cant
-            })
+            const reference = productData.payload.doc.id;
+            const plato: any = {
+              name_plato: this.name,
+              cant_plato: this.plate.cant,
+              reference_plato: reference,
+              productos_plato: this.plato
+            }
+            firebase.firestore().collection('/plates/').add(plato);
           }
-
         })
       })
     }
-    console.log(this.plato);
-    const platoName = [this.plato.length];
-    const platoCant = [this.plato.length];
-
-    for(let i = 0; i < this.plato.length; i++){
-      platoName[i] = this.plato[i].data.name;
-    }
-    for(let i = 0; i < this.plato.length; i++){
-      platoCant[i] = this.plato[i].cant;
-    }
-    
-    const plato: any = {
-      platoName1: {
-        'plato2' : `${this.plato[0].data.name}`
-      }
-    }
-    firebase.firestore().collection('/plates/').add(plato);
   }
 
   agregarRacion() {
@@ -71,11 +56,10 @@ export class ProductCustomizationComponent implements OnInit {
           if (productData.payload.doc.data().name === this.racion.name) {
             this.plato.push({
               id: productData.payload.doc.id,
-              data: productData.payload.doc.data(),
               cant: this.racion.cant
             })
+            console.log(this.plato);
           }
-
         })
       })
     }
@@ -88,11 +72,10 @@ export class ProductCustomizationComponent implements OnInit {
           if (productData.payload.doc.data().name === this.aderezo.name) {
             this.plato.push({
               id: productData.payload.doc.id,
-              data: productData.payload.doc.data(),
               cant: this.aderezo.cant
             })
+            console.log(this.plato);
           }
-
         })
       })
     }
@@ -105,11 +88,10 @@ export class ProductCustomizationComponent implements OnInit {
           if (productData.payload.doc.data().name === this.jugo.name) {
             this.plato.push({
               id: productData.payload.doc.id,
-              data: productData.payload.doc.data(),
               cant: this.jugo.cant
             })
+            console.log(this.plato);
           }
-
         })
       })
     }
@@ -122,11 +104,10 @@ export class ProductCustomizationComponent implements OnInit {
           if (productData.payload.doc.data().name === this.postre.name) {
             this.plato.push({
               id: productData.payload.doc.id,
-              data: productData.payload.doc.data(),
               cant: this.postre.cant
             })
+            console.log(this.plato);
           }
-
         })
       })
     }
