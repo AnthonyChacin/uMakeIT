@@ -11,7 +11,7 @@
       <div class="form-group label-plato-principal col-12">
         <label for="cantidad">Cantidad:</label>
         <br>
-        <input class="input-cantidad" type="number" min="1" max="100" step="1" value="1" />
+        <input class="input-cantidad" type="number" min="1" max="100" step="1" value="1" [(ngModel)]="plate.cant" name="cant" />
       </div>
     </form>
   </div>
@@ -21,25 +21,23 @@
 <br>
 <div class="row container-propio">
   <div class="col-3 container1">
-    <form>
+    <form (ngSubmit)="agregarRacion()">
       <div class="form-group">
         <label for="raciones">Raciones:</label>
-        <select class="form-control" id="raciones">
-          <option disabled>Seleccione</option>
-          <option *ngFor="let racion of raciones">{{racion.data.name}}</option>
+        <select class="form-control" id="raciones" [(ngModel)]="racion.name" name="name">
+          <option selected>Seleccione</option>
+          <option *ngFor="let racion1 of raciones">{{racion1.data.name}}</option>
         </select>
       </div>
       <div class="form-group label">
         <label for="cantidad">Cantidad:</label>
         <br>
-        <input class="input-cantidad" type="number" min="0" max="100" step="1" value="0" />
+        <input class="input-cantidad" type="number" min="0" max="100" step="1" value="0" [(ngModel)]="racion.cant" name="cant" />
       </div>
 
       <div class="row container-boton">
         <div class="col-12">
-          <button class="agregar-al-plato" routerLink="/product-customization">
-            <div>Agregar al plato</div>
-          </button>
+          <input type="submit" class="agregar-al-plato" value="Agregar al plato">
         </div>
       </div>
     </form>
@@ -49,15 +47,19 @@
     <form>
       <div class="form-group">
         <label for="aderezos">Aderezos:</label>
-        <select class="form-control" id="aderezos">
-          <option disabled>Seleccione</option>
-          <option *ngFor="let aderezo of aderezos">{{aderezo.data.name}}</option>
+        <select class="form-control" id="aderezos" [(ngModel)]="aderezo.name" name="name">
+          <option selected>Seleccione</option>
+          <option *ngFor="let aderezo1 of aderezos">{{aderezo1.data.name}}</option>
         </select>
       </div>
-
+      <div class="form-group label">
+        <label for="cantidad">Cantidad:</label>
+        <br>
+        <input class="input-cantidad" type="number" min="0" max="100" step="1" value="0" [(ngModel)]="aderezo.cant" name="cant" />
+      </div>
       <div class="row container-boton">
         <div class="col-12">
-          <button class="agregar-al-plato" routerLink="/product-customization">
+          <button class="agregar-al-plato" (click)="agregarAderezo()">
             <div>Agregar al plato</div>
           </button>
         </div>
@@ -69,19 +71,19 @@
     <form>
       <div class="form-group">
         <label for="bebidas">Jugos:</label>
-        <select class="form-control" id="jugos-naturales">
-          <option disabled>Seleccione</option>
-          <option *ngFor="let jugo of jugos">{{jugo.data.name}}</option>
+        <select class="form-control" id="jugos-naturales" [(ngModel)]="jugo.name" name="name">
+          <option selected>Seleccione</option>
+          <option *ngFor="let jugo1 of jugos">{{jugo1.data.name}}</option>
         </select>
       </div>
       <div class="form-group label">
         <label for="cantidad">Cantidad:</label>
         <br>
-        <input class="input-cantidad" type="number" min="0" max="100" step="1" value="0" />
+        <input class="input-cantidad" type="number" min="0" max="100" step="1" value="0" [(ngModel)]="jugo.cant" name="cant" />
       </div>
       <div class="row container-boton">
         <div class="col-12">
-          <button class="agregar-al-plato" routerLink="/product-customization">
+          <button class="agregar-al-plato" (click)="agregarJugo()">
             <div>Agregar al plato</div>
           </button>
         </div>
@@ -92,26 +94,25 @@
     <form>
       <div class="form-group">
         <label for="bebidas">Postres:</label>
-        <select class="form-control" id="postres">
-          <option disabled>Seleccione</option>
-          <option *ngFor="let postre of postres">{{postre.data.name}}</option>
+        <select class="form-control" id="postres" [(ngModel)]="postre.name" name="name" >
+          <option selected>Seleccione</option>
+          <option *ngFor="let postre1 of postres">{{postre1.data.name}}</option>
         </select>
       </div>
       <div class="form-group label">
         <label for="cantidad">Cantidad:</label>
         <br>
-        <input class="input-cantidad" type="number" min="0" max="100" step="1" value="0" />
+        <input class="input-cantidad" type="number" min="0" max="100" step="1" value="0" [(ngModel)]="postre.cant" name="cant"/>
       </div>
       <div class="row container-boton">
         <div class="col-12">
-          <button class="agregar-al-plato" hrouterLink="/product-customization">
+          <button class="agregar-al-plato" (click)="agregarPostre()">
             <div>Agregar al plato</div>
           </button>
         </div>
       </div>
     </form>
   </div>
-
 </div>
 
 <div class="container-propio1">
@@ -122,3 +123,12 @@
 
 <div class="separador"></div>
 <div class="separador"></div>
+
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-3"></div>
+  <div class="col-3"></div>
+  <div class="col-3 center">
+      <button type="button" class="btn btn-outline-dark" (click)="agregarPlato()">Agregar al pedido</button>
+  </div>
+</div>
