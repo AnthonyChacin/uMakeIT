@@ -28,6 +28,7 @@ export class ProductCustomizationComponent implements OnInit {
   public productID: any;
   public plato = [];
   public orden = [];
+  public references_plates = [];
 
   constructor(private productsService: ProductsService, private ordersService: OrdersService, private platesService: PlatesService) { }
 
@@ -43,20 +44,31 @@ export class ProductCustomizationComponent implements OnInit {
               cant_plate: this.plate.cant,
               products_plate: this.plato
             }
-            firebase.firestore().collection('/plates/').add(plato);
-            this.ordersService.getOrders().subscribe((orderSnapshot) => {
-              orderSnapshot.forEach((orderData: any) => {
-                if (orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual === true) {
-                  //Aqui hay que hacerle push del id del plato que acabo de agregar a la coleccion plates en la linea 46 al arreglo de plates_references de la orden pero necesito el id del plato que acabo de agregar a la coleccion plates en la linea 46 y no se como obtener este id
-                }
+            firebase.firestore().collection('/plates/').add(plato).then((res) => {
+              //Aquí estoy verificando el id con el console.log
+              console.log(res.id);
+
+              this.ordersService.getOrders().subscribe((orderSnapshot) => {
+                orderSnapshot.forEach((orderData: any) => {
+                  if (orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual) {
+                    //Aqui hay que hacerle push del id del plato que acabo de agregar a la coleccion plates en la linea 46 al arreglo de plates_references de la orden pero necesito el id del plato que acabo de agregar a la coleccion plates en la linea 46 y no se como obtener este id
+                    console.log(this.references_plates);
+                    this.references_plates = orderData.payload.doc.data().plates_references;
+                    this.references_plates.push(res.id);
+
+                    const orden: any = {
+                      reference_user: firebase.auth().currentUser.email,
+                      actual: true,
+                      plates_references: this.references_plates
+                    }
+                    console.log(this.references_plates);
+                    //this.ordersService.updateOrder(orden, orderData.payload.doc.id);
+                    
+                  }
+                })
               })
-            })
-            const orden: any = {
-              reference_user: firebase.auth().currentUser.email,
-              actual: true,
-              plates_references: []
-            }
-            firebase.firestore().collection('/orders/').add(orden);
+
+            });
           }
         })
       })
