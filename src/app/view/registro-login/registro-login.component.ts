@@ -96,7 +96,7 @@ export class RegistroLoginComponent implements OnInit {
               this.router.navigate(['/home-admin']);
             } else if (data.get('rol') === "Cliente") {
 
-              this.ordersService.getOrders().subscribe((orderSnapshot) => {
+              /*this.ordersService.getOrders().subscribe((orderSnapshot) => {
                 var cont = 0;
                 var id: string;
                 var plates_r = [];
@@ -124,7 +124,7 @@ export class RegistroLoginComponent implements OnInit {
                   }
                   this.ordersService.updateOrder(orden, id);
                 }
-              })
+              })*/
               
               this.router.navigate(['/home']);
             }

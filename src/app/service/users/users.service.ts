@@ -79,13 +79,13 @@ export class UsersService {
   }
 
   logout() {
-    this.ordersService.getOrders().subscribe((orderSnapshot) => {
+    /*this.ordersService.getOrders().subscribe((orderSnapshot) => {
       orderSnapshot.forEach((orderData: any) => {
         if (orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual === true) {
           orderData.payload.doc.data().actual = false;
         }
       })
-    })
+    })*/
     return this.afAuth.auth.signOut();
   }
 
