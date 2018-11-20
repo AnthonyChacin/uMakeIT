@@ -94,38 +94,7 @@ export class RegistroLoginComponent implements OnInit {
           firebase.firestore().collection('/users/').doc(email).onSnapshot((data) => {
             if (data.get('rol') === "Administrador") {
               this.router.navigate(['/home-admin']);
-            } else if (data.get('rol') === "Cliente") {
-
-              /*this.ordersService.getOrders().subscribe((orderSnapshot) => {
-                var cont = 0;
-                var id: string;
-                var plates_r = [];
-                orderSnapshot.forEach((orderData: any) => {          
-                  if(orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email){
-                    if(orderData.payload.doc.data().actual){
-                      cont++;
-                      id = orderData.payload.doc.id;
-                      plates_r = orderData.payload.doc.data().plates_references;
-                    }
-                  }
-                })
-                if(cont === 0){
-                  const orden: any = {
-                    reference_user: firebase.auth().currentUser.email,
-                    actual: true,
-                    plates_references: []
-                  }
-                  this.ordersService.createOrder(orden);
-                }else{
-                  const orden: any = {
-                    reference_user: firebase.auth().currentUser.email,
-                    actual: true,
-                    plates_references: plates_r
-                  }
-                  this.ordersService.updateOrder(orden, id);
-                }
-              })*/
-              
+            } else if (data.get('rol') === "Cliente") {          
               this.router.navigate(['/home']);
             }
           })

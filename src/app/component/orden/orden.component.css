@@ -29,27 +29,6 @@ tbody{
 }
 
 .img1{
-    background-image: url('/src/assets/kebab-de-garbanzos.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-.img2{
-    background-image: url('/src/assets/berenjenas-rellenas.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-.img3{
-    background-image: url('/src/assets/hamburguesa-de-lentejas.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-.img4{
-    background-image: url('/src/assets/nuggets-vegetarianos.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-.img5{
-    background-image: url('/src/assets/ensalada-garbanzos.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }

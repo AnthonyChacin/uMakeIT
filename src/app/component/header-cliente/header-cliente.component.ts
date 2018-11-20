@@ -21,12 +21,10 @@ export class HeaderClienteComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.name = firebase.auth().currentUser.displayName;
-    this.name = firebase.auth().currentUser.displayName;
-    
-    /* firebase.firestore().collection('/users/').doc(this.user.uid).onSnapshot((data)=>{
-      this.name = data.get('rol');
-    }); */
+    const uid = firebase.auth().currentUser.email;
+    firebase.firestore().collection('/users/').doc(uid).onSnapshot((data)=>{
+      this.name = data.get('firstName') + " " + data.get('lastName');
+    });
     console.log(this.name);
   }
 

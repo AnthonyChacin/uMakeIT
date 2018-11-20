@@ -237,6 +237,84 @@ export class ProductCustomizationComponent implements OnInit {
 
 			})
 		})
+
+		this.ordersService.getOrders().subscribe(orderSnapshot => {
+			orderSnapshot.forEach( (orderData: any) => {
+				if(orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual){
+					const arrayPlates = orderData.payload.doc.data().plates_references;
+					for(let i = 0; i < arrayPlates.length; i++){
+		        		this.platesService.getPlate(arrayPlates[i]).snapshotChanges().subscribe(dataPlate => {
+		        			const idProduct = dataPlate.payload.get('reference_plate');
+		        			this.productsService.getProduct(idProduct).snapshotChanges().subscribe(dataProduct => {
+		        				if(dataProduct.payload.get('name') === this.name){
+		        					this.plate.cant = dataPlate.payload.get('cant_plate');
+		        					this.buscarAderezo(dataPlate.payload.id);
+		        					this.buscarRacion(dataPlate.payload.id);
+		        					this.buscarJugo(dataPlate.payload.id);
+		        					this.buscarPostre(dataPlate.payload.id);
+		        				}
+		        			})
+		        		})
+		        	}
+				}
+			})
+		})		
+	}
+
+	buscarAderezo(idPLate: string){
+		this.platesService.getPlate(idPLate).snapshotChanges().subscribe(dataPlate => {
+			const products_plate = dataPlate.payload.get('products_plate');
+			for(let i = 0; i < products_plate.length; i++){
+				this.productsService.getProduct(products_plate[i].id).snapshotChanges().subscribe(dataProduct => {
+					if(dataProduct.payload.get('plato') === 'Aderezo'){
+						this.aderezo.name = dataProduct.payload.get('name');
+						this.aderezo.cant = products_plate[i].cant;
+					}
+				})
+			}
+		})
+	}
+
+	buscarRacion(idPLate: string){
+		this.platesService.getPlate(idPLate).snapshotChanges().subscribe(dataPlate => {
+			const products_plate = dataPlate.payload.get('products_plate');
+			for(let i = 0; i < products_plate.length; i++){
+				this.productsService.getProduct(products_plate[i].id).snapshotChanges().subscribe(dataProduct => {
+					if(dataProduct.payload.get('plato') === 'Ración'){
+						this.racion.name = dataProduct.payload.get('name');
+						this.racion.cant = products_plate[i].cant;
+					}
+				})
+			}
+		})
+	}
+
+	buscarJugo(idPLate: string){
+		this.platesService.getPlate(idPLate).snapshotChanges().subscribe(dataPlate => {
+			const products_plate = dataPlate.payload.get('products_plate');
+			for(let i = 0; i < products_plate.length; i++){
+				this.productsService.getProduct(products_plate[i].id).snapshotChanges().subscribe(dataProduct => {
+					if(dataProduct.payload.get('plato') === 'Jugo'){
+						this.jugo.name = dataProduct.payload.get('name');
+						this.jugo.cant = products_plate[i].cant;
+					}
+				})
+			}
+		})
+	}
+
+	buscarPostre(idPLate: string){
+		this.platesService.getPlate(idPLate).snapshotChanges().subscribe(dataPlate => {
+			const products_plate = dataPlate.payload.get('products_plate');
+			for(let i = 0; i < products_plate.length; i++){
+				this.productsService.getProduct(products_plate[i].id).snapshotChanges().subscribe(dataProduct => {
+					if(dataProduct.payload.get('plato') === 'Postre'){
+						this.postre.name = dataProduct.payload.get('name');
+						this.postre.cant = products_plate[i].cant;
+					}
+				})
+			}
+		})
 	}
 
 }
