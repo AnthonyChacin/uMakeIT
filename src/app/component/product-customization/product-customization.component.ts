@@ -29,6 +29,9 @@ export class ProductCustomizationComponent implements OnInit {
 	public plato = [];
 	public orden = [];
 	public references_plates = [];
+	public editar: boolean;
+	public agregar: boolean;
+	public idPlatoEditable: string;
 
 	constructor(private productsService: ProductsService, private ordersService: OrdersService, private platesService: PlatesService) { }
 
@@ -126,6 +129,27 @@ export class ProductCustomizationComponent implements OnInit {
 		}
 	}
 
+	editarPlato(){
+		if (this.name != "" && this.plate.cant != null) {
+
+			this.productsService.getProducts().subscribe((productSnapshot) => {
+				productSnapshot.forEach((productData: any) => {
+					if (productData.payload.doc.data().name === this.name) {
+						const reference = productData.payload.doc.id;
+						const plato: any = {
+							reference_plate: reference,
+							cant_plate: this.plate.cant,
+							products_plate: this.plato
+						}
+	
+						this.platesService.updatePlate(plato, this.idPlatoEditable)
+					}
+				})
+			})
+			
+		}
+	}
+
 	agregarRacion() {
 		if (this.racion.name != "" && this.racion.cant != null) {
 			this.productsService.getProducts().subscribe((productSnapshot) => {
@@ -195,6 +219,8 @@ export class ProductCustomizationComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.editar = false;
+		this.agregar = true;
 		this.productsService.getProducts().subscribe((productSnapshot) => {
 			productSnapshot.forEach((productData: any) => {
 				firebase.firestore().collection('/products/').doc(productData.payload.doc.id).onSnapshot((data) => {
@@ -247,6 +273,9 @@ export class ProductCustomizationComponent implements OnInit {
 		        			const idProduct = dataPlate.payload.get('reference_plate');
 		        			this.productsService.getProduct(idProduct).snapshotChanges().subscribe(dataProduct => {
 		        				if(dataProduct.payload.get('name') === this.name){
+		        					this.idPlatoEditable = dataPlate.payload.id;
+		        					this.editar = true;
+									this.agregar = false;
 		        					this.plate.cant = dataPlate.payload.get('cant_plate');
 		        					this.buscarAderezo(dataPlate.payload.id);
 		        					this.buscarRacion(dataPlate.payload.id);

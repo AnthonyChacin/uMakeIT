@@ -25,6 +25,28 @@ export class OrdenComponent implements OnInit {
   onShowProductCustomization(name: String) {
     this.router.navigate([`/product-customization/${name}`]);
   }
+
+  eliminarPlato(idPlate: string){
+  	this.ordersService.getOrders().subscribe((orderSnapshot) => {
+  		orderSnapshot.forEach((orderData: any) => {
+  			if(orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual) {
+        		
+        		const arrayPlates = orderData.payload.doc.data().plates_references;
+	        	for(let i = 0; i < arrayPlates.length; i++){
+	        		if(arrayPlates[i] === idPlate){
+	        			this.ordersService.getOrder(orderData.payload.doc.id).update({
+	        				plates_references: firebase.firestore.FieldValue.arrayRemove(idPlate)
+	        			})
+
+	        			this.platesService.deletePlate(idPlate).then(res => {
+	        				alert("¡Plato eliminado exitosamente!");
+	        			})
+	        		}
+	        	}
+        	}
+  		})
+  	})
+  }
   
   ngOnInit() {
   	this.ordersService.getOrders().subscribe((orderSnapshot) => {
@@ -37,7 +59,7 @@ export class OrdenComponent implements OnInit {
         			const idProduct = dataPlate.payload.get('reference_plate');
         			this.productsService.getProduct(idProduct).snapshotChanges().subscribe(dataProduct => {
         				this.orders.push({
-        					id: dataProduct.payload.id,
+        					idPlate: dataPlate.payload.id,
         					name: dataProduct.payload.get('name'),
         					url_img: dataProduct.payload.get('url_img'),
         					name_img: dataProduct.payload.get('name_img')

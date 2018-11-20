@@ -19,7 +19,7 @@
         <td class="img1" [ngStyle]="{'background-image': 'url(' + order.url_img + ')'}"></td>
         <td>{{order.name}}</td>
         <td><button class="btn btn-warning" (click)='onShowProductCustomization(order.name)'>Editar plato</button></td>
-        <td><button class="btn btn-danger">Eliminar plato</button></td>
+        <td><button class="btn btn-danger" (click)='eliminarPlato(order.idPlate)'>Eliminar plato</button></td>
       </tr>
       
     </tbody>
