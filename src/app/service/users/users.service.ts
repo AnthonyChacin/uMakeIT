@@ -15,6 +15,7 @@ import { OrdersService } from '../orders/orders.service';
 export class UsersService {
 
   user$: Observable<User>;
+  profile$: Observable<any>
   userDocument: AngularFirestoreDocument;
   rol: string;
   claveInvalida: boolean;
@@ -25,7 +26,26 @@ export class UsersService {
     public afAuth: AngularFireAuth,
     private router: Router,
     public ordersService: OrdersService) {
+
     this.claveInvalida = false;
+
+    this.profile$ = this.afAuth.authState.pipe(
+      switchMap( userData => {
+        if(userData){
+          return this.afs.collection('/users').doc(userData.email).snapshotChanges();
+        }else{
+          return null;
+        }
+      }),
+      map( profile => {
+        if(profile){
+          return profile.payload.data()
+        }else{
+          return profile
+        }
+      })
+    )
+    
   }
 
   setLoggedIn(value: boolean) {
@@ -48,6 +68,7 @@ export class UsersService {
     return new Promise((resolve, reject) => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(userData => {
+          this.afAuth.authState 
           if (this.loggedInStatus === true) {
             this.afAuth.auth.signInWithEmailAndPassword(email, password)
           }

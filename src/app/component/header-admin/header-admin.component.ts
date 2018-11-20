@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header-admin',
@@ -16,16 +18,16 @@ export class HeaderAdminComponent implements OnInit {
 
   public name: string;
   public user: any;
+  public profile$: Observable<any>;
 
-  constructor(private userService: UsersService, private route: ActivatedRoute) {
+
+  constructor(private userService: UsersService, private route: ActivatedRoute, private afAuth: AngularFireAuth) {
   }
 
   ngOnInit() {
-    const uid = firebase.auth().currentUser.email;
-    firebase.firestore().collection('/users/').doc(uid).onSnapshot((data)=>{
-      this.name = data.get('firstName') + " " + data.get('lastName');
-    });
-    console.log(this.name);
+    this.afAuth.authState.subscribe(user => {
+      this.name = user.displayName
+    })
   }
 
   onClickLogout(){

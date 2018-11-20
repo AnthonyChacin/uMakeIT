@@ -34,12 +34,11 @@ export class OrdenComponent implements OnInit {
         		const arrayPlates = orderData.payload.doc.data().plates_references;
 	        	for(let i = 0; i < arrayPlates.length; i++){
 	        		if(arrayPlates[i] === idPlate){
-	        			this.ordersService.getOrder(orderData.payload.doc.id).update({
-	        				plates_references: firebase.firestore.FieldValue.arrayRemove(idPlate)
-	        			})
-
 	        			this.platesService.deletePlate(idPlate).then(res => {
 	        				alert("¡Plato eliminado exitosamente!");
+	        			})
+	        			this.ordersService.getOrder(orderData.payload.doc.id).update({
+	        				plates_references: firebase.firestore.FieldValue.arrayRemove(idPlate)
 	        			})
 	        		}
 	        	}

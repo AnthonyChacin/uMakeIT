@@ -86,7 +86,7 @@ export class RegistroLoginComponent implements OnInit {
       const firstName = data.get('firstName');
       const lastName = data.get('lastName');
       const rol = data.get('rol');
-      if (data.get('email') !== email) {
+      if (data.get('email') != email) {
         this.cuentaInexistente = true;
       }
       this.userService.loginUser(email, password, firstName, lastName, rol)
