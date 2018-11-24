@@ -20,11 +20,12 @@ export class HeaderClienteComponent implements OnInit {
   public profile$: Observable<any>;
 
   constructor(private userService: UsersService, private route: ActivatedRoute, private afAuth: AngularFireAuth) {
+    this.profile$ = this.userService.profile$;
   }
 
   ngOnInit() {
-    this.afAuth.authState.subscribe( data => {
-      this.name = data.displayName;
+    this.profile$.subscribe( data => {
+      this.name = data.firstName + " " + data.lastName;
     })
   }
 

@@ -17,7 +17,8 @@ export class UsersService {
   user$: Observable<User>;
   profile$: Observable<any>
   userDocument: AngularFirestoreDocument;
-  rol: string;
+  email: any;
+  rol: any;
   claveInvalida: boolean;
   private loggedInStatus = JSON.parse(localStorage.getItem('loggedIn') || 'false')
 
@@ -111,38 +112,27 @@ export class UsersService {
   }
 
   isLoggedIn() {
-    const userLoggedIn = firebase.auth().currentUser
+    const userLoggedIn = this.afAuth.authState
+
     if (!userLoggedIn) {
       this.router.navigate(['/login']);
-      this.setLoggedIn(false);
       return false;
     } else {
-      this.setLoggedIn(true);
       return true;
     }
   }
 
   isLoggedInAdmin() {
-    const userLoggedInAdmin = firebase.auth().currentUser
+    const userLoggedInAdmin = this.afAuth.authState
 
     if (!userLoggedInAdmin) {
       this.router.navigate(['/login']);
       return false;
     } else {
       return true;
-      /* firebase.firestore().collection('/users/').doc(userLoggedInAdmin.uid).onSnapshot((data) => {
-        if( data.get('rol') === "Administrador" ){
-          return true;
-        }else{
-          this.router.navigate(['/home']);
-          return false;
-        }
-      }) */
     }
 
   }
-
-
   /* //Obtener usuarios
   public getUsers(){
     return this.user$;

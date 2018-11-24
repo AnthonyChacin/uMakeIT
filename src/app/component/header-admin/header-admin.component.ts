@@ -22,11 +22,12 @@ export class HeaderAdminComponent implements OnInit {
 
 
   constructor(private userService: UsersService, private route: ActivatedRoute, private afAuth: AngularFireAuth) {
+    this.profile$ = this.userService.profile$;
   }
 
   ngOnInit() {
-    this.afAuth.authState.subscribe(user => {
-      this.name = user.displayName
+    this.profile$.subscribe(user => {
+      this.name = user.firstName + " " + user.lastName
     })
   }
 
