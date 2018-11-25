@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
 import { User } from '../../models/user';
+import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { OrdersService } from '../orders/orders.service';
 
+interface UserData {
+  uid: string;
+  email: string;
+  rol: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  user$: Observable<User>;
   profile$: Observable<any>
   userDocument: AngularFirestoreDocument;
   email: any;
@@ -29,21 +34,17 @@ export class UsersService {
     public ordersService: OrdersService) {
 
     this.claveInvalida = false;
+    this.rol = ""
 
     this.profile$ = this.afAuth.authState.pipe(
       switchMap( userData => {
         if(userData){
-          return this.afs.collection('/users').doc(userData.email).snapshotChanges();
+          return this.afs.doc(`users/${userData.email}`).snapshotChanges()
         }else{
-          return null;
+          return this.afs.doc(`users/unregistred@gmail.com`).snapshotChanges()
         }
-      }),
-      map( profile => {
-        if(profile){
-          return profile.payload.data()
-        }else{
-          return profile
-        }
+      }),map(profile => {
+          return profile.payload.data() 
       })
     )
     
@@ -105,48 +106,10 @@ export class UsersService {
     return this.afAuth.auth.signOut();
   }
 
-  obtenerRol(email: any){
-    return new Promise((resolve, reject) => {
-      this.getUser(email).get().toPromise()
-        .then(userData => {
-          this.rol = userData.get('rol')
-          console.log(this.rol)
-          resolve(this.rol),
-            err => reject(err)
-        });
-    });
-  }
-
-  isLoggedIn() {
-
-    this.profile$.subscribe( res => {
-      this.rol = res.rol
-    })
-    console.log(this.rol)
-    if (this.rol === null) {
-      this.router.navigate(['/login']);
-      return false;
-    } else {
-      return true;
-    }
+  ngOnInit(){
 
   }
-
-  isLoggedInAdmin() {
-
-    this.profile$.subscribe(data => {
-      this.rol = data.rol
-      //console.log(this.rol)
-    })
-    console.log(this.rol) 
-    if (this.rol === null) {
-      this.router.navigate(['/login']);
-      return false;
-    } else {
-      return true;
-    }
-
-  }
+  
   /* //Obtener usuarios
   public getUsers(){
     return this.user$;
