@@ -6,6 +6,7 @@ import { Plate } from '../../models/plate';
 import { Order } from '../../models/order';
 import { OrdersService } from 'src/app/service/orders/orders.service';
 import { PlatesService } from 'src/app/service/plates/plates.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-product-customization',
@@ -29,12 +30,24 @@ export class ProductCustomizationComponent implements OnInit {
 	public plato = [];
 	public orden = [];
 	public references_plates = [];
-	public editar: boolean;
-	public agregar: boolean;
+	public editar: boolean = false;
+	public agregar: boolean = true;
 	public idPlatoEditable: string;
 
-	constructor(private productsService: ProductsService, private ordersService: OrdersService, private platesService: PlatesService) { }
+	constructor(private router: Router, private productsService: ProductsService, private ordersService: OrdersService, private platesService: PlatesService) { }
 
+	limpiarCampos(){
+		this.plate.name = ""
+		this.plate.cant = null
+		this.aderezo.name = ""
+		this.aderezo.cant = null
+		this.racion.name = ""
+		this.racion.cant = null
+		this.jugo.name = ""
+		this.jugo.cant = null 
+		this.postre.name = ""
+		this.postre.cant = null
+	}
 	agregarPlato() {
 
 		if (this.name != "" && this.plate.cant != null) {
@@ -122,6 +135,8 @@ export class ProductCustomizationComponent implements OnInit {
 							})
 
 						});
+						this.limpiarCampos();
+						this.router.navigate(['/orden']);
 					}
 				})
 			})
@@ -142,7 +157,13 @@ export class ProductCustomizationComponent implements OnInit {
 							products_plate: this.plato
 						}
 	
-						this.platesService.updatePlate(plato, this.idPlatoEditable)
+						this.platesService.updatePlate(plato, this.idPlatoEditable).then(res => {
+							this.limpiarCampos();
+							this.platesService.setAgregar(!this.agregar);
+							this.platesService.setEditar(!this.editar);
+							this.editar = false;
+							this.agregar = true;
+						})
 					}
 				})
 			})
@@ -219,8 +240,10 @@ export class ProductCustomizationComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.editar = false;
-		this.agregar = true;
+		
+		this.agregar = this.platesService.getAgregar();
+		this.editar = this.platesService.getEditar();
+
 		this.productsService.getProducts().subscribe((productSnapshot) => {
 			productSnapshot.forEach((productData: any) => {
 				firebase.firestore().collection('/products/').doc(productData.payload.doc.id).onSnapshot((data) => {
@@ -264,30 +287,33 @@ export class ProductCustomizationComponent implements OnInit {
 			})
 		})
 
-		this.ordersService.getOrders().subscribe(orderSnapshot => {
-			orderSnapshot.forEach( (orderData: any) => {
-				if(orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual){
-					const arrayPlates = orderData.payload.doc.data().plates_references;
-					for(let i = 0; i < arrayPlates.length; i++){
-		        		this.platesService.getPlate(arrayPlates[i]).snapshotChanges().subscribe(dataPlate => {
-		        			const idProduct = dataPlate.payload.get('reference_plate');
-		        			this.productsService.getProduct(idProduct).snapshotChanges().subscribe(dataProduct => {
-		        				if(dataProduct.payload.get('name') === this.name){
-		        					this.idPlatoEditable = dataPlate.payload.id;
-		        					this.editar = true;
-									this.agregar = false;
-		        					this.plate.cant = dataPlate.payload.get('cant_plate');
-		        					this.buscarAderezo(dataPlate.payload.id);
-		        					this.buscarRacion(dataPlate.payload.id);
-		        					this.buscarJugo(dataPlate.payload.id);
-		        					this.buscarPostre(dataPlate.payload.id);
-		        				}
-		        			})
-		        		})
-		        	}
-				}
+		if(!this.agregar && this.editar){
+			this.ordersService.getOrders().subscribe(orderSnapshot => {
+				orderSnapshot.forEach( (orderData: any) => {
+					if(orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual){
+						const arrayPlates = orderData.payload.doc.data().plates_references;
+						for(let i = 0; i < arrayPlates.length; i++){
+			        		this.platesService.getPlate(arrayPlates[i]).snapshotChanges().subscribe(dataPlate => {
+			        			const idProduct = dataPlate.payload.get('reference_plate');
+			        			this.productsService.getProduct(idProduct).snapshotChanges().subscribe(dataProduct => {
+			        				if(dataProduct.payload.get('name') === this.name){
+			        					this.idPlatoEditable = dataPlate.payload.id;
+			        					/*this.editar = true;
+										this.agregar = false;*/
+			        					this.plate.cant = dataPlate.payload.get('cant_plate');
+			        					this.buscarAderezo(dataPlate.payload.id);
+			        					this.buscarRacion(dataPlate.payload.id);
+			        					this.buscarJugo(dataPlate.payload.id);
+			        					this.buscarPostre(dataPlate.payload.id);
+			        				}
+			        			})
+			        		})
+			        	}
+					}
+				})
 			})
-		})		
+		}
+				
 	}
 
 	buscarAderezo(idPLate: string){

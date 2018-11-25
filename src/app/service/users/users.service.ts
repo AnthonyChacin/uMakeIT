@@ -101,31 +101,45 @@ export class UsersService {
   }
 
   logout() {
-    /*this.ordersService.getOrders().subscribe((orderSnapshot) => {
-      orderSnapshot.forEach((orderData: any) => {
-        if (orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual === true) {
-          orderData.payload.doc.data().actual = false;
-        }
-      })
-    })*/
+
     return this.afAuth.auth.signOut();
   }
 
-  isLoggedIn() {
-    const userLoggedIn = this.afAuth.authState
+  obtenerRol(email: any){
+    return new Promise((resolve, reject) => {
+      this.getUser(email).get().toPromise()
+        .then(userData => {
+          this.rol = userData.get('rol')
+          console.log(this.rol)
+          resolve(this.rol),
+            err => reject(err)
+        });
+    });
+  }
 
-    if (!userLoggedIn) {
+  isLoggedIn() {
+
+    this.profile$.subscribe( res => {
+      this.rol = res.rol
+    })
+    console.log(this.rol)
+    if (this.rol === null) {
       this.router.navigate(['/login']);
       return false;
     } else {
       return true;
     }
+
   }
 
   isLoggedInAdmin() {
-    const userLoggedInAdmin = this.afAuth.authState
 
-    if (!userLoggedInAdmin) {
+    this.profile$.subscribe(data => {
+      this.rol = data.rol
+      //console.log(this.rol)
+    })
+    console.log(this.rol) 
+    if (this.rol === null) {
       this.router.navigate(['/login']);
       return false;
     } else {
