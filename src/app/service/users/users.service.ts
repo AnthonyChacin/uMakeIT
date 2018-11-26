@@ -1,22 +1,29 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
 import { User } from '../../models/user';
+import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { OrdersService } from '../orders/orders.service';
 
+interface UserData {
+  uid: string;
+  email: string;
+  rol: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  user$: Observable<User>;
+  profile$: Observable<any>
   userDocument: AngularFirestoreDocument;
-  rol: string;
+  email: any;
+  rol: any;
   claveInvalida: boolean;
   private loggedInStatus = JSON.parse(localStorage.getItem('loggedIn') || 'false')
 
@@ -25,7 +32,22 @@ export class UsersService {
     public afAuth: AngularFireAuth,
     private router: Router,
     public ordersService: OrdersService) {
+
     this.claveInvalida = false;
+    this.rol = ""
+
+    this.profile$ = this.afAuth.authState.pipe(
+      switchMap( userData => {
+        if(userData){
+          return this.afs.doc(`users/${userData.email}`).snapshotChanges()
+        }else{
+          return this.afs.doc(`users/unregistred@gmail.com`).snapshotChanges()
+        }
+      }),map(profile => {
+          return profile.payload.data() 
+      })
+    )
+    
   }
 
   setLoggedIn(value: boolean) {
@@ -48,6 +70,7 @@ export class UsersService {
     return new Promise((resolve, reject) => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(userData => {
+          this.afAuth.authState 
           if (this.loggedInStatus === true) {
             this.afAuth.auth.signInWithEmailAndPassword(email, password)
           }
@@ -79,49 +102,14 @@ export class UsersService {
   }
 
   logout() {
-    this.ordersService.getOrders().subscribe((orderSnapshot) => {
-      orderSnapshot.forEach((orderData: any) => {
-        if (orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual === true) {
-          orderData.payload.doc.data().actual = false;
-        }
-      })
-    })
+
     return this.afAuth.auth.signOut();
   }
 
-  isLoggedIn() {
-    const userLoggedIn = firebase.auth().currentUser
-    if (!userLoggedIn) {
-      this.router.navigate(['/login']);
-      this.setLoggedIn(false);
-      return false;
-    } else {
-      this.setLoggedIn(true);
-      return true;
-    }
-  }
-
-  isLoggedInAdmin() {
-    const userLoggedInAdmin = firebase.auth().currentUser
-
-    if (!userLoggedInAdmin) {
-      this.router.navigate(['/login']);
-      return false;
-    } else {
-      return true;
-      /* firebase.firestore().collection('/users/').doc(userLoggedInAdmin.uid).onSnapshot((data) => {
-        if( data.get('rol') === "Administrador" ){
-          return true;
-        }else{
-          this.router.navigate(['/home']);
-          return false;
-        }
-      }) */
-    }
+  ngOnInit(){
 
   }
-
-
+  
   /* //Obtener usuarios
   public getUsers(){
     return this.user$;

@@ -6,7 +6,25 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 })
 export class PlatesService {
 
+  public agregar: boolean = true;
+  public editar: boolean = false;
   constructor(public afs: AngularFirestore) { }
+
+  public setAgregar(a: boolean){
+    this.agregar = a;
+  }
+
+  public getAgregar(){
+    return this.agregar;
+  }
+
+  public setEditar(e: boolean){
+    this.editar = e;
+  }
+
+  public getEditar(){
+    return this.editar;
+  }
 
   public getPlates() {
     return this.afs.collection('/plates/').snapshotChanges();
@@ -25,6 +43,6 @@ export class PlatesService {
   }
 
   public deletePlate(id: string) {
-    return this.afs.collection('/orders/').doc(id).delete();
+    return this.afs.collection('/plates/').doc(id).delete();
   }
 }

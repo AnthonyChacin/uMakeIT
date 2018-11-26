@@ -6,6 +6,7 @@ import { Plate } from '../../models/plate';
 import { Order } from '../../models/order';
 import { OrdersService } from 'src/app/service/orders/orders.service';
 import { PlatesService } from 'src/app/service/plates/plates.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-product-customization',
@@ -29,9 +30,24 @@ export class ProductCustomizationComponent implements OnInit {
 	public plato = [];
 	public orden = [];
 	public references_plates = [];
+	public editar: boolean = false;
+	public agregar: boolean = true;
+	public idPlatoEditable: string;
 
-	constructor(private productsService: ProductsService, private ordersService: OrdersService, private platesService: PlatesService) { }
+	constructor(private router: Router, private productsService: ProductsService, private ordersService: OrdersService, private platesService: PlatesService) { }
 
+	limpiarCampos(){
+		this.plate.name = ""
+		this.plate.cant = null
+		this.aderezo.name = ""
+		this.aderezo.cant = null
+		this.racion.name = ""
+		this.racion.cant = null
+		this.jugo.name = ""
+		this.jugo.cant = null 
+		this.postre.name = ""
+		this.postre.cant = null
+	}
 	agregarPlato() {
 
 		if (this.name != "" && this.plate.cant != null) {
@@ -51,9 +67,9 @@ export class ProductCustomizationComponent implements OnInit {
 
 							
 									console.log(res.id);
-									this.references_plates.push({
+									/*this.references_plates.push({
 										id_plates: res.id
-									})
+									})*/
 
 
 							this.ordersService.getOrders().subscribe((orderSnapshot) => {
@@ -72,23 +88,82 @@ export class ProductCustomizationComponent implements OnInit {
 
 								if(cont === 0){
 									//plates_r.push(id_plato);
+									
+									this.references_plates.push({
+										id_plates: res.id
+									})
+
 									const orden: any = {
 										reference_user: firebase.auth().currentUser.email,
 										actual: true,
-										plates_references: this.references_plates
+										plates_references: []
 									}
+
 									this.ordersService.createOrder(orden);
+
+									const plates_references = res.id;
+ 									
+ 									this.ordersService.getOrders().subscribe((actualOrder) => {
+ 										actualOrder.forEach((actualOrderData: any) => {
+ 											if(actualOrderData.payload.doc.data().reference_user === firebase.auth().currentUser.email){
+												if(actualOrderData.payload.doc.data().actual){
+													id_order = actualOrderData.payload.doc.id;
+													this.ordersService.getOrder(id_order).update({
+														plates_references: firebase.firestore.FieldValue.arrayUnion(plates_references)
+													})
+												}
+											}
+ 										})
+ 									})
+
+
 								}else if(cont === 1){
-									const orden: any = {
+
+									const plates_references = res.id;
+
+									this.ordersService.getOrder(id_order).update({
+										plates_references: firebase.firestore.FieldValue.arrayUnion(plates_references)
+									})
+
+									/*const orden: any = {
 										reference_user: firebase.auth().currentUser.email,
 										actual: true,
 										plates_references: this.references_plates
 									}
-									this.ordersService.updateOrder(orden, id_order);
+									this.ordersService.updateOrder(orden, id_order);*/
 								}
 							})
 
 						});
+						this.limpiarCampos();
+						this.router.navigate(['/orden']);
+					}
+				})
+			})
+			
+		}
+	}
+
+	editarPlato(){
+		if (this.name != "" && this.plate.cant != null) {
+
+			this.productsService.getProducts().subscribe((productSnapshot) => {
+				productSnapshot.forEach((productData: any) => {
+					if (productData.payload.doc.data().name === this.name) {
+						const reference = productData.payload.doc.id;
+						const plato: any = {
+							reference_plate: reference,
+							cant_plate: this.plate.cant,
+							products_plate: this.plato
+						}
+	
+						this.platesService.updatePlate(plato, this.idPlatoEditable).then(res => {
+							this.limpiarCampos();
+							this.platesService.setAgregar(!this.agregar);
+							this.platesService.setEditar(!this.editar);
+							this.editar = false;
+							this.agregar = true;
+						})
 					}
 				})
 			})
@@ -165,6 +240,10 @@ export class ProductCustomizationComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		
+		this.agregar = this.platesService.getAgregar();
+		this.editar = this.platesService.getEditar();
+
 		this.productsService.getProducts().subscribe((productSnapshot) => {
 			productSnapshot.forEach((productData: any) => {
 				firebase.firestore().collection('/products/').doc(productData.payload.doc.id).onSnapshot((data) => {
@@ -206,6 +285,90 @@ export class ProductCustomizationComponent implements OnInit {
 				}
 
 			})
+		})
+
+		if(!this.agregar && this.editar){
+			this.ordersService.getOrders().subscribe(orderSnapshot => {
+				orderSnapshot.forEach( (orderData: any) => {
+					if(orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual){
+						const arrayPlates = orderData.payload.doc.data().plates_references;
+						for(let i = 0; i < arrayPlates.length; i++){
+			        		this.platesService.getPlate(arrayPlates[i]).snapshotChanges().subscribe(dataPlate => {
+			        			const idProduct = dataPlate.payload.get('reference_plate');
+			        			this.productsService.getProduct(idProduct).snapshotChanges().subscribe(dataProduct => {
+			        				if(dataProduct.payload.get('name') === this.name){
+			        					this.idPlatoEditable = dataPlate.payload.id;
+			        					/*this.editar = true;
+										this.agregar = false;*/
+			        					this.plate.cant = dataPlate.payload.get('cant_plate');
+			        					this.buscarAderezo(dataPlate.payload.id);
+			        					this.buscarRacion(dataPlate.payload.id);
+			        					this.buscarJugo(dataPlate.payload.id);
+			        					this.buscarPostre(dataPlate.payload.id);
+			        				}
+			        			})
+			        		})
+			        	}
+					}
+				})
+			})
+		}
+				
+	}
+
+	buscarAderezo(idPLate: string){
+		this.platesService.getPlate(idPLate).snapshotChanges().subscribe(dataPlate => {
+			const products_plate = dataPlate.payload.get('products_plate');
+			for(let i = 0; i < products_plate.length; i++){
+				this.productsService.getProduct(products_plate[i].id).snapshotChanges().subscribe(dataProduct => {
+					if(dataProduct.payload.get('plato') === 'Aderezo'){
+						this.aderezo.name = dataProduct.payload.get('name');
+						this.aderezo.cant = products_plate[i].cant;
+					}
+				})
+			}
+		})
+	}
+
+	buscarRacion(idPLate: string){
+		this.platesService.getPlate(idPLate).snapshotChanges().subscribe(dataPlate => {
+			const products_plate = dataPlate.payload.get('products_plate');
+			for(let i = 0; i < products_plate.length; i++){
+				this.productsService.getProduct(products_plate[i].id).snapshotChanges().subscribe(dataProduct => {
+					if(dataProduct.payload.get('plato') === 'Ración'){
+						this.racion.name = dataProduct.payload.get('name');
+						this.racion.cant = products_plate[i].cant;
+					}
+				})
+			}
+		})
+	}
+
+	buscarJugo(idPLate: string){
+		this.platesService.getPlate(idPLate).snapshotChanges().subscribe(dataPlate => {
+			const products_plate = dataPlate.payload.get('products_plate');
+			for(let i = 0; i < products_plate.length; i++){
+				this.productsService.getProduct(products_plate[i].id).snapshotChanges().subscribe(dataProduct => {
+					if(dataProduct.payload.get('plato') === 'Jugo'){
+						this.jugo.name = dataProduct.payload.get('name');
+						this.jugo.cant = products_plate[i].cant;
+					}
+				})
+			}
+		})
+	}
+
+	buscarPostre(idPLate: string){
+		this.platesService.getPlate(idPLate).snapshotChanges().subscribe(dataPlate => {
+			const products_plate = dataPlate.payload.get('products_plate');
+			for(let i = 0; i < products_plate.length; i++){
+				this.productsService.getProduct(products_plate[i].id).snapshotChanges().subscribe(dataProduct => {
+					if(dataProduct.payload.get('plato') === 'Postre'){
+						this.postre.name = dataProduct.payload.get('name');
+						this.postre.cant = products_plate[i].cant;
+					}
+				})
+			}
 		})
 	}
 

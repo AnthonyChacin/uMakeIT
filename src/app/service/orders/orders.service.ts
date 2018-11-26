@@ -8,7 +8,7 @@ import { Order } from 'src/app/models/order';
   providedIn: 'root'
 })
 export class OrdersService {
-
+  
   constructor(public afs: AngularFirestore) { }
 
   public getOrders() {

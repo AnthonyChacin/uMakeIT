@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header-cliente',
@@ -16,18 +17,16 @@ export class HeaderClienteComponent implements OnInit {
 
   public name: string;
   public user: any;
+  public profile$: Observable<any>;
 
-  constructor(private userService: UsersService, private route: ActivatedRoute) {
+  constructor(private userService: UsersService, private route: ActivatedRoute, private afAuth: AngularFireAuth) {
+    this.profile$ = this.userService.profile$;
   }
 
   ngOnInit() {
-    //this.name = firebase.auth().currentUser.displayName;
-    this.name = firebase.auth().currentUser.displayName;
-    
-    /* firebase.firestore().collection('/users/').doc(this.user.uid).onSnapshot((data)=>{
-      this.name = data.get('rol');
-    }); */
-    console.log(this.name);
+    this.profile$.subscribe( data => {
+      this.name = data.firstName + " " + data.lastName;
+    })
   }
 
   onClickLogout(){
