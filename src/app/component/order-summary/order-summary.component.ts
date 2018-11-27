@@ -76,4 +76,6 @@ export class OrderSummaryComponent implements OnInit {
   	}))
   }
 
+  
+
 }

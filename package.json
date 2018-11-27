@@ -25,6 +25,7 @@
     "core-js": "^2.5.4",
     "firebase": "^5.5.5",
     "ngx-bootstrap": "^3.0.1",
+    "ngx-paypal": "^4.0.1",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },
