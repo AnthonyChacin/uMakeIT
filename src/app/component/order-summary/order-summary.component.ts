@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { OrdersService } from '../../service/orders/orders.service';
+import { PlatesService } from '../../service/plates/plates.service';
+import { ProductsService } from '../../service/products/products.service';
+import * as firebase from 'firebase';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-order-summary',
@@ -7,9 +12,68 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderSummaryComponent implements OnInit {
 
-  constructor() { }
+	private productosComprar = []
+	private platesMostrar = []
+	public total: number;
+	public iva: number;
+	public subtotal: number;
+
+  constructor(
+  	private ordersService: OrdersService,
+  	private platesService: PlatesService,
+  	private productsService: ProductsService
+  ) {}
 
   ngOnInit() {
+
+  	this.ordersService.getOrders().subscribe( (orderSnapshot => {
+
+  		this.productosComprar = []
+  		this.platesMostrar = []
+  		this.iva = 0
+  		this.total = 0
+  		this.subtotal = 0
+
+  		orderSnapshot.forEach( (dataOrder: any) => {
+
+  			if(dataOrder.payload.doc.data().reference_user === firebase.auth().currentUser.email && dataOrder.payload.doc.data().actual){
+
+  				dataOrder.payload.doc.data().plates_references.forEach( plates => {
+  					this.platesService.getPlate(plates).snapshotChanges().subscribe(dataPlates => {
+  						var precioPorPlato = 0
+  						dataPlates.payload.get('products_plate').forEach( productsPlate => {
+  							this.productsService.getProduct(productsPlate.id).snapshotChanges().subscribe(platoSecundario => {
+	  							/*this.productosComprar.push({
+			  						name: platoSecundario.payload.get('name'),
+			  						price: platoSecundario.payload.get('price')*productsPlate.cant
+			  					})*/
+			  					this.subtotal += platoSecundario.payload.get('price')*productsPlate.cant
+			  					precioPorPlato += platoSecundario.payload.get('price')*productsPlate.cant
+  							})
+  						})
+
+  						this.productsService.getProduct(dataPlates.payload.get('reference_plate')).snapshotChanges().subscribe( platoPrincipal => {
+		  					
+		  					precioPorPlato += platoPrincipal.payload.get('price')*dataPlates.payload.get('cant_plate')
+		  					this.productosComprar.push({
+		  						name: platoPrincipal.payload.get('name'),
+		  						price: precioPorPlato
+		  					})
+
+		  					this.subtotal += platoPrincipal.payload.get('price')*dataPlates.payload.get('cant_plate')
+		 
+		  					this.iva = (this.subtotal*0.16)
+  							this.total = (this.iva + this.subtotal)
+  						})
+  						
+  					})
+  					
+  				})
+  			}
+  		})
+  		console.log(this.platesMostrar)
+  		console.log(this.productosComprar)
+  	}))
   }
 
   

@@ -9,18 +9,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Berenjenas rellenas</td>
-          <td>1500 Bs.</td>
+
+        <tr *ngFor="let productoComprar of productosComprar">
+          <td>{{productoComprar.name}}</td>
+          <td>{{productoComprar.price}} Bs.</td>
         </tr>
-        <tr>
-          <td>Calabacines rellenos</td>
-          <td>800 Bs.</td>
-        </tr>
-        <tr>
-          <td>Coliflor Sesamo</td>
-          <td>750 Bs.</td>
-        </tr>
+
       </tbody>
     </table>
   </div>
@@ -36,15 +30,15 @@
       <tbody>
         <tr>
           <td>Sub-total:</td>
-          <td>3050 Bs.</td>
+          <td>{{subtotal}} Bs.</td>
         </tr>
         <tr>
           <td>Iva (16%):</td>
-          <td>488 Bs.</td>
+          <td>{{iva}} Bs.</td>
         </tr>
         <tr>
           <td>Total:</td>
-          <td>3538 Bs.</td>
+          <td>{{total}} Bs.</td>
         </tr>
       </tbody>
     </table>
