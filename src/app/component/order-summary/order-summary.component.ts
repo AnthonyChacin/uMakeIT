@@ -99,13 +99,27 @@ export class OrderSummaryComponent implements OnInit {
 			transactions: [{
 				amount: {
 					currency: 'USD',
-					total: 9
+					total: this.total
 				}
 			}]
 		});
 	}
+
+	onPay() {
+		this.ordersService.getOrders().subscribe((actualOrder) => {
+			actualOrder.forEach((actualOrderData: any) => {
+				if (actualOrderData.payload.doc.data().reference_user === firebase.auth().currentUser.email) {
+					if (actualOrderData.payload.doc.data().actual) {
+						var id_order = actualOrderData.payload.doc.id;
+						this.ordersService.getOrder(id_order).update({
+							actual: false
+						})
+					}
+				}
+			})
+		})
+	}
+
+
 }
-
-
-
 
