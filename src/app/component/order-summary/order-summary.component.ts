@@ -110,10 +110,11 @@ export class OrderSummaryComponent implements OnInit {
 			actualOrder.forEach((actualOrderData: any) => {
 				if (actualOrderData.payload.doc.data().reference_user === firebase.auth().currentUser.email) {
 					if (actualOrderData.payload.doc.data().actual) {
-						var id_order = actualOrderData.payload.doc.id;
-						this.ordersService.getOrder(id_order).update({
+						//var id_order = actualOrderData.payload.doc.id;
+						this.ordersService.getOrder(actualOrderData.payload.doc.id).update({
 							actual: false
 						})
+						console.log(actualOrderData.payload.doc.id)
 					}
 				}
 			})
