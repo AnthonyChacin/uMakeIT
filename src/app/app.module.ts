@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { NgxPayPalModule } from 'ngx-paypal';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/header/header.component';
 import { RegistroLoginComponent } from './view/registro-login/registro-login.component';
@@ -92,7 +92,8 @@ import { AuthAdminGuard } from './guards/auth-admin.guard';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    NgxPayPalModule
   ],
   providers: [
     AngularFirestore, 
