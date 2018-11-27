@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../../service/orders/orders.service';
 import { PlatesService } from '../../service/plates/plates.service';
 import { ProductsService } from '../../service/products/products.service';
-import { ProductCustomizationComponent } from '../../component/product-customization/product-customization.component';
 
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
@@ -18,7 +17,6 @@ export class OrdenComponent implements OnInit {
   public idOrder: any;
   private eliminar: boolean = false;
   private idPlatoEliminar: any;
-  private productCustomization: ProductCustomizationComponent;
 
   constructor(
   	private ordersService: OrdersService,
@@ -59,21 +57,6 @@ export class OrdenComponent implements OnInit {
           }
         })
       })
-
-
-      /*this.platesService.getPlates().subscribe((plateSnapshot) => {
-        plateSnapshot.forEach((plateData: any) => {
-          firebase.firestore().collection('/plates/').doc(plateData.payload.doc.id).onSnapshot((data) => {
-            if (data.id === idPlate) {
-              this.ordersService.getOrder(this.idOrder).update({
-                plates_references: firebase.firestore.FieldValue.arrayRemove(idPlate)
-              })
-              this.platesService.deletePlate(plateData.payload.doc.id);
-              alert("¡El plato ha sido eliminado con éxito de la orden!");
-            }
-          })
-        })
-      })*/
     }
   }
   
