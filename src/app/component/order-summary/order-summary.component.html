@@ -24,7 +24,7 @@
       <thead class="thead-dark">
         <tr>
           <th>Descripción</th>
-          <th>Costo</th>
+          <th>Monto</th>
         </tr>
       </thead>
       <tbody>
@@ -46,13 +46,13 @@
 </div>
 <div class="row box-btn">
   <div class="col-4">
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <form (ngSubmit)="initConfig()" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
       <input type="hidden" name="hosted_button_id" value="FR82DLEJ7TDZJ">
       <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit"
         alt="PayPal - The safer, easier way to pay online!">
-      <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
     </form>
+    <button type="button" class="btn btn-danger" (click)="onPay()" routerLink="/compras">Pagar</button>
   </div>
   <div class="col-4">
     <button type="button" class="btn btn-dark" routerLink="/orden">Volver a orden</button>
