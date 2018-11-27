@@ -109,18 +109,40 @@ export class OrderSummaryComponent implements OnInit {
 		this.ordersService.getOrders().subscribe((actualOrder) => {
 			actualOrder.forEach((actualOrderData: any) => {
 				if (actualOrderData.payload.doc.data().reference_user === firebase.auth().currentUser.email) {
-					if (actualOrderData.payload.doc.data().actual) {
+					if (actualOrderData.payload.doc.data().actual && actualOrderData.payload.doc.data().plates_references.length != 0) {
 						//var id_order = actualOrderData.payload.doc.id;
 						this.ordersService.getOrder(actualOrderData.payload.doc.id).update({
 							actual: false
+						}).then( res => {
+							const orden: any = {
+						  	 	reference_user: firebase.auth().currentUser.email,
+						        actual: true,
+						        plates_references: []
+					     	}
+					     	
+						    firebase.firestore().collection('/orders').add(orden).then( res => {
+						    	console.log(res.get())
+						    })
 						})
 						console.log(actualOrderData.payload.doc.id)
 					}
 				}
 			})
 		})
+		/*var cont = 0
+		this.ordersService.getOrders().subscribe( orderSnapshot => {	
+		    var id_order: string
+      		orderSnapshot.forEach( dataOrder => {
+			    if( dataOrder.payload.doc.get('reference_user') === firebase.auth().currentUser.email && dataOrder.payload.doc.get('plates_references').length === 0){
+			        if(cont === 0){
+				        this.ordersService.getOrder(dataOrder.payload.doc.id).update({
+							actual: true
+						})
+						cont++
+			        }	
+			    }
+		    })
+    	})*/
 	}
-
-
 }
 
