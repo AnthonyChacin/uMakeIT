@@ -62,7 +62,14 @@ export class RegistroLoginComponent implements OnInit {
             pswnc: null,
             rol: rol
           }
-          this.userService.createUser(data, user.email);
+          this.userService.createUser(data, user.email).then( data => {
+                const orden: any = {
+                   reference_user: user.email,
+                    actual: true,
+                    plates_references: []
+                 }
+                 this.ordersService.createOrder(orden)
+          });
           user.updateProfile({ displayName: firstName + " " + lastName, photoURL: "..." }).then((res) => {
             console.log(res);
             console.log(user);
