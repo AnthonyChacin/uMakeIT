@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class OrdenComponent implements OnInit {
 
-	public orders: Observable<any[]>;
+	public orders = [];
   public idOrder: any;
   private eliminar: boolean = false;
   private idPlatoEliminar: any;
@@ -71,7 +71,7 @@ export class OrdenComponent implements OnInit {
   
   ngOnInit() {
   	this.ordersService.getOrders().subscribe((orderSnapshot) => {
-      this.orders = <any>[]
+      this.orders = []
       orderSnapshot.forEach((orderData: any) => {
         if(orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual) {
      
