@@ -61,11 +61,6 @@
           <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="psw" [(ngModel)]="user.psw"
             required>
         </div>
-        <div class="form-group form-check redondeo-checkbox">
-          <label class="form-check-label">
-            <input class="form-check-input redondeo-checkbox" type="checkbox" name="remember"> Recuérdame
-          </label>
-        </div>
         <button type="submit" class="btn btn-outline active boton-inicio-sesion">Iniciar Sesión</button>
         <div class="form-group" *ngIf="cuentaInexistente === true">
           El correo que usted ha ingresado no se encuentra registrado.

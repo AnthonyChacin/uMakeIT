@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../../service/orders/orders.service';
 import { PlatesService } from '../../service/plates/plates.service';
 import { ProductsService } from '../../service/products/products.service';
+import { Observable } from 'rxjs';
 
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class OrdenComponent implements OnInit {
 
-	public orders = [];
+	public orders: Observable<any[]>;
   public idOrder: any;
   private eliminar: boolean = false;
   private idPlatoEliminar: any;
@@ -35,34 +36,42 @@ export class OrdenComponent implements OnInit {
   eliminarPlato(idPlate: string){
 
     var mensaje = confirm("¿Estás seguro de que deseas eliminar el producto? Si haces click en 'Aceptar', el mismo no podrá ser recuperado.");
+    
     if (mensaje) {
-
       this.ordersService.getOrders().subscribe((orderSnapshot) => {
         orderSnapshot.forEach((orderData: any) => {
-          if(orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual) {
-              
-              const arrayPlates = orderData.payload.doc.data().plates_references;
-              
-              for(let i = 0; i < arrayPlates.length; i++){
-                if(arrayPlates[i] === idPlate){
-                  this.platesService.deletePlate(idPlate).then(res => {
-                    alert("¡Plato eliminado exitosamente!");
-                  })
-                  this.ordersService.getOrder(orderData.payload.doc.id).update({
-                    plates_references: firebase.firestore.FieldValue.arrayRemove(idPlate)
-                  })
-                  break;
-                }
+          firebase.firestore().collection('/orders/').doc(orderData.payload.doc.id).onSnapshot((data) => {
+            data.get('plates_references').forEach( res => {
+              if (res === idPlate) {
+                this.platesService.deletePlate(idPlate);
+                alert("¡El plato ha sido eliminado con éxito!");
               }
-          }
+            })
+          })
         })
       })
     }
+
+    /*if (mensaje) {
+
+      this.ordersService.getOrders().subscribe( orderSnapshot => {
+        orderSnapshot.forEach( (orderData: any) => {
+            if(orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual) {
+              this.platesService.deletePlate(idPlate).then(res => {
+                alert("¡Plato eliminado exitosamente!");
+              })
+              this.ordersService.getOrder(orderData.payload.doc.id).update({
+              plates_references: firebase.firestore.FieldValue.arrayRemove(idPlate)
+              })
+            }
+        })
+      })
+    }*/
   }
   
   ngOnInit() {
   	this.ordersService.getOrders().subscribe((orderSnapshot) => {
-      this.orders = []
+      this.orders = <any>[]
       orderSnapshot.forEach((orderData: any) => {
         if(orderData.payload.doc.data().reference_user === firebase.auth().currentUser.email && orderData.payload.doc.data().actual) {
      
@@ -75,6 +84,7 @@ export class OrdenComponent implements OnInit {
         			const idProduct = dataPlate.payload.get('reference_plate');
         			this.productsService.getProduct(idProduct).snapshotChanges().subscribe(dataProduct => {
         				this.orders.push({
+                  idOrder: orderData.payload.id,
         					idPlate: dataPlate.payload.id,
         					name: dataProduct.payload.get('name'),
         					url_img: dataProduct.payload.get('url_img'),
