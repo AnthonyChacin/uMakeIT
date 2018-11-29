@@ -1,12 +1,11 @@
 <div class="row">
-    <div class="col-sm-4" *ngFor="let product of products">
+    <div class="col-sm-4" *ngFor="let order of orders">
         <div class="card special-card">
             <div class="card-body">
                 <h5 class="card-title">Pedido</h5>
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <input class="col-1 elegir-comida" type="checkbox" name="comida1">
-                        Kebab de Garbanzos
+                    <li class="list-group-item" *ngFor="let product of products">
+                        {{product.data.name}}
                     </li>
                 </ul>
                 <br>
